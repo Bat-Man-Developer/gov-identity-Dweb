@@ -14,7 +14,7 @@ async function init() {
             signer = provider.getSigner();
             console.log('Signer:', signer);
             
-            const contractAddress = '0x83cEC04c7003C3469d41Abbd849Bfa6278dA1d9C';
+            const contractAddress = '0x48da8e04a5b18324D151e5A3A1068E0064F118a0';
             const abi = [
                 {
                     "anonymous": false,
