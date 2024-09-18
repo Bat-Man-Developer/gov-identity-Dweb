@@ -52,7 +52,7 @@ include("server/get_register.php");
             <label for="rePassword">Re-enter Password</label>
             <input type="password" id="rePassword" name="rePassword" placeholder="Re-enter Password" required>
 
-            <button type="submit" id="registerBtn" name="registerBtn">Submit</button>
+            <button type="submit" id="registerBtn" name="registerBtn" onclick="registerUser()">Submit</button>
         </form>
         <p>Already have an account? <a href="login.php">Login here</a></p>
     </main>

@@ -17,14 +17,7 @@ include("includes/header.php");
             <form id="logout-form" method="POST" action="server/get_logout.php">
                 <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
             </form>
-            <?php } else { ?>
-            <form id="login-form" method="POST" action="login.php">
-                <a><button type="submit" id="loginBtn" name="loginBtn">Login</button></a>
-            </form>
-            <form id="reg-form" method="POST" action="register.php">
-                <a><button type="submit" irB="registerBtn" name="registerBtn">Register</button></a>
-            </form>
-        <?php } ?>
+            <?php } ?>
     </nav>
     <main>
         <h2>Services Offered</h2>
@@ -44,7 +37,8 @@ include("includes/header.php");
             <div class="service-item">
                 <h3>Identity Document Applications</h3>
                 <p>Apply for IDs and passports to confirm your identity.</p>
-            </div>
+            </div><br>
+            <a style="display: flex; justify-content: center;" href="login.php"><button type="submit" id="loginBtn" name="loginBtn">Login</button></a>
         </div>
     </main>
 </body>

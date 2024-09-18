@@ -14,7 +14,7 @@ async function init() {
             signer = provider.getSigner();
             console.log('Signer:', signer);
             
-            const contractAddress = '0x48da8e04a5b18324D151e5A3A1068E0064F118a0';
+            const contractAddress = '0x15C4b48C39fF0cc49C382fff2C7e1d347cA4B889';
             const abi = [
                 {
                     "anonymous": false,
@@ -165,14 +165,14 @@ async function register() {
         showError('Web3 is not connected. Please refresh the page and try again.');
         return;
     }
-    const username = document.getElementById('registerUsername').value;
-    const password = document.getElementById('registerPassword').value;
-    if (!username || !password) {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    if (!email || !password) {
         alert('Please fill in all fields.');
         return;
     }
     try {
-        const tx = await contract.register(username, password);
+        const tx = await contract.register(email, password);
         await tx.wait();
         alert('Registration successful!');
         clearInputs();
@@ -187,7 +187,7 @@ async function login() {
         showError('Web3 is not connected. Please refresh the page and try again.');
         return;
     }
-    const password = document.getElementById('loginPassword').value;
+    const password = document.getElementById('password').value;
     if (!password) {
         alert('Please enter your password.');
         return;
@@ -210,8 +210,8 @@ async function login() {
 
         const isLoggedIn = await contract.login(password);
         if (isLoggedIn) {
-            const username = await contract.getUsername();
-            document.getElementById('username').textContent = username;
+            const email = await contract.getEmail();
+            document.getElementById('email').textContent = email;
             document.getElementById('landingPage').style.display = 'none';
             document.getElementById('userInfo').style.display = 'block';
             document.querySelector('.container').style.display = 'none';
@@ -232,20 +232,8 @@ function logout() {
 }
 
 function clearInputs() {
-    document.getElementById('registerUsername').value = '';
-    document.getElementById('registerPassword').value = '';
-    document.getElementById('loginPassword').value = '';
-}
-
-function toggleTheme() {
-    document.body.classList.toggle('dark-theme');
-    if (document.body.classList.contains('dark-theme')) {
-        document.documentElement.style.setProperty('--background-color', '#333');
-        document.documentElement.style.setProperty('--text-color', '#f0f0f0');
-    } else {
-        document.documentElement.style.setProperty('--background-color', '#f0f0f0');
-        document.documentElement.style.setProperty('--text-color', '#333');
-    }
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
 }
 
 init();

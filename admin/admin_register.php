@@ -7,12 +7,7 @@ include("server/get_admin_register.php");
         <h1>Home Affairs: Registration</h1>
         <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo" width="200">
     </header>
-    <nav>
-        <a href="admin_dashboard.php">Dashboard</a>
-        <a href="admin_review_applications.php">Review Applications</a>
-        <a href="admin_view_users.php">View Users</a>
-        <a href="admin_logs.php">Logs</a>
-    </nav>
+    <nav></nav>
     <main>
         <!------------- Website Messages----------->
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>

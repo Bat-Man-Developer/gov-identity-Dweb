@@ -17,14 +17,7 @@ include("includes/header.php");
             <form id="logout-form" method="POST" action="server/get_logout.php">
                 <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
             </form>
-            <?php } else { ?>
-            <form id="login-form" method="POST" action="login.php">
-                <a><button type="submit" id="loginBtn" name="loginBtn">Login</button></a>
-            </form>
-            <form id="reg-form" method="POST" action="register.php">
-                <a><button type="submit" irB="registerBtn" name="registerBtn">Register</button></a>
-            </form>
-        <?php } ?>
+            <?php } ?>
     </nav>
     <main>
         <div class="news-articles">
