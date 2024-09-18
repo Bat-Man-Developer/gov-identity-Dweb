@@ -27,6 +27,14 @@ h2 {
     margin-bottom: 20px;
 }
 
+#webMessageError{
+    color: red;
+}
+
+#webMessageSuccess{
+    color: green;    
+}
+
 nav a {
     color: white;
     text-decoration: none;

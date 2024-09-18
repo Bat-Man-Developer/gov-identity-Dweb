@@ -1,5 +1,6 @@
 <?php 
 include("includes/header.php");
+include("server/get_login.php");
 ?>
 <body>
     <header>
@@ -16,17 +17,20 @@ include("includes/header.php");
         <a href="team.php">Team</a>
     </nav>
     <main>
-        <form id="login-form">
+        <!------------- Website Messages----------->
+        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
+        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+        <form id="reg-form" method="POST" action="login.php">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required>
 
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter Password" required>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
 
-            <button onclick="login()">Login</button>
+            <button type="submit" name="loginBtn">Login</button>
         </form>
         <p>Don't have an account? <a href="register.php">Register here</a></p>
-        <p>Are you an employee? <a href="admin/login.php" target="_blank">Staff sign in</a></p>
+        <p>Are you an employee? <a href="admin/admin_login.php" target="_blank">Staff Sign in</a></p>
     </main>
 </body>
 <?php 

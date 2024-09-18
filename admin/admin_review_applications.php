@@ -1,15 +1,25 @@
 <?php
-include("includes/header.php");
+include("includes/admin_header.php");
+//if user is not logged in then take user to login page
+if(!isset($_SESSION['adminEmail'])){
+  header('location: admin_login.php?error=Unauthorised Access. Please Login.');
+  exit;
+}
+include('server/get_admin_logout.php');
 ?>
 <body>
     <header>
         <h1>Home Affairs Admin: Review Applications</h1>
     </header>
     <nav>
-        <a href="dashboard.php">Dashboard</a>
-        <a href="view_users.php">View Users</a>
-        <a href="logs.php">Logs</a>
-        <a><button onclick="logout()">Logout</button></a>
+        <a href="admin_dashboard.php">Dashboard</a>
+        <a href="admin_view_users.php">View Users</a>
+        <a href="admin_logs.php">Logs</a>
+        <?php if(isset($_SESSION['adminEmail'])){ ?>
+            <form id="admin-logout-form" method="POST" action="server/get_admin_logout.php">
+                <a><button type="submit" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
+            </form>
+        <?php } ?>
     </nav>
     <main>
         <h2>Application List</h2>
@@ -73,5 +83,5 @@ include("includes/header.php");
     </main>
 </body>
 <?php
-include("includes/footer.php");
+include("includes/admin_footer.php");
 ?>

@@ -1,5 +1,11 @@
-<?php 
+<?php
 include("includes/header.php");
+//if user is not logged in then take user to login page
+if(!isset($_SESSION['email'])){
+  header('location: login.php?error=Register or Login.');
+  exit;
+}
+include('server/get_logout.php');
 ?>
 <body>
     <header>
@@ -13,11 +19,25 @@ include("includes/header.php");
         <a href="contact.php">Contact</a>
         <a href="about.php">About</a>
         <a href="team.php">Team</a>
-        <a><button onclick="logout()">Logout</button></a>
+        <?php if(isset($_SESSION['email'])){ ?>
+            <form id="logout-form" method="POST" action="server/get_logout.php">
+                <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
+            </form>
+            <?php } else { ?>
+            <form id="login-form" method="POST" action="login.php">
+                <a><button type="submit" id="loginBtn" name="loginBtn">Login</button></a>
+            </form>
+            <form id="reg-form" method="POST" action="register.php">
+                <a><button type="submit" irB="registerBtn" name="registerBtn">Register</button></a>
+            </form>
+        <?php } ?>
     </nav>
     
     <main>
-        <h2>Welcome, [User Name]</h2>
+        <!------------- Website Messages----------->
+        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
+        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+        <h2>Welcome, <?php echo $_SESSION['firstName']. " " . $_SESSION['surname'];?></h2>
         <p>Select a service to proceed:</p>
         <button class="service-button">Citizenship Application</button>
         <button class="service-button">Visa Application</button>
@@ -29,7 +49,9 @@ include("includes/header.php");
             <p>No applications submitted yet.</p>
         </div>
 
-        <button class="service-button" onclick="window.location.href='logout.html'">Logout</button>
+        <form id="logout-form" method="POST" action="server/get_logout.php">
+            <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
+        </form>
     </main>
 </body>
 <?php 

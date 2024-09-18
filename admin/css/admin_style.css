@@ -30,6 +30,14 @@ h2 {
     margin-bottom: 20px;
 }
 
+#webMessageError{
+    color: red;
+}
+
+#webMessageSuccess{
+    color: green;    
+}
+
 nav {
     background-color: black; /* Navigation bar background */
     padding: 10px;
