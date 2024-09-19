@@ -1,5 +1,12 @@
 <?php
 session_start();
+if(isset($_POST['logoutBtn'])){
+    unset($_SESSION['firstName']);
+    unset($_SESSION['surname']);
+    unset($_SESSION['email']);
+    header('location: login.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

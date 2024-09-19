@@ -14,10 +14,10 @@ include("includes/header.php");
         <a href="about.php">About</a>
         <a href="team.php">Team</a>
         <?php if(isset($_SESSION['email'])){ ?>
-            <form id="logout-form" method="POST" action="server/get_logout.php">
+            <form id="logout-form" method="POST" action="about.php">
                 <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
             </form>
-            <?php } ?>
+        <?php } ?>
     </nav>
     <main>
         <h2>Services Offered</h2>
