@@ -4,7 +4,7 @@ if(isset($_POST['adminLogoutBtn'])){
     unset($_SESSION['adminFirstName']);
     unset($_SESSION['adminSurname']);
     unset($_SESSION['adminEmail']);
-    header('location: ../admin_login.php');
+    header('location: admin_login.php');
     exit;
 }
 ?>

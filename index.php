@@ -15,7 +15,7 @@ include("includes/header.php");
         <a href="about.php">About</a>
         <a href="team.php">Team</a>
         <?php if(isset($_SESSION['email'])){ ?>
-            <form id="logout-form" method="POST" action="about.php">
+            <form id="logout-form" method="POST" action="index.php">
                 <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
             </form>
         <?php } ?>

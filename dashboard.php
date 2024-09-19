@@ -5,7 +5,6 @@ if(!isset($_SESSION['email'])){
   header('location: login.php?error=Register or Login.');
   exit;
 }
-include('server/get_logout.php');
 ?>
 <body>
     <header>
@@ -20,7 +19,7 @@ include('server/get_logout.php');
         <a href="about.php">About</a>
         <a href="team.php">Team</a>
         <?php if(isset($_SESSION['email'])){ ?>
-            <form id="logout-form" method="POST" action="about.php">
+            <form id="logout-form" method="POST" action="dashboard.php">
                 <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
             </form>
         <?php } ?>

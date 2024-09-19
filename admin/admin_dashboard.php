@@ -5,7 +5,6 @@ if(!isset($_SESSION['adminEmail'])){
   header('location: admin_login.php?error=Unauthorised Access. Please Login.');
   exit;
 }
-include('server/get_admin_logout.php');
 ?>
 <body>
     <header>
@@ -17,7 +16,7 @@ include('server/get_admin_logout.php');
         <a href="admin_view_users.php">View Users</a>
         <a href="admin_logs.php">Logs</a>
         <?php if(isset($_SESSION['adminEmail'])){ ?>
-            <form id="admin-logout-form" method="POST" action="server/get_admin_logout.php">
+            <form id="admin-logout-form" method="POST" action="admin_dashboard.php">
                 <a><button type="submit" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
             </form>
         <?php } ?>
