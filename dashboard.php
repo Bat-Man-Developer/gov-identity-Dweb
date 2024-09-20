@@ -41,7 +41,7 @@ if(!isset($_SESSION['email'])){
             <p>No applications submitted yet.</p>
         </div>
 
-        <form id="logout-form" method="POST" action="server/get_logout.php">
+        <form id="logout-form" method="POST" action="dashboard.php">
             <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
         </form>
     </main>
