@@ -5,7 +5,7 @@ include("includes/header.php");
 <body>
     <header>
         <h1>Home Affairs: Home</h1>
-        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo" width="200">
+        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
         <a href="dashboard.php">Dashboard</a>

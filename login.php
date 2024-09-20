@@ -5,7 +5,7 @@ include("server/get_login.php");
 <body>
     <header>
         <h1>Home Affairs: Login</h1>
-        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo" width="200">
+        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
         <a href="index.php">Home</a>

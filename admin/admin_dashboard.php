@@ -9,7 +9,7 @@ if(!isset($_SESSION['adminEmail'])){
 <body>
     <header>
         <h1>Home Affairs Admin: Dashboard</h1>
-        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo" width="200">
+        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
         <a href="admin_review_applications.php">Review Applications</a>
@@ -17,7 +17,7 @@ if(!isset($_SESSION['adminEmail'])){
         <a href="admin_logs.php">Logs</a>
         <?php if(isset($_SESSION['adminEmail'])){ ?>
             <form id="admin-logout-form" method="POST" action="admin_dashboard.php">
-                <a><button type="submit" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
+                <a><button type="submit" class="logoutBtn" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
             </form>
         <?php } ?>
     </nav>

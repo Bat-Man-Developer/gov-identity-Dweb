@@ -9,7 +9,7 @@ if(!isset($_SESSION['email'])){
 <body>
     <header>
         <h1>Home Affairs: Dashboard</h1>
-        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo" width="200">
+        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
         <a href="index.php">Home</a>

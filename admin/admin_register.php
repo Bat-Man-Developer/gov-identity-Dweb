@@ -5,7 +5,7 @@ include("server/get_admin_register.php");
 <body>
     <header>
         <h1>Home Affairs: Registration</h1>
-        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo" width="200">
+        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav></nav>
     <main>

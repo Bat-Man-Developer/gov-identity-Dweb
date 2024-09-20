@@ -28,6 +28,7 @@ if(!isset($_SESSION['adminEmail'])){
 <body>
     <header>
         <h1>Home Affairs Admin: View Users</h1>
+        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>  
     <nav>
         <a href="admin_dashboard.php">Dashboard</a>
@@ -35,11 +36,14 @@ if(!isset($_SESSION['adminEmail'])){
         <a href="admin_logs.php">Logs</a>
         <?php if(isset($_SESSION['adminEmail'])){ ?>
             <form id="admin-logout-form" method="POST" action="admin_view_users.php">
-                <a><button type="submit" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
+                <a><button type="submit" class="logoutBtn" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
             </form>
         <?php } ?>
     </nav>
     <main>
+        <!------------- Website Messages----------->
+        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
+        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <h2>User List</h2>
         <table>
             <thead>

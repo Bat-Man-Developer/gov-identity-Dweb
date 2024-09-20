@@ -10,7 +10,7 @@ if(!isset($_SESSION['adminEmail'])){
     <div class="container">
         <header>
             <h1>Home Affairs Admin: Logs</h1>
-            <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo" width="200">
+            <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
         </header>
         <nav>
             <a href="admin_dashboard.php">Dashboard</a>
@@ -18,7 +18,7 @@ if(!isset($_SESSION['adminEmail'])){
             <a href="admin_view_users.php">View Users</a>
             <?php if(isset($_SESSION['adminEmail'])){ ?>
                 <form id="admin-logout-form" method="POST" action="admin_logs.php">
-                    <a><button type="submit" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
+                    <a><button type="submit" class="logoutBtn" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
                 </form>
             <?php } ?>
         </nav>
