@@ -27,7 +27,7 @@ include("server/get_admin_register.php");
             <label for="rePassword">Re-enter Password</label>
             <input type="password" id="adminRePassword" name="adminRePassword" placeholder="Re-enter Password" required>
 
-            <button type="submit" id="adminRegisterBtn" name="adminRegisterBtn">Submit</button>
+            <button type="submit" class="registerBtn" id="adminRegisterBtn" name="adminRegisterBtn">Submit</button>
         </form>
         <p>Already have an Admin account? <a href="admin_login.php">Login here</a></p>
     </main>

@@ -21,7 +21,7 @@ include("server/get_admin_login.php");
             <label for="password">Staff Password</label>
             <input type="password" id="adminPassword" name="adminPassword" placeholder="Enter Password" required>
 
-            <button type="submit" name="adminLoginBtn">Staff Login</button>
+            <button type="submit" class="loginBtn" name="adminLoginBtn">Staff Login</button>
         </form>
         <p>Don't have an Admin account? <a href="admin_register.php">Register here</a></p>
     </main>

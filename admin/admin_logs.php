@@ -22,7 +22,7 @@ if(!isset($_SESSION['adminEmail'])){
                 </form>
             <?php } ?>
         </nav>
-        <section class="logs-section">
+        <main>
             <h2>Activity Logs</h2>
             <p>View and review user activity for compliance and security.</p>
 
@@ -51,7 +51,7 @@ if(!isset($_SESSION['adminEmail'])){
                     <!-- Add more log entries as needed -->
                 </tbody>
             </table>
-        </section>
+        </main>
     </div>
 </body>
 <?php

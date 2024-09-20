@@ -68,7 +68,7 @@ if(!isset($_SESSION['adminEmail'])){
                     <td>123-456-7890</td>
                     <td class="status-cell">Pending</td>
                     <td>
-                        <button class="verify-button" onclick="verifyUser(this, 1)">Verify</button>
+                        <button class="verify-button" onclick="verifyUser(this, 1)">Verify</button><br>
                         <a href="edit_user.html?id=1" class="action-button">Edit</a>
                         <a href="delete_user.html?id=1" class="action-button">Delete</a>
                     </td>
@@ -82,7 +82,7 @@ if(!isset($_SESSION['adminEmail'])){
                     <td>098-765-4321</td>
                     <td class="status-cell">Pending</td>
                     <td>
-                        <button class="verify-button" onclick="verifyUser(this, 2)">Verify</button>
+                        <button class="verify-button" onclick="verifyUser(this, 2)">Verify</button><br>
                         <a href="edit_user.html?id=2" class="action-button">Edit</a>
                         <a href="delete_user.html?id=2" class="action-button">Delete</a>
                     </td>
@@ -96,7 +96,7 @@ if(!isset($_SESSION['adminEmail'])){
                     <td>555-123-4567</td>
                     <td class="status-cell">Pending</td>
                     <td>
-                        <button class="verify-button" onclick="verifyUser(this, 3)">Verify</button>
+                        <button class="verify-button" onclick="verifyUser(this, 3)">Verify</button><br>
                         <a href="edit_user.html?id=3" class="action-button">Edit</a>
                         <a href="delete_user.html?id=3" class="action-button">Delete</a>
                     </td>
@@ -110,7 +110,7 @@ if(!isset($_SESSION['adminEmail'])){
                     <td>555-765-4321</td>
                     <td class="status-cell">Pending</td>
                     <td>
-                        <button class="verify-button" onclick="verifyUser(this, 4)">Verify</button>
+                        <button class="verify-button" onclick="verifyUser(this, 4)">Verify</button><br>
                         <a href="edit_user.html?id=4" class="action-button">Edit</a>
                         <a href="delete_user.html?id=4" class="action-button">Delete</a>
                     </td>
