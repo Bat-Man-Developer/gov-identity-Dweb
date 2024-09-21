@@ -53,6 +53,19 @@ if(!isset($_SESSION['adminEmail'])){
                     <?php } ?>
                 </tbody>
             </table>
+            <div class="page-btn">
+                <span class="page-item <?php if($pagenumber <= 1){ echo 'disabled';} ?>"><a class="page-link" href="<?php if($pagenumber <= 1){ echo '#';}else{ echo "?pagenumber=".($pagenumber - 1);} ?>">Prev</a></span>
+
+                <span class="page-item"><a class="page-link" href="?pagenumber=1">1</a></span>
+                <span class="page-item"><a class="page-link" href="?pagenumber=2">2</a></span>
+
+                <?php if($pagenumber >= 3) { ?>
+                    <span class="page-item"><a class="page-link" href="#">...</a></span>
+                    <span class="page-item"><a class="page-link" href="<?php echo "?pagenumber=".$pagenumber; ?>"><?php echo $pagenumber; ?></a></span>
+                <?php } ?>
+
+                <span class="page-item <?php if($pagenumber >= $totalnumberofpages){ echo 'disabled';} ?>"><a class="page-link" href="<?php if($pagenumber >= $totalnumberofpages){ echo '#';}else{ echo "?pagenumber=".($pagenumber + 1);} ?>">Next</a></span>
+            </div>
         </main>
     </div>
 </body>
