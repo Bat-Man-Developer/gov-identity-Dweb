@@ -36,7 +36,7 @@ include("includes/header.php");
             </div>
             <div class="service-item">
                 <h3>Identity Document Applications</h3>
-                <p>Apply for IDs and passports to confirm your identity.</p>
+                <p>Apply for ID and passport to confirm your identity.</p>
             </div><br>
             <a style="display: flex; justify-content: center;" href="login.php"><button type="submit" id="loginBtn" name="loginBtn">Login</button></a>
         </div>

@@ -8,15 +8,15 @@ if(!isset($_SESSION['adminEmail'])){
 ?>
 <body>
     <header>
-        <h1>Home Affairs Admin: View Users</h1>
+        <h1>Home Affairs Admin: Review Applications</h1>
         <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
-    </header>  
+    </header>
     <nav>
         <a href="admin_dashboard.php">Dashboard</a>
-        <a href="admin_review_id_applications.php">Review ID Applications</a>
+        <a href="admin_view_users.php">View Users</a>
         <a href="admin_logs.php">Logs</a>
         <?php if(isset($_SESSION['adminEmail'])){ ?>
-            <form id="admin-logout-form" method="POST" action="admin_view_users.php">
+            <form id="admin-logout-form" method="POST" action="admin_review_applications.php">
                 <a><button type="submit" class="logoutBtn" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
             </form>
         <?php } ?>
@@ -25,35 +25,31 @@ if(!isset($_SESSION['adminEmail'])){
         <!------------- Website Messages----------->
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
-        <h2>User List</h2>
+        <h2>ID Application List</h2>
         <table>
             <thead>
                 <tr>
-                    <th>User No.</th>
-                    <th>Name</th>
-                    <th>Sex</th>
-                    <th>Country</th>
-                    <th>Email</th>
-                    <th>Cell Number</th>
-                    <th>Verification Status</th>
+                    <th>ID Application No.</th>
+                    <th>User Name</th>
+                    <th>Application Type</th>
+                    <th>Status</th>
+                    <th>Submission Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php include('server/get_admin_view_users.php');
-                    foreach($users as $user){?>
+                <?php include('server/get_admin_review_id_applications.php');
+                        foreach($applications as $application){?>
                 <tr>
-                    <td><?php echo $user['user_id']; ?></td>
-                    <td><?php echo $user['user_first_name'] . " " . $user['user_surname']; ?></td>
-                    <td><?php echo $user['user_sex']; ?></td>
-                    <td><?php echo $user['user_country']; ?></td>
-                    <td><?php echo $user['user_email']; ?></td>
-                    <td><?php echo $user['user_phone']; ?></td>
-                    <td><?php echo $user['user_status']; ?></td>
+                    <td><?php echo $application['id_application_id']; ?></td>
+                    <td><?php echo $application['id_application_first_name']." ".$application['id_application_surname'];; ?></td>
+                    <td><?php echo $application['id_application_type']; ?></td>
+                    <td><?php echo $application['id_application_status']; ?></td>
+                    <td><?php echo $application['id_application_created_at']; ?></td>
                     <td>
-                        <a href="admin_verify_user.php?user_id=<?php echo $user['user_id']; ?>" class="verify-button">Verify</a><br>
-                        <a href="admin_edit_user.php?user_id=<?php echo $user['user_id']; ?>" class="action-button">Edit</a>
-                        <a href="admin_delete_user.php?user_id=<?php echo $user['user_id']; ?>" class="action-button">Delete</a>
+                        <a href="admin_verify_application.php?id_application_id=<?php echo $user['id_application_id']; ?>" class="verify-button">Approve</a>
+                        <a href="admin_approve_application.php?id_application_id=<?php echo $user['id_application_id']; ?>" class="action-button">Approve</a>
+                        <a href="admin_deny_application.php?id_application_id=<?php echo $user['id_application_id']; ?>" class="action-button">Deny</a>
                     </td>
                 </tr>
                 <?php } ?>

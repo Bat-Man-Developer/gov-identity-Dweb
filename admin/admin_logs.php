@@ -14,7 +14,7 @@ if(!isset($_SESSION['adminEmail'])){
         </header>
         <nav>
             <a href="admin_dashboard.php">Dashboard</a>
-            <a href="admin_review_applications.php">Review Applications</a>
+            <a href="admin_review_id_applications.php">Review ID Applications</a>
             <a href="admin_view_users.php">View Users</a>
             <?php if(isset($_SESSION['adminEmail'])){ ?>
                 <form id="admin-logout-form" method="POST" action="admin_logs.php">
@@ -29,26 +29,28 @@ if(!isset($_SESSION['adminEmail'])){
             <table>
                 <thead>
                     <tr>
+                        <th>Log No.</th>
                         <th>Date</th>
+                        <th>Admin</th>
                         <th>User</th>
                         <th>Action</th>
                         <th>Status</th>
+                        <th>Location</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php include('server/get_admin_audit_logs.php');
+                        foreach($logs as $log){?>
                     <tr>
-                        <td>2024-09-04</td>
-                        <td>john.doe</td>
-                        <td>Login</td>
-                        <td>Success</td>
+                        <td><?php echo $log['log_id']; ?></td>
+                        <td><?php echo $log['log_date']; ?></td>
+                        <td><?php echo $log['log_admin_id']; ?></td>
+                        <td><?php echo $log['log_user_id']; ?></td>
+                        <td><?php echo $log['log_action']; ?></td>
+                        <td><?php echo $log['log_status']; ?></td>
+                        <td><?php echo $log['log_location']; ?></td>
                     </tr>
-                    <tr>
-                        <td>2024-09-03</td>
-                        <td>jane.smith</td>
-                        <td>Password Change</td>
-                        <td>Success</td>
-                    </tr>
-                    <!-- Add more log entries as needed -->
+                    <?php } ?>
                 </tbody>
             </table>
         </main>

@@ -12,7 +12,7 @@ if(!isset($_SESSION['adminEmail'])){
         <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
-        <a href="admin_review_applications.php">Review Applications</a>
+        <a href="admin_review_id_applications.php">Review ID Applications</a>
         <a href="admin_view_users.php">View Users</a>
         <a href="admin_logs.php">Logs</a>
         <?php if(isset($_SESSION['adminEmail'])){ ?>
