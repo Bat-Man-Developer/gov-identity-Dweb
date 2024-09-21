@@ -28,7 +28,7 @@ if (isset($_POST['submitIDApplication'])) {
     move_uploaded_file($signatureTemp, $signaturePath);
 
     // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO id_applications (full_name, date_of_birth, place_of_birth, gender, nationality, address, father_name, mother_name, marital_status, occupation, document_type, photo_path, signature_path, application_status)
+    $stmt = $conn->prepare("INSERT INTO id_applications (id_application_full_name, id_application_date_of_birth, id_application_place_of_birth, id_application_gender, id_application_nationality, id_application_address, id_application_father_name, id_application_mother_name, id_application_marital_status, id_application_occupation, id_application_document_type, id_application_photo_path, id_application_signature_path, id_application_status)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssssssssssss", $fullName, $dateOfBirth, $placeOfBirth, $gender, $nationality, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $photoPath, $signaturePath, $applicationStatus);
 

@@ -14,6 +14,9 @@ if(!isset($_SESSION['adminEmail'])){
         </header>
         <nav>
             <a href="admin_dashboard.php">Dashboard</a>
+            <a href="admin_review_citizenship_applications.php">Review Citizenship Applications</a>
+            <a href="admin_review_visa_applications.php">Review Visa Applications</a>
+            <a href="admin_review_civil_registrations.php">Review Civil Registrations</a>
             <a href="admin_review_id_applications.php">Review ID Applications</a>
             <a href="admin_view_users.php">View Users</a>
             <?php if(isset($_SESSION['adminEmail'])){ ?>

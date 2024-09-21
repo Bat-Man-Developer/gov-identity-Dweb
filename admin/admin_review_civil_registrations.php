@@ -8,18 +8,18 @@ if(!isset($_SESSION['adminEmail'])){
 ?>
 <body>
     <header>
-        <h1>Home Affairs Admin: Review ID Applications</h1>
+        <h1>Home Affairs Admin: Review Civil Registrations</h1>
         <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
         <a href="admin_dashboard.php">Dashboard</a>
         <a href="admin_review_citizenship_applications.php">Review Citizenship Applications</a>
         <a href="admin_review_visa_applications.php">Review Visa Applications</a>
-        <a href="admin_review_civil_registrations.php">Review Civil Registrations</a>
+        <a href="admin_review_id_applications.php">Review ID Applications</a>
         <a href="admin_view_users.php">View Users</a>
         <a href="admin_audit_logs.php">Audit Logs</a>
         <?php if(isset($_SESSION['adminEmail'])){ ?>
-            <form id="admin-logout-form" method="POST" action="admin_review_id_applications.php">
+            <form id="admin-logout-form" method="POST" action="admin_review_civil_registrations.php">
                 <a><button type="submit" class="logoutBtn" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
             </form>
         <?php } ?>
@@ -28,31 +28,33 @@ if(!isset($_SESSION['adminEmail'])){
         <!------------- Website Messages----------->
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
-        <h2>ID Application List</h2>
+        <h2>Civil Registration List</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Application No.</th>
+                    <th>Registration No.</th>
                     <th>Full Name</th>
-                    <th>Document Type</th>
+                    <th>Registration Type</th>
+                    <th>Date of Event</th>
                     <th>Status</th>
                     <th>Submission Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php include('server/get_admin_review_id_applications.php');
-                        foreach($applications as $application){?>
+                <?php include('server/get_admin_review_civil_registration.php');
+                        foreach($registrations as $registration){?>
                 <tr>
-                    <td><?php echo $application['id_application_id']; ?></td>
-                    <td><?php echo $application['id_application_full_name']; ?></td>
-                    <td><?php echo $application['id_application_document_type']; ?></td>
-                    <td><?php echo $application['id_application_application_status']; ?></td>
-                    <td><?php echo $application['id_application_created_at']; ?></td>
+                    <td><?php echo $registration['civil_registration_id']; ?></td>
+                    <td><?php echo $registration['civil_registration_full_name']; ?></td>
+                    <td><?php echo $registration['civil_registration_type']; ?></td>
+                    <td><?php echo $registration['civil_registration_date_of_event']; ?></td>
+                    <td><?php echo $registration['civil_registration_status']; ?></td>
+                    <td><?php echo $registration['civil_registration_created_at']; ?></td>
                     <td>
-                        <a href="admin_verify_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="verify-button">Verify</a>
-                        <a href="admin_approve_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Approve</a>
-                        <a href="admin_deny_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Deny</a>
+                        <a href="admin_verify_civil_registration.php?id=<?php echo $registration['civil_registration_id']; ?>" class="verify-button">Verify</a>
+                        <a href="admin_approve_civil_registration.php?id=<?php echo $registration['civil_registration_id']; ?>" class="action-button">Approve</a>
+                        <a href="admin_deny_civil_registration.php?id=<?php echo $registration['civil_registration_id']; ?>" class="action-button">Deny</a>
                     </td>
                 </tr>
                 <?php } ?>

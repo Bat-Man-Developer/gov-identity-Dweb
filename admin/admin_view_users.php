@@ -13,7 +13,10 @@ if(!isset($_SESSION['adminEmail'])){
     </header>  
     <nav>
         <a href="admin_dashboard.php">Dashboard</a>
-        <a href="admin_review_id_applications.php">Review ID Applications</a>
+        <a href="admin_review_citizenship.php">Citizenship Applications</a>
+        <a href="admin_review_visa.php">Visa Applications</a>
+        <a href="admin_review_civil_registration.php">Civil Registrations</a>
+        <a href="admin_review_id_applications.php">ID Applications</a>
         <a href="admin_audit_logs.php">Audit Logs</a>
         <?php if(isset($_SESSION['adminEmail'])){ ?>
             <form id="admin-logout-form" method="POST" action="admin_view_users.php">

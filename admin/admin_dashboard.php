@@ -12,6 +12,9 @@ if(!isset($_SESSION['adminEmail'])){
         <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
+        <a href="admin_review_citizenship_applications.php">Review Citizenship Applications</a>
+        <a href="admin_review_visa_applications.php">Review Visa Applications</a>
+        <a href="admin_review_civil_registrations.php">Review Civil Registrations</a>
         <a href="admin_review_id_applications.php">Review ID Applications</a>
         <a href="admin_view_users.php">View Users</a>
         <a href="admin_audit_logs.php">Audit Logs</a>
