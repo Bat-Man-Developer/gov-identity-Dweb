@@ -23,8 +23,8 @@ if(!isset($_SESSION['adminEmail'])){
     </nav>
     <main>
         <!------------- Website Messages----------->
-        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <h2>Welcome, <?php echo $_SESSION['adminFirstName']. " " . $_SESSION['adminSurname'];?></h2><br><br>
         <div class="section">
             <h2>User Management</h2>

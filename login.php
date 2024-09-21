@@ -18,8 +18,8 @@ include("server/get_login.php");
     </nav>
     <main>
         <!------------- Website Messages----------->
-        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <form id="reg-form" method="POST" action="login.php">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter Email" required>

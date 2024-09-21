@@ -12,8 +12,8 @@ include("server/get_admin_login.php");
     </nav>
     <main>
         <!------------- Website Messages----------->
-        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <form id="reg-form" method="POST" action="admin_login.php">
             <label for="email"> Staff Email</label>
             <input type="email" id="adminEmail" name="adminEmail" placeholder="Enter Email" required>

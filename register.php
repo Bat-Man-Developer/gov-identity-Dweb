@@ -18,6 +18,7 @@ include("server/get_register.php");
     </nav>
     <main>
         <!------------- Website Messages----------->
+        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <form id="reg-form" method="POST" action="register.php">
             <label for="firstName">First Name(s)</label>

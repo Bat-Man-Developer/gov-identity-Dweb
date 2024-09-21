@@ -10,6 +10,7 @@ include("server/get_admin_register.php");
     <nav></nav>
     <main>
         <!------------- Website Messages----------->
+        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <form id="reg-form" method="POST" action="admin_register.php">
             <label for="firstName">First Name(s)</label>
