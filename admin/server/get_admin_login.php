@@ -1,5 +1,5 @@
 <?php
-include("admin_connection.php"); // Include database connection file
+include("admin_connection.php");
 
 if (isset($_POST['adminLoginBtn'])) {
     $email = $_POST['adminEmail'];

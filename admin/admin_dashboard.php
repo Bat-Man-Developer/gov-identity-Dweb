@@ -1,5 +1,6 @@
 <?php
 include("includes/admin_header.php");
+include("server/get_admin_dashboard.php");
 //if user is not logged in then take user to login page
 if(!isset($_SESSION['adminEmail'])){
   header('location: admin_login.php?error=Unauthorised Access. Please Login.');
@@ -42,15 +43,15 @@ if(!isset($_SESSION['adminEmail'])){
             
             <div class="metric">
                 <h3>Total Applications</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #007A33;">250</p>
+                <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalApplications; ?></p>
             </div>
             <div class="metric">
                 <h3>Approved Applications</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #007A33;">150</p>
+                <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalApprovedApplications; ?></p>
             </div>
             <div class="metric">
                 <h3>Denied Applications</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #007A33;">50</p>
+                <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalDeniedApplications; ?></p>
             </div>
             
             <div class="chart-container" style="margin-top: 30px;">
@@ -69,7 +70,7 @@ if(!isset($_SESSION['adminEmail'])){
             labels: ['Total', 'Approved', 'Denied'],
             datasets: [{
                 label: 'Applications',
-                data: [250, 150, 50],
+                data: [<?php echo $totalApplications; ?>, <?php echo $totalApprovedApplications; ?>, <?php echo $totalDeniedApplications; ?>],
                 backgroundColor: [
                     'rgba(255, 206, 86, 0.7)',  // Total
                     'rgba(75, 192, 192, 0.7)',   // Approved
@@ -115,7 +116,6 @@ if(!isset($_SESSION['adminEmail'])){
             }
         }
     });
-</script>
 </script>
 <?php
 include("includes/admin_footer.php");
