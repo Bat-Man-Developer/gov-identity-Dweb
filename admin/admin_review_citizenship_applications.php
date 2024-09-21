@@ -41,7 +41,7 @@ if(!isset($_SESSION['adminEmail'])){
                 </tr>
             </thead>
             <tbody>
-                <?php include('server/get_admin_review_citizenship.php');
+                <?php include('server/get_admin_review_citizenship_applications.php');
                         foreach($applications as $application){?>
                 <tr>
                     <td><?php echo $application['citizenship_application_id']; ?></td>

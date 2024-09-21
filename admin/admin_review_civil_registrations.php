@@ -42,7 +42,7 @@ if(!isset($_SESSION['adminEmail'])){
                 </tr>
             </thead>
             <tbody>
-                <?php include('server/get_admin_review_civil_registration.php');
+                <?php include('server/get_admin_review_civil_registrations.php');
                         foreach($registrations as $registration){?>
                 <tr>
                     <td><?php echo $registration['civil_registration_id']; ?></td>

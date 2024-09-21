@@ -42,7 +42,7 @@ if(!isset($_SESSION['adminEmail'])){
                 </tr>
             </thead>
             <tbody>
-                <?php include('server/get_admin_review_visa.php');
+                <?php include('server/get_admin_review_visa_applications.php');
                         foreach($applications as $application){?>
                 <tr>
                     <td><?php echo $application['visa_application_id']; ?></td>
