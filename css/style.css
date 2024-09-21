@@ -92,20 +92,21 @@
     box-shadow: 0 0 5px rgba(0, 122, 51, 0.5);
   }
   
-  button, .link-button, .action-button {
+  button, .service-button {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    text-decoration: none;
     transition: background-color 0.3s, transform 0.3s, color 0.3s;
   }
   
-  button, .link-button, .action-button {
+  button, .service-button {
     background-color: var(--secondary-color);
     color: var(--black);
   }
   
-  button:hover, .link-button:hover, .action-button:hover {
+  button:hover, .service-button:hover {
     background-color: var(--accent-color);
     color: var(--white);
     transform: scale(1.05);
@@ -115,7 +116,7 @@
     margin-top: 20px;
   }
   
-  .link-button, .action-button {
+  .service-button {
     font-size: 14px;
     text-decoration: none;
     display: inline-block;
@@ -158,16 +159,6 @@
   th {
     background-color: var(--primary-color);
     color: var(--white);
-  }
-  
-  .verify-button {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
   }
   
   footer {

@@ -4,7 +4,7 @@ include("server/get_register.php");
 ?>
 <body>
     <header>
-        <h1>Home Affairs: Registration</h1>
+        <h1>Home Affairs: ID Application</h1>
         <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
@@ -19,7 +19,8 @@ include("server/get_register.php");
     <main>
         <!------------- Website Messages----------->
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
-        <form id="reg-form" method="POST" action="register.php">
+        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+        <form id="reg-form" method="POST" action="id_application.php">
             <label for="firstName">First Name(s)</label>
             <input type="text" id="firstName" name="firstName" placeholder="Enter First Name(s)" required>
 
@@ -46,15 +47,9 @@ include("server/get_register.php");
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter Email" required>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter Password" required>
-
-            <label for="rePassword">Re-enter Password</label>
-            <input type="password" id="rePassword" name="rePassword" placeholder="Re-enter Password" required>
-
-            <button type="submit" id="registerBtn" name="registerBtn">Submit</button>
+            <button type="submit" id="applyBtn" name="applyBtn">Submit</button>
         </form>
-        <p>Already have an account? <a href="login.php">Login here</a></p>
+        <p>Need help? <a href="help.php">Click here</a></p>
     </main>
 </body>
 <?php 

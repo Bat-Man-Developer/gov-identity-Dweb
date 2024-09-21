@@ -31,10 +31,10 @@ if(!isset($_SESSION['email'])){
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <h2>Welcome, <?php echo $_SESSION['firstName']. " " . $_SESSION['surname'];?></h2>
         <p>Select a service to proceed:</p>
-        <button class="service-button">Citizenship Application</button>
-        <button class="service-button">Visa Application</button>
-        <button class="service-button">Civil Registration</button>
-        <button class="service-button">Identity Document Application</button>
+        <a href="citizenship_application.php" class="service-button">Citizenship Application</a>
+        <a href="visa_application.php" class="service-button">Visa Application</a>
+        <a href="civil_registration.php" class="service-button">Civil Registration</a>
+        <a href="id_application.php" class="service-button">Identity Document Application</a>
 
         <div class="applications-section">
             <h3>Your Applications</h3>

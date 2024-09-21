@@ -17,7 +17,7 @@ if(!isset($_SESSION['adminEmail'])){
             <a href="admin_review_id_applications.php">Review ID Applications</a>
             <a href="admin_view_users.php">View Users</a>
             <?php if(isset($_SESSION['adminEmail'])){ ?>
-                <form id="admin-logout-form" method="POST" action="admin_logs.php">
+                <form id="admin-logout-form" method="POST" action="admin_audit_logs.php">
                     <a><button type="submit" class="logoutBtn" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
                 </form>
             <?php } ?>
