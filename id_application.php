@@ -20,7 +20,7 @@ include("server/get_id_application.php");
         <!------------- Website Messages----------->
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
-        <form id="id-application-form" method="POST" action="get_id_application.php" enctype="multipart/form-data">
+        <form id="id-application-form" method="POST" action="id_application.php" enctype="multipart/form-data">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" required>
 

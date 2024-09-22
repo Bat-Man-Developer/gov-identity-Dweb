@@ -47,7 +47,7 @@ if(!isset($_SESSION['adminEmail'])){
                     <td><?php echo $application['id_application_id']; ?></td>
                     <td><?php echo $application['id_application_full_name']; ?></td>
                     <td><?php echo $application['id_application_document_type']; ?></td>
-                    <td><?php echo $application['id_application_application_status']; ?></td>
+                    <td><?php echo $application['id_application_status']; ?></td>
                     <td><?php echo $application['id_application_created_at']; ?></td>
                     <td>
                         <a href="admin_verify_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="verify-button">Verify</a>
