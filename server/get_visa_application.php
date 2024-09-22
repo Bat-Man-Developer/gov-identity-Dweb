@@ -11,7 +11,7 @@ if (isset($_POST['submitVisa'])) {
     $stayDuration = $_POST['stayDuration'];
     $purpose = $_POST['purpose'];
     $accommodation = $_POST['accommodation'];
-    $applicationStatus = "pending";
+    $applicationStatus = "Pending";
     
     // Handle file upload for financial means proof
     $financialMeans = $_FILES['financialMeans']['name'];

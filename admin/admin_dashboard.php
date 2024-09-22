@@ -31,12 +31,20 @@ if(!isset($_SESSION['adminEmail'])){
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <h2>Welcome, <?php echo $_SESSION['adminFirstName']. " " . $_SESSION['adminSurname'];?></h2><br><br>
         <div class="section">
+            <h2>Audit Logs Management</h2>
+            <a href="admin_audit_logs.php" class="link-button">View Audit Logs</a>
+            <a href="admin_verify_audit_logs.php" class="link-button">Verify Audit Logs</a>
+        </div>
+        <div class="section">
             <h2>User Management</h2>
             <a href="admin_view_users.php" class="link-button">View Users</a>
         </div>
         <div class="section">
             <h2>Application Management</h2>
-            <a href="admin_review_applications.php" class="link-button">Review Applications</a>
+            <a href="admin_review_citizenship_applications.php" class="link-button">Review Citizenship Applications</a>
+            <a href="admin_review_visa_applications.php" class="link-button">Review Visa Applications</a>
+            <a href="admin_review_civil_registrations.php" class="link-button">Review Civil Registrations</a>
+            <a href="admin_review_id_applications.php" class="link-button">Review ID Applications</a>
         </div>
         <div class="section">
             <h2 style="font-weight: bold; color: #007A33;">Analytics Dashboard</h2>
@@ -53,6 +61,10 @@ if(!isset($_SESSION['adminEmail'])){
                 <h3>Denied Applications</h3>
                 <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalDeniedApplications; ?></p>
             </div>
+            <div class="metric">
+                <h3>Pending Applications</h3>
+                <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalPendingApplications; ?></p>
+            </div>
             
             <div class="chart-container" style="margin-top: 30px;">
                 <canvas id="applicationChart" style="max-height: 400px;"></canvas>
@@ -67,19 +79,21 @@ if(!isset($_SESSION['adminEmail'])){
     const applicationChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Total', 'Approved', 'Denied'],
+            labels: ['Total', 'Approved', 'Denied', 'Pending'],
             datasets: [{
                 label: 'Applications',
-                data: [<?php echo $totalApplications; ?>, <?php echo $totalApprovedApplications; ?>, <?php echo $totalDeniedApplications; ?>],
+                data: [<?php echo $totalApplications; ?>, <?php echo $totalApprovedApplications; ?>, <?php echo $totalDeniedApplications; ?>, <?php echo $totalPendingApplications; ?>],
                 backgroundColor: [
                     'rgba(255, 206, 86, 0.7)',  // Total
                     'rgba(75, 192, 192, 0.7)',   // Approved
-                    'rgba(255, 99, 132, 0.7)'     // Denied
+                    'rgba(255, 99, 132, 0.7)',    // Denied
+                    'rgba(54, 162, 235, 0.7)'     // Pending
                 ],
                 borderColor: [
                     'rgba(255, 206, 86, 1)', 
                     'rgba(75, 192, 192, 1)', 
-                    'rgba(255, 99, 132, 1)'
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
                 ],
                 borderWidth: 2
             }]

@@ -12,7 +12,7 @@ if (isset($_POST['submitRegistration'])) {
     $nationality = $_POST['nationality'];
     $address = $_POST['address'];
     $contactNumber = $_POST['contactNumber'];
-    $registrationStatus = "pending";
+    $registrationStatus = "Pending";
     
     // Prepare SQL statement
     $stmt = $conn->prepare("INSERT INTO civil_registrations (civil_registration_type, civil_registration_full_name, civil_registration_date_of_event, civil_registration_place_of_event, civil_registration_father_name, civil_registration_mother_name, civil_registration_gender, civil_registration_nationality, civil_registration_address, civil_registration_contact_number, civil_registration_status)

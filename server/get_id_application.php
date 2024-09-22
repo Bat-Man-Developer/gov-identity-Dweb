@@ -13,7 +13,7 @@ if (isset($_POST['submitIDApplication'])) {
     $maritalStatus = $_POST['maritalStatus'];
     $occupation = $_POST['occupation'];
     $documentType = $_POST['documentType'];
-    $applicationStatus = "pending";
+    $applicationStatus = "Pending";
     
     // Handle file upload for photo
     $photo = $_FILES['photo']['name'];
