@@ -36,9 +36,9 @@ include("includes/header.php");
 
         <h2>Contact Information</h2>
         <p>If you have any questions or need assistance, please feel free to reach out to us.</p>
-        <button class="contact-button" onclick="window.location.href='contact.html'">Contact Us</button>
         
-        <img src="department of home affairs.jpeg" alt="Department of Home Affairs" class="department-image"> <!-- Additional Image -->
+        <img src="resources/department of home affairs.jpeg" alt="Department of Home Affairs" class="department-image"><br>
+        <button class="contact-button" onclick="window.location.href='contact.php'">Contact Us</button>
     </main>
 </body>
 <?php 
