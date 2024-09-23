@@ -25,11 +25,11 @@ if(!isset($_SESSION['adminEmail'])){
             </form>
         <?php } ?>
     </nav>
-    <main>
+    <main id="admin-block">
         <!------------- Website Messages----------->
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
-        <h2>Welcome, <?php echo $_SESSION['adminFirstName']. " " . $_SESSION['adminSurname'];?></h2><br><br>
+        <h2>Welcome, <span id="admin-data"></span></h2><br><br>
         <div class="section">
             <h2>Audit Logs Management</h2>
             <a href="admin_audit_logs.php" class="link-button">View Audit Logs</a>

@@ -58,6 +58,10 @@ h2 {
 
 #webMessageError { color: red; }
 #webMessageSuccess { color: green; }
+#message {
+  margin-top: 20px;
+  font-weight: bold;
+}
 
 nav a {
   color: var(--white);

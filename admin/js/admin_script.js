@@ -1,239 +1,119 @@
-let contract;
-let signer;
+const UserRegistryABI = [
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_firstName",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_surname",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_email",
+                "type": "string"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "_passwordHash",
+                "type": "bytes32"
+            }
+        ],
+        "name": "registerUser",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_email",
+                "type": "string"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "_passwordHash",
+                "type": "bytes32"
+            }
+        ],
+        "name": "loginUser",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+];
 
-async function init() {
-    console.log('Initializing...');
-    if (typeof window.ethereum !== 'undefined') {
-        console.log('MetaMask is installed!');
-        try {
-            console.log('Requesting account access...');
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            console.log('Accounts:', accounts);
-            
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            signer = provider.getSigner();
-            console.log('Signer:', signer);
-            
-            const contractAddress = '0x15C4b48C39fF0cc49C382fff2C7e1d347cA4B889';
-            const abi = [
-                {
-                    "anonymous": false,
-                    "inputs": [
-                        {
-                            "indexed": false,
-                            "internalType": "address",
-                            "name": "userAddress",
-                            "type": "address"
-                        },
-                        {
-                            "indexed": false,
-                            "internalType": "string",
-                            "name": "username",
-                            "type": "string"
-                        }
-                    ],
-                    "name": "UserLoggedIn",
-                    "type": "event"
-                },
-                {
-                    "anonymous": false,
-                    "inputs": [
-                        {
-                            "indexed": false,
-                            "internalType": "address",
-                            "name": "userAddress",
-                            "type": "address"
-                        },
-                        {
-                            "indexed": false,
-                            "internalType": "string",
-                            "name": "username",
-                            "type": "string"
-                        }
-                    ],
-                    "name": "UserRegistered",
-                    "type": "event"
-                },
-                {
-                    "inputs": [],
-                    "name": "getUsername",
-                    "outputs": [
-                        {
-                            "internalType": "string",
-                            "name": "",
-                            "type": "string"
-                        }
-                    ],
-                    "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "inputs": [
-                        {
-                            "internalType": "string",
-                            "name": "_password",
-                            "type": "string"
-                        }
-                    ],
-                    "name": "login",
-                    "outputs": [
-                        {
-                            "internalType": "bool",
-                            "name": "",
-                            "type": "bool"
-                        }
-                    ],
-                    "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "inputs": [
-                        {
-                            "internalType": "string",
-                            "name": "_username",
-                            "type": "string"
-                        },
-                        {
-                            "internalType": "string",
-                            "name": "_password",
-                            "type": "string"
-                        }
-                    ],
-                    "name": "register",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "inputs": [
-                        {
-                            "internalType": "address",
-                            "name": "",
-                            "type": "address"
-                        }
-                    ],
-                    "name": "users",
-                    "outputs": [
-                        {
-                            "internalType": "string",
-                            "name": "username",
-                            "type": "string"
-                        },
-                        {
-                            "internalType": "bytes32",
-                            "name": "passwordHash",
-                            "type": "bytes32"
-                        },
-                        {
-                            "internalType": "bool",
-                            "name": "isRegistered",
-                            "type": "bool"
-                        }
-                    ],
-                    "stateMutability": "view",
-                    "type": "function"
-                }
-            ];
-            contract = new ethers.Contract(contractAddress, abi, signer);
-            console.log('Contract initialized:', contract);
-            
-            console.log('Web3 initialized successfully');
-            document.querySelector('.container').style.display = 'flex';
-        } catch (error) {
-            console.error('Error initializing Web3:', error);
-            showError('Failed to connect to Web3. Error: ' + error.message);
-        }
+const UserRegistryAddress = "0x3df0A54274a2b0787a7f8C36C05AfdA213f45203";
+
+window.addEventListener('load', async () => {
+    if (typeof web3 !== 'undefined') {
+        window.web3 = new Web3(web3.currentProvider);
     } else {
-        console.log('Web3 not detected');
-        showError('Web3 not detected. Please install MetaMask to use this dApp!');
+        console.log('No web3? You should consider using MetaMask!');
+        window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
     }
-}
 
-function showError(message) {
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
-    errorDiv.style.color = 'red';
-    errorDiv.style.textAlign = 'center';
-    errorDiv.style.marginTop = '20px';
-    document.querySelector('.app-container').prepend(errorDiv);
-    document.querySelector('.container').style.display = 'none';
-}
+    const userRegistry = new web3.eth.Contract(UserRegistryABI, UserRegistryAddress);
 
-async function register() {
-    if (!contract) {
-        showError('Web3 is not connected. Please refresh the page and try again.');
-        return;
-    }
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    if (!email || !password) {
-        alert('Please fill in all fields.');
-        return;
-    }
-    try {
-        const tx = await contract.register(email, password);
-        await tx.wait();
-        alert('Registration successful!');
-        clearInputs();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Registration failed. ' + error.message);
-    }
-}
+    document.getElementById('reg-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-async function login() {
-    if (!contract) {
-        showError('Web3 is not connected. Please refresh the page and try again.');
-        return;
-    }
-    const password = document.getElementById('password').value;
-    if (!password) {
-        alert('Please enter your password.');
-        return;
-    }
-    try {
-        // Log the contract address and the user's address
-        const userAddress = await signer.getAddress();
-        console.log('Contract address:', contract.address);
-        console.log('User address:', userAddress);
+        const firstName = document.getElementById('adminFirstName').value;
+        const surname = document.getElementById('adminSurname').value;
+        const email = document.getElementById('adminEmail').value;
+        const password = document.getElementById('adminPassword').value;
+        const rePassword = document.getElementById('adminRePassword').value;
 
-        // Try to call the users function
-        try {
-            const user = await contract.users(userAddress);
-            console.log('User data:', user);
-        } catch (userError) {
-            console.error('Error calling users function:', userError);
-            alert('Error retrieving user data. Please check the contract address and ABI.');
+        if (password !== rePassword) {
+            document.getElementById('webMessageError').textContent = "Passwords do not match";
             return;
         }
 
-        const isLoggedIn = await contract.login(password);
-        if (isLoggedIn) {
-            const email = await contract.getEmail();
-            document.getElementById('email').textContent = email;
-            document.getElementById('landingPage').style.display = 'none';
-            document.getElementById('userInfo').style.display = 'block';
-            document.querySelector('.container').style.display = 'none';
-            clearInputs();
-        } else {
-            alert('Invalid password. Please try again.');
+        const passwordHash = web3.utils.sha3(password);
+
+        try {
+            const accounts = await web3.eth.getAccounts();
+            await userRegistry.methods.registerUser(firstName, surname, email, passwordHash).send({ from: accounts[0] });
+            // Redirect to admin login
+            window.location.href = "admin_login.php?success=" + "Admin Registered Successfully. Login to proceed.";
+        } catch (error) {
+            document.getElementById('webMessageError').textContent = "Failed To Register Admin. Try Again Or Contact Support Team: " + error.message;
+            document.getElementById('webMessageSuccess').textContent = "";
         }
-    } catch (error) {
-        console.error('Login error:', error);
-        alert('Login failed. ' + (error.reason || error.message || 'Unknown error'));
-    }
-}
+    });
 
-function logout() {
-    document.getElementById('landingPage').style.display = 'block';
-    document.getElementById('userInfo').style.display = 'none';
-    document.querySelector('.container').style.display = 'flex';
-}
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-function clearInputs() {
-    document.getElementById('email').value = '';
-    document.getElementById('password').value = '';
-}
+        const email = document.getElementById('adminEmail').value;
+        const password = document.getElementById('adminPassword').value;
 
-init();
+        const passwordHash = web3.utils.sha3(password);
+
+        try {
+            const accounts = await web3.eth.getAccounts();
+            isLoggedIn = await userRegistry.methods.loginUser(email, passwordHash).call({ from: accounts[0] });
+            
+            if (isLoggedIn) {
+                // Redirect to admin dashboard
+                window.location.href = "admin_dashboard.php?success=" + "Admin Logged in Successfully!";
+            } else {
+                document.getElementById('webMessageError').textContent = "Invalid Email Or Password";
+                document.getElementById('webMessageSuccess').textContent = "";
+            }
+        } catch (error) {
+            document.getElementById('webMessageError').textContent = "Failed To Login Admin. Try Again Or Contact Support: " + error.message;
+            document.getElementById('webMessageSuccess').textContent = "";
+        }
+    });
+});
