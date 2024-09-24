@@ -34,6 +34,7 @@ include("server/get_admin_register.php");
         <p>Already have an Admin account? <a href="admin_login.php">Login here</a></p>
     </main>
 </body>
+<script src="js/admin_register.js"></script>
 <?php 
 include("includes/admin_footer.php");
 ?>

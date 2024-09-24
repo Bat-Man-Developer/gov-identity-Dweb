@@ -131,6 +131,7 @@ if(!isset($_SESSION['adminEmail'])){
         }
     });
 </script>
+<script src="js/admin_dashboard.js"></script>
 <?php
 include("includes/admin_footer.php");
 ?>

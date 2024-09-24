@@ -27,6 +27,7 @@ include("server/get_admin_login.php");
         <p>Don't have an Admin account? <a href="admin_register.php">Register here</a></p>
     </main>
 </body>
+<script src="js/admin_login.js"></script>
 <?php 
 include("includes/admin_footer.php");
 ?>

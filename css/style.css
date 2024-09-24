@@ -115,6 +115,14 @@
   button {
     margin-top: 20px;
   }
+
+  #loginBtn, #registerBtn {
+    margin: 20px;
+  }
+
+  #loginTxt, #registerTxt {
+    text-decoration: none;
+  }
   
   .service-button {
     font-size: 14px;
