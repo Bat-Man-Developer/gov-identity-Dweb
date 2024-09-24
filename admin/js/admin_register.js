@@ -126,18 +126,31 @@ const UserRegistryAddress = "0x0E01863877C33a6AA27C03C007EB4ba59820959a";
 
 window.addEventListener('load', async () => {
     if (typeof window.ethereum !== 'undefined') {
-        try {
-            // Request account access
-            await window.ethereum.request({ method: 'eth_requestAccounts' });
-            window.web3 = new Web3(window.ethereum);
-        } catch (error) {
-            console.error("User denied account access");
-        }
-    } else {
-        alert('No web3? You should consider using MetaMask!');
-        window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-    }
+		try {
+			// Request account access
+			await window.ethereum.request({ method: 'eth_requestAccounts' });
+			window.web3 = new Web3(window.ethereum);
+			console.log('Web3 initialized successfully');
+		} catch (error) {
+			console.error('Error initializing Web3:', error);
+			showError('Failed to connect to Web3. Please make sure MetaMask is installed, connected, and you have approved this site.');
+		}
+	} else {
+		console.log('Web3 not detected');
+		showError('Web3 not detected. Please install MetaMask to use this dApp!');
+	}
 
+	function showError(message) {
+		const errorDiv = document.createElement('div');
+		errorDiv.className = 'error-message';
+		errorDiv.textContent = message;
+		errorDiv.style.color = 'red';
+		errorDiv.style.textAlign = 'center';
+		errorDiv.style.marginTop = '20px';
+		document.querySelector('#reg-login-form').prepend(errorDiv);
+		document.querySelector('#reg-form').style.display = 'none';
+	}
+	
     const userRegistry = new web3.eth.Contract(UserRegistryABI, UserRegistryAddress);
     
     document.getElementById('reg-form').addEventListener('submit', async (e) => {
@@ -148,6 +161,7 @@ window.addEventListener('load', async () => {
         const email = document.getElementById('adminEmail').value;
         const password = document.getElementById('adminPassword').value;
         const rePassword = document.getElementById('adminRePassword').value;
+		clearInputs();
     
         if (password !== rePassword) {
             document.getElementById('webMessageError').textContent = "Passwords do not match";
@@ -189,5 +203,13 @@ window.addEventListener('load', async () => {
             document.getElementById('webMessageError').textContent = errorMessage;
             document.getElementById('webMessageSuccess').textContent = "";
         }
+
+		function clearInputs() {
+			document.getElementById('adminFirstName').value = '';
+			document.getElementById('adminSurname').value = '';
+			document.getElementById('adminEmail').value = '';
+			document.getElementById('adminPassword').value = '';
+			document.getElementById('adminRePassword').value = '';
+		}
     });
 });

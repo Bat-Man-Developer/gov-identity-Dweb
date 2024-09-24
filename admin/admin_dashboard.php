@@ -25,50 +25,52 @@ if(!isset($_SESSION['adminEmail'])){
             </form>
         <?php } ?>
     </nav>
-    <main id="dashboard-page">
-        <!------------- Website Messages----------->
-        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
-        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
-        <h2>Welcome, <span id="admin-info"></span></h2><br>
-        <h3 id="adminEmail">Email: <?php echo $_SESSION['adminEmail']; ?></h3><br><br>
-        <div class="section">
-            <h2>Audit Logs Management</h2>
-            <a href="admin_audit_logs.php" class="link-button">View Audit Logs</a>
-            <a href="admin_verify_audit_logs.php" class="link-button">Verify Audit Logs</a>
-        </div>
-        <div class="section">
-            <h2>User Management</h2>
-            <a href="admin_view_users.php" class="link-button">View Users</a>
-        </div>
-        <div class="section">
-            <h2>Application Management</h2>
-            <a href="admin_review_citizenship_applications.php" class="link-button">Review Citizenship Applications</a>
-            <a href="admin_review_visa_applications.php" class="link-button">Review Visa Applications</a>
-            <a href="admin_review_civil_registrations.php" class="link-button">Review Civil Registrations</a>
-            <a href="admin_review_id_applications.php" class="link-button">Review ID Applications</a>
-        </div>
-        <div class="section">
-            <h2 style="font-weight: bold; color: #007A33;">Analytics Dashboard</h2>
-            
-            <div class="metric">
-                <h3>Total Applications</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalApplications; ?></p>
+    <main id="admin-pages">
+        <div id="admin-div">
+            <!------------- Website Messages----------->
+            <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+            <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
+            <h2>Welcome, <span id="admin-info"></span></h2><br>
+            <h3 id="adminEmail">Email: <?php echo $_SESSION['adminEmail']; ?></h3><br><br>
+            <div class="section">
+                <h2>Audit Logs Management</h2>
+                <a href="admin_audit_logs.php" class="link-button">View Audit Logs</a>
+                <a href="admin_verify_audit_logs.php" class="link-button">Verify Audit Logs</a>
             </div>
-            <div class="metric">
-                <h3>Approved Applications</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalApprovedApplications; ?></p>
+            <div class="section">
+                <h2>User Management</h2>
+                <a href="admin_view_users.php" class="link-button">View Users</a>
             </div>
-            <div class="metric">
-                <h3>Denied Applications</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalDeniedApplications; ?></p>
+            <div class="section">
+                <h2>Application Management</h2>
+                <a href="admin_review_citizenship_applications.php" class="link-button">Review Citizenship Applications</a>
+                <a href="admin_review_visa_applications.php" class="link-button">Review Visa Applications</a>
+                <a href="admin_review_civil_registrations.php" class="link-button">Review Civil Registrations</a>
+                <a href="admin_review_id_applications.php" class="link-button">Review ID Applications</a>
             </div>
-            <div class="metric">
-                <h3>Pending Applications</h3>
-                <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalPendingApplications; ?></p>
-            </div>
-            
-            <div class="chart-container" style="margin-top: 30px;">
-                <canvas id="applicationChart" style="max-height: 400px;"></canvas>
+            <div class="section">
+                <h2 style="font-weight: bold; color: #007A33;">Analytics Dashboard</h2>
+                
+                <div class="metric">
+                    <h3>Total Applications</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalApplications; ?></p>
+                </div>
+                <div class="metric">
+                    <h3>Approved Applications</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalApprovedApplications; ?></p>
+                </div>
+                <div class="metric">
+                    <h3>Denied Applications</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalDeniedApplications; ?></p>
+                </div>
+                <div class="metric">
+                    <h3>Pending Applications</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: #007A33;"><?php echo $totalPendingApplications; ?></p>
+                </div>
+                
+                <div class="chart-container" style="margin-top: 30px;">
+                    <canvas id="applicationChart" style="max-height: 400px;"></canvas>
+                </div>
             </div>
         </div>
     </main>

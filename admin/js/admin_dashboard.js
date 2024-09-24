@@ -124,75 +124,64 @@ const UserRegistryABI = [
 
 const UserRegistryAddress = "0x0E01863877C33a6AA27C03C007EB4ba59820959a";
 
+window.addEventListener('load', async () => {
+    if (typeof window.ethereum !== 'undefined') {
+        try {
+            // Request account access
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+            window.web3 = new Web3(window.ethereum);
+            console.log('Web3 initialized successfully');
+            initDashboard();
+        } catch (error) {
+            console.error('Error initializing Web3:', error);
+            showError('Failed to connect to Web3. Please make sure MetaMask is installed, connected, and you have approved this site.');
+        }
+    } else {
+        console.log('Web3 not detected');
+        showError('Web3 not detected. Please install MetaMask to use this dApp!');
+    }
+});
+
+function showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    errorDiv.style.color = 'red';
+    errorDiv.style.textAlign = 'center';
+    errorDiv.style.marginTop = '20px';
+    document.querySelector('#admin-pages').prepend(errorDiv);
+    document.querySelector('#admin-div').style.display = 'none';
+}
+
 function getEmailFromURL() {
 	const urlParams = new URLSearchParams(window.location.search);
 	return urlParams.get('adminEmail');
 }
 
-async function initWeb3() {
-	if (typeof window.ethereum !== 'undefined') {
-		try {
-			// Request account access
-			await window.ethereum.request({ method: 'eth_requestAccounts' });
-			window.web3 = new Web3(window.ethereum);
-		} catch (error) {
-			console.error("User denied account access");
-			return null;
-		}
-	} else {
-		window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-		window.location.href = "admin_login.php";
-	}
-	return window.web3;
+async function initDashboard() {
+    const userRegistry = new web3.eth.Contract(UserRegistryABI, UserRegistryAddress);
+    
+    const email = getEmailFromURL();
+    if (!email) {
+        showError("Email not provided in URL");
+        return;
+    }
+
+    try {
+        const accounts = await web3.eth.getAccounts();
+        // Retrieve and display user info
+        const [firstName, surname] = await userRegistry.methods.getUserInfo(email).call({ from: accounts[0] });
+        document.getElementById('admin-info').textContent = `${firstName} ${surname}`;
+    } catch (error) {
+        console.error("Retrieve Error:", error);
+        let errorMessage = "Failed To Retrieve Admin Data. ";
+        if (error.message.includes("gas")) {
+            errorMessage += "Transaction may have run out of gas. Please try again with a higher gas limit.";
+        } else {
+            errorMessage += "Try Again Or Contact Support Team: " + error.message;
+        }
+        document.getElementById('webMessageError').textContent = errorMessage;
+        document.getElementById('webMessageSuccess').textContent = "";
+        document.getElementById('admin-info').textContent = "";
+    }
 }
-
-async function getUserInfo() {
-	const web3 = await initWeb3();
-	if (!web3) return;
-
-	const userRegistry = new web3.eth.Contract(UserRegistryABI, UserRegistryAddress);
-	
-	const email = getEmailFromURL();
-	if (!email) {
-		console.error("Email not provided in URL");
-		return;
-	}
-
-	try {
-		const accounts = await web3.eth.getAccounts();
-
-		// Retrieve and display user info
-		const [firstName, surname] = await userRegistry.methods.getUserInfo(email).call({ from: accounts[0] });
-		
-		const adminInfoElement = document.getElementById('admin-info');
-		if (adminInfoElement) {
-			adminInfoElement.innerHTML = `
-				<p>${firstName} </p>
-				<p>${surname}</p>
-			`;
-		} else {
-			console.error("Admin info element not found");
-		}
-	} catch (error) {
-		console.error("Retrieve Error:", error);
-		let errorMessage = "Failed To Retrieve Admin Data. ";
-		errorMessage += "Try Again Or Contact Support Team: " + error.message;
-		
-		const errorElement = document.getElementById('webMessageError');
-		if (errorElement) {
-			errorElement.textContent = errorMessage;
-		}
-		
-		const successElement = document.getElementById('webMessageSuccess');
-		if (successElement) {
-			successElement.textContent = "";
-		}
-		
-		const adminInfoElement = document.getElementById('admin-info');
-		if (adminInfoElement) {
-			adminInfoElement.textContent = "";
-		}
-	}
-}
-
-window.addEventListener('load', getUserInfo);
