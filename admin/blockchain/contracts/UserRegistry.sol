@@ -5,6 +5,7 @@ contract UserRegistry {
     struct User {
         string firstName;
         string surname;
+        string email;
         bytes32 passwordHash;
         bool exists;
     }
@@ -20,6 +21,7 @@ contract UserRegistry {
         users[_email] = User({
             firstName: _firstName,
             surname: _surname,
+            email: _email,
             passwordHash: _passwordHash,
             exists: true
         });
