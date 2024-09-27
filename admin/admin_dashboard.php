@@ -20,11 +20,8 @@ if(!isset($_GET['adminID'])){
     exit();
 }
 else{
-    $adminID = $_GET['adminID'];
-    $_SESSION['userID'] = $userID = $_GET['userID'];
-    $_SESSION['userFirstName'] =  $_GET['userFirstName'];
-    $_SESSION['userSurname'] =  $_GET['userSurname'];
-    $_SESSION['userEmail'] =  $_GET['userEmail'];
+    $_SESSION['adminID'] = $adminID = $_GET['adminID'];
+    $_SESSION['adminEmail'] =  $_GET['adminEmail'];
     
     $log_action = "admin view dashboard";
     $log_status = "success";

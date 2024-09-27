@@ -119,8 +119,8 @@ $anomalies = detectAnomalies($logs);
                             <tr class="anomaly-row">
                                 <td><?php echo $anomaly['log_id']; ?></td>
                                 <td><?php echo $anomaly['log_date']; ?></td>
-                                <td><?php echo $anomaly['log_admin_id']; ?></td>
-                                <td><?php echo $anomaly['log_user_id']; ?></td>
+                                <td><?php echo $anomaly['admin_id']; ?></td>
+                                <td><?php echo $anomaly['user_id']; ?></td>
                                 <td><?php echo $anomaly['log_action']; ?></td>
                                 <td><?php echo $anomaly['log_status']; ?></td>
                                 <td><?php echo $anomaly['log_location']; ?></td>
