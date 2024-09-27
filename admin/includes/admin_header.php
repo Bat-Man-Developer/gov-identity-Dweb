@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("server/admin_connection.php");
 if(isset($_POST['adminLogoutBtn'])){
     unset($_SESSION['adminID']);
     unset($_SESSION['adminFirstName']);

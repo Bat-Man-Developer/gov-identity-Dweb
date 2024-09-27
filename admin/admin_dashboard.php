@@ -1,7 +1,7 @@
 <?php
 include("includes/admin_header.php");
 //if admin is not logged in then take admin to login page
-if(!isset($_SESSION['adminID'])){
+if(!isset($_GET['adminID'])){
     $log_action = "admin view dashboard";
     $log_status = "failed";
     $log_location = $_SERVER['REMOTE_ADDR'];
@@ -20,7 +20,12 @@ if(!isset($_SESSION['adminID'])){
     exit();
 }
 else{
-    $adminID = $_SESSION['adminID'];
+    $adminID = $_GET['adminID'];
+    $_SESSION['userID'] = $userID = $_GET['userID'];
+    $_SESSION['userFirstName'] =  $_GET['userFirstName'];
+    $_SESSION['userSurname'] =  $_GET['userSurname'];
+    $_SESSION['userEmail'] =  $_GET['userEmail'];
+    
     $log_action = "admin view dashboard";
     $log_status = "success";
     $log_location = $_SERVER['REMOTE_ADDR'];

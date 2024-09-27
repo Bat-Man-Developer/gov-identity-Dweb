@@ -26,6 +26,19 @@ const UserRegistryABI = [
 		"type": "event"
 	},
 	{
+		"inputs": [],
+		"name": "getBlockNumber",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -122,7 +135,7 @@ const UserRegistryABI = [
 	}
 ];
 
-const UserRegistryAddress = "0x0E01863877C33a6AA27C03C007EB4ba59820959a";
+const UserRegistryAddress = "0x4d33F8f18e27A2cF4D8F2B8BB5B40809d4e2fE70";
 
 window.addEventListener('load', async () => {
     if (typeof window.ethereum !== 'undefined') {

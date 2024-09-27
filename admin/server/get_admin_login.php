@@ -2,8 +2,8 @@
 include("admin_connection.php");
 
 if (isset($_GET['adminID']) && isset($_GET['adminEmail'])) {
-    $_SESSION['adminID'] = $admin_id = $_GET['adminID'];
-    $_SESSION['adminEmail'] = $email = $_GET['adminEmail'];
+    $_SESSION['adminID'] = $adminID = $_GET['adminID'];
+    $_SESSION['adminEmail'] = $adminEmail = $_GET['adminEmail'];
 
     $log_action = "admin login";
     $log_status = "success";
@@ -19,11 +19,11 @@ if (isset($_GET['adminID']) && isset($_GET['adminEmail'])) {
         $stmt1->close();
     }
 
-    header("Location: admin_dashboard.php?success=Admin Logged in successfully"); // Redirect to the dashboard
+    header("Location: ../admin_dashboard.php?success=Admin Logged in successfully&adminID=" . $adminID . "&adminEmail=" . $adminEmail); // Redirect to the dashboard
     exit();
 }else {
     $log_action = "admin login";
-    $log_status = "Failed";
+    $log_status = "failed";
     $log_location = $_SERVER['REMOTE_ADDR'];
     $log_date = date('Y-m-d H:i:s');
 
@@ -36,6 +36,6 @@ if (isset($_GET['adminID']) && isset($_GET['adminEmail'])) {
         $stmt1->close();
     }
 
-    header("Location: ../index.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
+    header("Location: ../../index.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
     exit();
 }

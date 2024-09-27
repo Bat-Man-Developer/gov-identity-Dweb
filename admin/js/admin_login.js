@@ -135,7 +135,7 @@ const UserRegistryABI = [
 	}
 ];
 
-const UserRegistryAddress = "0x0E01863877C33a6AA27C03C007EB4ba59820959a";
+const UserRegistryAddress = "0x4d33F8f18e27A2cF4D8F2B8BB5B40809d4e2fE70";
 
 window.addEventListener('load', async () => {
     if (typeof window.ethereum !== 'undefined') {
@@ -193,8 +193,8 @@ window.addEventListener('load', async () => {
             
             if (isLoggedIn) {	
 				// Get block number as Admin ID
-				const admin_id = await userRegistry.methods.getBlockNumber(email).call();	
-                window.location.href = "server/get_admin_login.php?success=" + encodeURIComponent("Admin Logged in Successfully!") + "&adminID=" + admin_id + "&adminEmail=" + email;
+				const adminID = await userRegistry.methods.getBlockNumber().call();	
+                window.location.href = "server/get_admin_login.php?success=" + encodeURIComponent("Admin Logged in Successfully!") + "&adminID=" + adminID + "&adminEmail=" + email;
             } else {
                 document.getElementById('webMessageError').textContent = "Invalid Email Or Password";
                 document.getElementById('webMessageSuccess').textContent = "";
