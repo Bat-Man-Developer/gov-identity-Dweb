@@ -1,9 +1,39 @@
 <?php
 include("includes/admin_header.php");
-//if user is not logged in then take user to login page
-if(!isset($_SESSION['adminEmail'])){
-  header('location: admin_login.php?error=Unauthorised Access. Please Login.');
-  exit;
+//if admin is not logged in then take admin to login page
+if(!isset($_SESSION['adminID'])){
+    $log_action = "admin view citizenship applications";
+    $log_status = "failed";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?)");
+    $stmt1->bind_param("ssss", $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
+    }
+
+    header("Location: ../index.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
+    exit();
+}
+else{
+    $adminID = $_SESSION['adminID'];
+    $log_action = "admin view audit logs";
+    $log_status = "success";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (admin_id, log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssss", $adminID, $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
+    }
 }
 ?>
 <body>

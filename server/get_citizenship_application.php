@@ -2,6 +2,7 @@
 include("connection.php"); // Include database connection file
 
 if (isset($_POST['submitCitizenship'])) {
+    $userID = $_POST['userID'];
     $fullName = $_POST['fullName'];
     $dateOfBirth = $_POST['dateOfBirth'];
     $placeOfBirth = $_POST['placeOfBirth'];
@@ -20,9 +21,40 @@ if (isset($_POST['submitCitizenship'])) {
 
     if ($stmt->execute()) {
         $stmt->close();
-        $conn->close();
-        header("location: citizenship_application.php?success=Application submitted successfully. We will review your application and contact you soon.");
+
+        $log_action = "citizenship application";
+        $log_status = "success";
+        $log_location = $_SERVER['REMOTE_ADDR'];
+        $log_date = date('Y-m-d H:i:s');
+
+        // Prepare SQL statement for audit log
+        $stmt1 = $conn->prepare("INSERT INTO audit_logs (user_id, log_action, log_status, log_location, log_date)
+        VALUES (?, ?, ?, ?, ?)");
+        $stmt1->bind_param("sssss", $userID, $log_action, $log_status, $log_location, $log_date);
+
+        if ($stmt1->execute()) {
+            $stmt1->close();
+        }
+
+        header("location: ../citizenship_application.php?success=Application submitted successfully. We will review your application and contact you soon.");
     } else {
-        header("location: citizenship_application.php?error=Failed to submit application. Please try again or contact support.");
+        header("location: ../citizenship_application.php?error=Failed to submit application. Please try again or contact support.");
     }
+}else {
+    $log_action = "user citizenship application";
+    $log_status = "failed";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?)");
+    $stmt1->bind_param("ssss", $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
+    }
+
+    header("Location: ../index.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
+    exit();
 }

@@ -1,6 +1,5 @@
 <?php 
 include("includes/admin_header.php");
-include("server/get_admin_login.php");
 ?>
 <body>
     <header>

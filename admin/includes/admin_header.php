@@ -1,11 +1,7 @@
 <?php
 session_start();
-// Store GET Http request in SESSION
-if (isset($_GET['adminEmail'])) {
-    $_SESSION['adminEmail'] = $_GET['adminEmail'];
-}
-
 if(isset($_POST['adminLogoutBtn'])){
+    unset($_SESSION['adminID']);
     unset($_SESSION['adminFirstName']);
     unset($_SESSION['adminSurname']);
     unset($_SESSION['adminEmail']);

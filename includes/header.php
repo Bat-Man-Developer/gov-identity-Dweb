@@ -1,6 +1,9 @@
 <?php
 session_start();
+include("server/connection.php"); // Include database connection file
+
 if(isset($_POST['logoutBtn'])){
+    unset($_SESSION['userID']);
     unset($_SESSION['firstName']);
     unset($_SESSION['surname']);
     unset($_SESSION['email']);

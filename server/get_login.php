@@ -6,36 +6,60 @@ if (isset($_POST['loginBtn'])) {
     $password = $_POST['password'];
 
     // Prepare SQL statement
-    $stmt = $conn->prepare("SELECT user_first_name, user_surname, user_password FROM users WHERE user_email = ?");
+    $stmt = $conn->prepare("SELECT user_id, user_first_name, user_surname, user_password FROM users WHERE user_email = ?");
     $stmt->bind_param("s", $email);
     if($stmt->execute()){
-        $stmt->bind_result($firstName,$surname,$hashedPassword);
+        $stmt->bind_result($userID,$firstName,$surname,$hashedPassword);
         $stmt->store_result();
     }
     else{
-        header("location: login.php?error=Something went wrong. Try again or Contact Support.");
+        header("location: ../login.php?error=Something went wrong. Try again or Contact Support.");
     }
     
     if ($stmt->num_rows == 1) {
         $stmt->fetch();
+        $stmt->close();
         // Verify the password
         if (password_verify($password, $hashedPassword)) {
-            // Password is correct, set session variable
-            $_SESSION['firstName'] = $firstName;
-            $_SESSION['surname'] = $surname;
-            $_SESSION['email'] = $email;
-            $stmt->close();
-            $conn->close();
-            header("Location: dashboard.php?success=Logged in successfully"); // Redirect to the dashboard
+            // Set log variables
+            $log_action = "user login";
+            $log_status = "success";
+            $log_location = $_SERVER['REMOTE_ADDR'];
+            $log_date = date('Y-m-d H:i:s');
+
+            // Prepare SQL statement for audit log
+            $stmt1 = $conn->prepare("INSERT INTO audit_logs (user_id, log_action, log_status, log_location, log_date)
+            VALUES (?, ?, ?, ?, ?)");
+            $stmt1->bind_param("sssss", $userID, $log_action, $log_status, $log_location, $log_date);
+
+            if ($stmt1->execute()) {
+                $stmt1->close();
+            }
+            header("Location: ../dashboard.php?success=Logged in successfully&userID=" . $userID . "&userFirstName=" . $firstName . "&userSurname=" . $Surname . "&userEmail=" . $email); // Redirect to the dashboard
             exit();
         } else {
             $stmt->close();
-            $conn->close();
-            header("Location: login.php?error=Invalid password");
+            header("Location: ../login.php?error=Invalid password");
         }
     } else {
         $stmt->close();
-        $conn->close();
-        header("Location: login.php?error=Invalid email");
+        header("Location: ../login.php?error=Invalid email");
     }
+}else {
+    $log_action = "user login";
+    $log_status = "failed";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?)");
+    $stmt1->bind_param("ssss", $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
+    }
+
+    header("Location: ../index.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
+    exit();
 }

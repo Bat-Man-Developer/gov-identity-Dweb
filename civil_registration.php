@@ -1,6 +1,40 @@
 <?php 
 include("includes/header.php");
-include("server/get_civil_registration.php");
+//if user is not logged in then take user to login page
+if(!isset($_SESSION['userID'])){
+    $log_action = "user view civil registration";
+    $log_status = "failed";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?)");
+    $stmt1->bind_param("ssss", $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
+    }
+
+    header("Location: login.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
+    exit();
+}
+else{
+    $userID = $_SESSION['userID'];
+    $log_action = "user view civil registration";
+    $log_status = "success";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (user_id, log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssss", $userID, $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
+    }
+}
 ?>
 <body>
     <header>
@@ -8,19 +42,13 @@ include("server/get_civil_registration.php");
         <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
-        <a href="index.php">Home</a>
         <a href="dashboard.php">Dashboard</a>
-        <a href="news.php">News</a>
-        <a href="services.php">Services</a>
-        <a href="contact.php">Contact</a>
-        <a href="about.php">About</a>
-        <a href="team.php">Team</a>
     </nav>
     <main>
         <!------------- Website Messages----------->
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
-        <form id="civil-registration-form" method="POST" action="civil_registration.php">
+        <form id="civil-registration-form" method="POST" action="server/get_civil_registration.php">
             <label for="registrationType">Registration Type</label>
             <select id="registrationType" name="registrationType" required>
                 <option value="" disabled selected>Select Registration Type</option>
@@ -61,6 +89,7 @@ include("server/get_civil_registration.php");
             <label for="contactNumber">Contact Number</label>
             <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number" required>
 
+            <input type="hidden" name="userID" value="<?php echo $userID; ?>">
             <button type="submit" id="submitRegistration" name="submitRegistration">Submit Registration</button>
         </form>
     </main>

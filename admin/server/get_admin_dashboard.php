@@ -74,3 +74,17 @@ $totalDeniedApplications = $totalDeniedCitizenshipApplications + $totalDeniedVis
 
 // 8. Total pending applications
 $totalPendingApplications = $totalPendingCitizenshipApplications + $totalPendingVisaApplications + $totalPendingCivilRegistrations + $totalPendingIDApplications;
+
+$log_action = "admin view dashboard";
+$log_status = "success";
+$log_location = $_SERVER['REMOTE_ADDR'];
+$log_date = date('Y-m-d H:i:s');
+
+// Prepare SQL statement for audit log
+$stmt4 = $conn->prepare("INSERT INTO audit_logs (admin_id, log_action, log_status, log_location, log_date)
+VALUES (?, ?, ?, ?, ?)");
+$stmt4->bind_param("sssss", $adminID, $log_action, $log_status, $log_location, $log_date);
+
+if ($stmt4->execute()) {
+    $stmt4->close();
+}

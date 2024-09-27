@@ -26,6 +26,19 @@ const UserRegistryABI = [
 		"type": "event"
 	},
 	{
+		"inputs": [],
+		"name": "getBlockNumber",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -176,10 +189,12 @@ window.addEventListener('load', async () => {
             }
             
             // If user exists, attempt to login
-            const isLoggedIn = await userRegistry.methods.loginUser(email, passwordHash).call({ from: accounts[0] });
+			const isLoggedIn = await userRegistry.methods.loginUser(email, passwordHash).call({ from: accounts[0] });
             
-            if (isLoggedIn) {
-                window.location.href = "admin_dashboard.php?success=" + encodeURIComponent("Admin Logged in Successfully!") + "&adminEmail=" + email;
+            if (isLoggedIn) {	
+				// Get block number as Admin ID
+				const admin_id = await userRegistry.methods.getBlockNumber(email).call();	
+                window.location.href = "server/get_admin_login.php?success=" + encodeURIComponent("Admin Logged in Successfully!") + "&adminID=" + admin_id + "&adminEmail=" + email;
             } else {
                 document.getElementById('webMessageError').textContent = "Invalid Email Or Password";
                 document.getElementById('webMessageSuccess').textContent = "";

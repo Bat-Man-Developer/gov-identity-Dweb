@@ -127,7 +127,6 @@ const UserRegistryAddress = "0x0E01863877C33a6AA27C03C007EB4ba59820959a";
 window.addEventListener('load', async () => {
     if (typeof window.ethereum !== 'undefined') {
         try {
-            // Request account access
             await window.ethereum.request({ method: 'eth_requestAccounts' });
             window.web3 = new Web3(window.ethereum);
             console.log('Web3 initialized successfully');
@@ -154,8 +153,8 @@ function showError(message) {
 }
 
 function getEmailFromURL() {
-	const urlParams = new URLSearchParams(window.location.search);
-	return urlParams.get('adminEmail');
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('adminEmail');
 }
 
 async function initDashboard() {
@@ -169,13 +168,33 @@ async function initDashboard() {
 
     try {
         const accounts = await web3.eth.getAccounts();
-        // Retrieve and display user info
-        const [firstName, surname] = await userRegistry.methods.getUserInfo(email).call({ from: accounts[0] });
+        const currentAccount = accounts[0];
+
+        // Check if the user exists
+        const userExists = await userRegistry.methods.userExists(email).call();
+        console.log("User exists:", userExists);
+
+        if (!userExists) {
+            showError(`User with email ${email} does not exist`);
+            return;
+        }
+
+        // If user exists, retrieve user info
+        const [firstName, surname] = await userRegistry.methods.getUserInfo(email).call({ from: currentAccount });
+        console.log("Retrieved user info:", firstName, surname);
+
         document.getElementById('admin-info').textContent = `${firstName} ${surname}`;
     } catch (error) {
-        console.error("Retrieve Error:", error);
+        console.error("Detailed error:", error);
         let errorMessage = "Failed To Retrieve Admin Data. ";
-        if (error.message.includes("gas")) {
+        if (error.message.includes("execution reverted")) {
+            errorMessage += "The transaction was reverted by the smart contract. ";
+            if (error.message.includes("caller is not the admin")) {
+                errorMessage += "You do not have admin permissions.";
+            } else {
+                errorMessage += "Please check your permissions and contract state.";
+            }
+        } else if (error.message.includes("gas")) {
             errorMessage += "Transaction may have run out of gas. Please try again with a higher gas limit.";
         } else {
             errorMessage += "Try Again Or Contact Support Team: " + error.message;

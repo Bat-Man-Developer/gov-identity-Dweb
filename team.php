@@ -8,16 +8,12 @@ include("includes/header.php");
     </header>
     <nav>
         <a href="index.php">Home</a>
-        <a href="dashboard.php">Dashboard</a>
         <a href="news.php">News</a>
         <a href="services.php">Services</a>
         <a href="contact.php">Contact</a>
         <a href="about.php">About</a>
-        <?php if(isset($_SESSION['email'])){ ?>
-            <form id="logout-form" method="POST" action="team.php">
-                <a><button type="submit" id="logoutBtn" name="logoutBtn">Logout</button></a>
-            </form>
-        <?php } ?>
+        <a href="login.php"><button type="submit"  name="loginBtn">Login</button></a>
+        <a href="register.php"><button type="submit" id="registerBtn" name="registerBtn">Register</button></a>
     </nav>
     <main>
         <div class="team-container">

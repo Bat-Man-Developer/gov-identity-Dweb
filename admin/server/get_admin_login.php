@@ -1,41 +1,41 @@
 <?php
 include("admin_connection.php");
 
-if (isset($_POST['adminLoginBtn'])) {
-    $email = $_POST['adminEmail'];
-    $password = $_POST['adminPassword'];
+if (isset($_GET['adminID']) && isset($_GET['adminEmail'])) {
+    $_SESSION['adminID'] = $admin_id = $_GET['adminID'];
+    $_SESSION['adminEmail'] = $email = $_GET['adminEmail'];
 
-    // Prepare SQL statement
-    $stmt = $conn->prepare("SELECT admin_first_name, admin_surname, admin_password FROM admins WHERE admin_email = ?");
-    $stmt->bind_param("s", $email);
-    if($stmt->execute()){
-        $stmt->bind_result($firstName,$surname,$hashedPassword);
-        $stmt->store_result();
+    $log_action = "admin login";
+    $log_status = "success";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (admin_id, log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssss", $adminID, $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
     }
-    else{
-        header("location: admin_login.php?error=Something went wrong. Try again or Contact Support.");
+
+    header("Location: admin_dashboard.php?success=Admin Logged in successfully"); // Redirect to the dashboard
+    exit();
+}else {
+    $log_action = "admin login";
+    $log_status = "Failed";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?)");
+    $stmt1->bind_param("ssss", $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
     }
-    
-    if ($stmt->num_rows == 1) {
-        $stmt->fetch();
-        // Verify the password
-        if (password_verify($password, $hashedPassword)) {
-            // Password is correct, set session variable
-            $_SESSION['adminFirstName'] = $firstName;
-            $_SESSION['adminSurname'] = $surname;
-            $_SESSION['adminEmail'] = $email;
-            $stmt->close();
-            $conn->close();
-            header("Location: admin_dashboard.php?success=Admin Logged in successfully"); // Redirect to the dashboard
-            exit();
-        } else {
-            $stmt->close();
-            $conn->close();
-            header("Location: admin_login.php?error=Invalid password");
-        }
-    } else {
-        $stmt->close();
-        $conn->close();
-        header("Location: admin_login.php?error=Invalid email");
-    }
+
+    header("Location: ../index.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
+    exit();
 }

@@ -30,3 +30,17 @@
   $stmt1 = $conn->prepare("SELECT * FROM citizenship_applications LIMIT $offset,$totalrecordsperpage");
   $stmt1->execute();
   $applications = $stmt1->get_result();// This is an array
+
+  $log_action = "admin view citizenship applications";
+  $log_status = "success";
+  $log_location = $_SERVER['REMOTE_ADDR'];
+  $log_date = date('Y-m-d H:i:s');
+
+  // Prepare SQL statement for audit log
+  $stmt1 = $conn->prepare("INSERT INTO audit_logs (admin_id, log_action, log_status, log_location, log_date)
+  VALUES (?, ?, ?, ?, ?)");
+  $stmt1->bind_param("sssss", $adminID, $log_action, $log_status, $log_location, $log_date);
+
+  if ($stmt1->execute()) {
+      $stmt1->close();
+  }

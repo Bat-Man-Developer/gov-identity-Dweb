@@ -42,4 +42,9 @@ contract UserRegistry {
         require(users[_email].exists, "User does not exist");
         return (users[_email].firstName, users[_email].surname);
     }
+
+    // New function to get the current block number
+    function getBlockNumber() public view returns (uint) {
+        return block.number;
+    }
 }
