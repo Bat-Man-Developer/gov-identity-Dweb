@@ -151,8 +151,8 @@ $anomalies = detectAnomalies($logs);
                     <tr>
                         <td><?php echo $log['log_id']; ?></td>
                         <td><?php echo $log['log_date']; ?></td>
-                        <td><?php echo $log['log_admin_id']; ?></td>
-                        <td><?php echo $log['log_user_id']; ?></td>
+                        <td><?php echo $log['admin_id']; ?></td>
+                        <td><?php echo $log['user_id']; ?></td>
                         <td><?php echo $log['log_action']; ?></td>
                         <td><?php echo $log['log_status']; ?></td>
                         <td><?php echo $log['log_location']; ?></td>

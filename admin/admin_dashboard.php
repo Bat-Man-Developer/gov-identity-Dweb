@@ -16,7 +16,7 @@ if(!isset($_GET['adminID'])){
         $stmt1->close();
     }
 
-    header("Location: ../index.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
+    header("Location: admin_login.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
     exit();
 }
 else{

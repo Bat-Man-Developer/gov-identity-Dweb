@@ -46,6 +46,10 @@ else{
         <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
     </header>
     <nav>
+        <a href="view_citizenship.php">View Citizenship</a>
+        <a href="view_visa.php">View Visa</a>
+        <a href="view_civil.php">View Civil</a>
+        <a href="view_id.php">View ID</a>
     </nav>
     
     <main>

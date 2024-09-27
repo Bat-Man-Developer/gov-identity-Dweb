@@ -1,5 +1,10 @@
 <?php 
 include("includes/admin_header.php");
+//if admin is logged in then take admin to dashboard page
+if(isset($_SESSION['adminID']) && isset($_SESSION['adminEmail'])){
+    header('location: admin_dashboard.php?adminID=' . $_SESSION['adminID'] . "&adminEmail=" . $_SESSION['adminEmail']);
+    exit;
+}
 ?>
 <body>
     <header>

@@ -57,7 +57,7 @@ else{
         </nav>
         <main>
             <h2>Activity Logs</h2>
-            <p>View and review user activity for compliance and security.</p>
+            <p>Review user activity for compliance and security.</p>
 
             <table>
                 <thead>
