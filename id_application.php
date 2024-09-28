@@ -101,7 +101,6 @@ else{
                 <option value="" disabled selected>Select Document Type</option>
                 <option value="nationalID">National ID Card</option>
                 <option value="passport">Passport</option>
-                <option value="drivingLicense">Driving License</option>
             </select>
 
             <input type="hidden" name="userID" value="<?php echo $userID; ?>">
