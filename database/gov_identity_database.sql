@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2024 at 02:26 AM
+-- Generation Time: Sep 28, 2024 at 07:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,28 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admins`
---
-
-CREATE TABLE `admins` (
-  `admin_id` int(11) NOT NULL,
-  `admin_first_name` varchar(255) NOT NULL,
-  `admin_surname` varchar(255) NOT NULL,
-  `admin_email` varchar(255) NOT NULL,
-  `admin_password` varchar(255) NOT NULL,
-  `admin_created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`admin_id`, `admin_first_name`, `admin_surname`, `admin_email`, `admin_password`, `admin_created_at`) VALUES
-(5, 'Kay', 'Mudau', 'kkay.mudau008@gmail.com', '$2y$10$xuAvPN4zgfogvE/pIIFjRe1KLtMoHOxHixITuTeUcDkbuM9cmdmlS', '2024-09-18 20:56:12');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `audit_logs`
 --
 
@@ -54,10 +32,17 @@ CREATE TABLE `audit_logs` (
   `admin_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `log_action` varchar(255) NOT NULL,
-  `log_status` text NOT NULL,
+  `log_status` varchar(10) NOT NULL,
   `log_location` varchar(255) NOT NULL,
   `log_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `audit_logs`
+--
+
+INSERT INTO `audit_logs` (`log_id`, `admin_id`, `user_id`, `log_action`, `log_status`, `log_location`, `log_date`) VALUES
+(1, 6776387, 0, 'admin login', 'success', '::1', '2024-09-28 19:40:57');
 
 -- --------------------------------------------------------
 
@@ -112,6 +97,7 @@ CREATE TABLE `civil_registrations` (
 
 CREATE TABLE `id_applications` (
   `id_application_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `id_application_full_name` varchar(255) NOT NULL,
   `id_application_date_of_birth` date NOT NULL,
   `id_application_place_of_birth` varchar(255) NOT NULL,
@@ -152,13 +138,6 @@ CREATE TABLE `users` (
   `user_created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `user_role`, `user_first_name`, `user_surname`, `user_sex`, `user_dob`, `user_country`, `user_email`, `user_phone`, `user_password`, `user_status`, `user_modified_at`, `user_created_at`) VALUES
-(5, '', 'Kay', 'Mudau', 'male', '2024-09-19 00:00:00', 'South Africa', 'kkay.mudau008@gmail.com', '07866543876', '$2y$10$zs1XU9cuaQFjZCpAlfV6XeReqxJz.WINZSr35BSh2U3djZUTuaML2', 'active', '2024-09-18 22:19:36', '2024-09-18 22:19:36');
-
 -- --------------------------------------------------------
 
 --
@@ -187,18 +166,10 @@ CREATE TABLE `visa_applications` (
 --
 
 --
--- Indexes for table `admins`
---
-ALTER TABLE `admins`
-  ADD PRIMARY KEY (`admin_id`);
-
---
 -- Indexes for table `audit_logs`
 --
 ALTER TABLE `audit_logs`
-  ADD PRIMARY KEY (`log_id`),
-  ADD UNIQUE KEY `user_id` (`user_id`),
-  ADD UNIQUE KEY `admin_id` (`admin_id`);
+  ADD PRIMARY KEY (`log_id`);
 
 --
 -- Indexes for table `citizenship_applications`
@@ -235,16 +206,10 @@ ALTER TABLE `visa_applications`
 --
 
 --
--- AUTO_INCREMENT for table `admins`
---
-ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `audit_logs`
 --
 ALTER TABLE `audit_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `citizenship_applications`
