@@ -57,8 +57,8 @@ else{
         </nav>
         <main>
             <h2>Activity Logs</h2>
-            <p>Review user activity for compliance and security.</p><br>
-            <a href="admin_verify_audit_logs.php" class="action-button"><button>Verify Audit Logs</button></a>
+            <p>Verify audit logs for compliance and security.</p><br>
+            <a href="admin_verify_audit_logs.php"><button class="action-button">Verify Audit Logs</button></a>
 
             <table>
                 <thead>
