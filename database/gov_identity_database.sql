@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2024 at 07:43 PM
+-- Generation Time: Sep 28, 2024 at 07:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,22 @@ CREATE TABLE `audit_logs` (
 --
 
 INSERT INTO `audit_logs` (`log_id`, `admin_id`, `user_id`, `log_action`, `log_status`, `log_location`, `log_date`) VALUES
-(1, 6776387, 0, 'admin login', 'success', '::1', '2024-09-28 19:40:57');
+(1, 6776387, 0, 'admin login', 'success', '::1', '2024-09-28 19:40:57'),
+(3, 6776400, 0, 'admin login', 'success', '::1', '2024-09-28 19:44:29'),
+(4, 0, 0, 'admin view dashboard', 'failed', '::1', '2024-09-28 19:44:29'),
+(5, 6776400, 0, 'admin login', 'success', '::1', '2024-09-28 19:44:39'),
+(6, 6776400, 0, 'admin view dashboard', 'success', '::1', '2024-09-28 19:44:39'),
+(7, 6776400, 0, 'admin view dashboard', 'success', '::1', '2024-09-28 19:44:39'),
+(8, 6776400, 0, 'admin view audit logs', 'success', '::1', '2024-09-28 19:45:04'),
+(9, 6776400, 0, 'admin view audit logs', 'success', '::1', '2024-09-28 19:45:08'),
+(10, 6776400, 0, 'admin view id applications', 'success', '::1', '2024-09-28 19:45:08'),
+(11, 6776400, 0, 'admin view dashboard', 'success', '::1', '2024-09-28 19:45:55'),
+(12, 6776400, 0, 'admin view dashboard', 'success', '::1', '2024-09-28 19:45:55'),
+(13, 0, 6, 'user register', 'success', '::1', '2024-09-28 19:47:07'),
+(14, 0, 6, 'user login', 'success', '::1', '2024-09-28 19:48:23'),
+(15, 0, 0, 'user view dashboard', 'failed', '::1', '2024-09-28 19:48:23'),
+(16, 0, 6, 'user login', 'success', '::1', '2024-09-28 19:48:52'),
+(17, 0, 6, 'user view dashboard', 'success', '::1', '2024-09-28 19:48:52');
 
 -- --------------------------------------------------------
 
@@ -52,6 +67,7 @@ INSERT INTO `audit_logs` (`log_id`, `admin_id`, `user_id`, `log_action`, `log_st
 
 CREATE TABLE `citizenship_applications` (
   `citizenship_application_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `citizenship_application_full_name` varchar(255) NOT NULL,
   `citizenship_application_date_of_birth` date NOT NULL,
   `citizenship_application_place_of_birth` varchar(255) NOT NULL,
@@ -74,6 +90,7 @@ CREATE TABLE `citizenship_applications` (
 
 CREATE TABLE `civil_registrations` (
   `civil_registration_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `civil_registration_type` varchar(50) NOT NULL,
   `civil_registration_full_name` varchar(255) NOT NULL,
   `civil_registration_date_of_event` date NOT NULL,
@@ -138,6 +155,13 @@ CREATE TABLE `users` (
   `user_created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_role`, `user_first_name`, `user_surname`, `user_sex`, `user_dob`, `user_country`, `user_email`, `user_phone`, `user_password`, `user_status`, `user_modified_at`, `user_created_at`) VALUES
+(6, '', 'Billy', 'Henderson', 'male', '1988-03-10 00:00:00', 'South Africa', 'billy@gmail.com', '0786645378', '$2y$10$JnYENm/3y2NnRcespm3Kg.v86Q1cvr99cSU.st23dAUvl4uG5Ke2u', 'active', '2024-09-28 19:47:07', '2024-09-28 19:47:07');
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +170,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `visa_applications` (
   `visa_application_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `visa_application_full_name` varchar(255) NOT NULL,
   `visa_application_passport_number` varchar(50) NOT NULL,
   `visa_application_nationality` varchar(100) NOT NULL,
@@ -209,7 +234,7 @@ ALTER TABLE `visa_applications`
 -- AUTO_INCREMENT for table `audit_logs`
 --
 ALTER TABLE `audit_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `citizenship_applications`
@@ -233,7 +258,7 @@ ALTER TABLE `id_applications`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `visa_applications`

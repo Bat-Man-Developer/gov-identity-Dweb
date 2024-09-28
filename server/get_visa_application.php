@@ -21,9 +21,9 @@ if (isset($_POST['submitVisa'])) {
     move_uploaded_file($financialMeansTemp, $financialMeansPath);
 
     // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO visa_applications (visa_application_full_name, visa_application_passport_number, visa_application_nationality, visa_application_date_of_birth, visa_application_type, visa_application_entry_date, visa_application_stay_duration, visa_application_purpose, visa_application_accommodation, visa_application_financial_means_proof, visa_application_status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssissss", $fullName, $passportNumber, $nationality, $dateOfBirth, $visaType, $entryDate, $stayDuration, $purpose, $accommodation, $financialMeansPath, $applicationStatus);
+    $stmt = $conn->prepare("INSERT INTO visa_applications (user_id, visa_application_full_name, visa_application_passport_number, visa_application_nationality, visa_application_date_of_birth, visa_application_type, visa_application_entry_date, visa_application_stay_duration, visa_application_purpose, visa_application_accommodation, visa_application_financial_means_proof, visa_application_status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issssssissss", $userID, $fullName, $passportNumber, $nationality, $dateOfBirth, $visaType, $entryDate, $stayDuration, $purpose, $accommodation, $financialMeansPath, $applicationStatus);
 
     if ($stmt->execute()) {
         $stmt->close();

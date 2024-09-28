@@ -53,9 +53,6 @@ if(isset($_SESSION['userID']) && isset($_SESSION['userFirstName']) && isset($_SE
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter Password" required>
 
-            <label for="rePassword">Re-enter Password</label>
-            <input type="password" id="rePassword" name="rePassword" placeholder="Re-enter Password" required>
-
             <button type="submit" id="registerBtn" name="registerBtn">Submit</button>
         </form>
         <p>Already have an account? <a href="login.php">Login here</a></p>
