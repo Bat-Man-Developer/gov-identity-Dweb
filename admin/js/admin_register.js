@@ -187,15 +187,6 @@ window.addEventListener('load', async () => {
         try {
             const accounts = await web3.eth.getAccounts();
             
-            // Check if user already exists
-            const userExists = await userRegistry.methods.userExists(email).call();
-            
-            if (userExists) {
-                document.getElementById('webMessageError').textContent = "User with this email already exists";
-                document.getElementById('webMessageSuccess').textContent = "";
-                return;
-            }
-            
             // If user doesn't exist, proceed with registration
             const gas = await userRegistry.methods.registerUser(firstName, surname, email, passwordHash).estimateGas({from: accounts[0]});
             const result = await userRegistry.methods.registerUser(firstName, surname, email, passwordHash).send({ from: accounts[0], gas: gas });

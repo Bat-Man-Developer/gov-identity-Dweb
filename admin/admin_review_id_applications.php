@@ -103,7 +103,6 @@ else{
         </div>
     </main>
 </body>
-<script src="js/admin_review_id_applications.js"></script>
 <?php
 include("includes/admin_footer.php");
 ?>

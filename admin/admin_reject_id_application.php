@@ -107,7 +107,6 @@ if ($application_id) {
         <?php endif; ?>
     </main>
 </body>
-<script src="js/admin_reject_id_application.js"></script>
 <?php
 include("includes/admin_footer.php");
 ?>

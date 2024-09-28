@@ -1,138 +1,138 @@
 const UserRegistryABI = [
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "email",
-				"type": "string"
-			}
-		],
-		"name": "UserLoggedIn",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "email",
-				"type": "string"
-			}
-		],
-		"name": "UserRegistered",
-		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "getBlockNumber",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			}
-		],
-		"name": "getUserInfo",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_passwordHash",
-				"type": "bytes32"
-			}
-		],
-		"name": "loginUser",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_firstName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_surname",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_passwordHash",
-				"type": "bytes32"
-			}
-		],
-		"name": "registerUser",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			}
-		],
-		"name": "userExists",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "email",
+                "type": "string"
+            }
+        ],
+        "name": "UserLoggedIn",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "email",
+                "type": "string"
+            }
+        ],
+        "name": "UserRegistered",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "getBlockNumber",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_email",
+                "type": "string"
+            }
+        ],
+        "name": "getUserInfo",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_email",
+                "type": "string"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "_passwordHash",
+                "type": "bytes32"
+            }
+        ],
+        "name": "loginUser",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_firstName",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_surname",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_email",
+                "type": "string"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "_passwordHash",
+                "type": "bytes32"
+            }
+        ],
+        "name": "registerUser",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_email",
+                "type": "string"
+            }
+        ],
+        "name": "userExists",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
 ];
 
 const UserRegistryAddress = "0x4d33F8f18e27A2cF4D8F2B8BB5B40809d4e2fE70";
@@ -141,16 +141,17 @@ window.addEventListener('load', async () => {
     if (typeof window.ethereum !== 'undefined') {
         try {
             await window.ethereum.request({ method: 'eth_requestAccounts' });
-            window.web3 = new Web3(window.ethereum);
-            console.log('Web3 initialized successfully');
+            window.provider = new ethers.providers.Web3Provider(window.ethereum);
+            window.signer = provider.getSigner();
+            console.log('Ethers initialized successfully');
             initDashboard();
         } catch (error) {
-            console.error('Error initializing Web3:', error);
-            showError('Failed to connect to Web3. Please make sure MetaMask is installed, connected, and you have approved this site.');
+            console.error('Error initializing Ethers:', error);
+            showError('Failed to connect to Ethereum. Please make sure MetaMask is installed, connected, and you have approved this site.');
         }
     } else {
-        console.log('Web3 not detected');
-        showError('Web3 not detected. Please install MetaMask to use this dApp!');
+        console.log('Ethereum provider not detected');
+        showError('Ethereum provider not detected. Please install MetaMask to use this dApp!');
     }
 });
 
@@ -171,7 +172,7 @@ function getEmailFromURL() {
 }
 
 async function initDashboard() {
-    const userRegistry = new web3.eth.Contract(UserRegistryABI, UserRegistryAddress);
+    const userRegistry = new ethers.Contract(UserRegistryAddress, UserRegistryABI, signer);
     
     const email = getEmailFromURL();
     if (!email) {
@@ -180,20 +181,18 @@ async function initDashboard() {
     }
 
     try {
-        const accounts = await web3.eth.getAccounts();
-        const currentAccount = accounts[0];
+        const account = await signer.getAddress();
 
         // Check if the user exists
-        const userExists = await userRegistry.methods.userExists(email).call();
+        const userExists = await userRegistry.userExists(email);
         console.log("User exists:", userExists);
 
         if (!userExists) {
             showError(`User with email ${email} does not exist`);
             return;
         }
-
-        // If user exists, retrieve user info
-        const [firstName, surname] = await userRegistry.methods.getUserInfo(email).call({ from: currentAccount });
+        
+        const [firstName, surname] = await userRegistry.getUserInfo(email);
         console.log("Retrieved user info:", firstName, surname);
 
         document.getElementById('admin-info').textContent = `${firstName} ${surname}`;
