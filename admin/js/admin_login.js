@@ -178,7 +178,8 @@ window.addEventListener('load', async () => {
         const passwordHash = ethers.utils.id(password);
     
         try {
-            const account = await signer.getAddress();
+            // Get admin account
+            await signer.getAddress();
             
             // Check if user exists
             const userExists = await userRegistry.userExists(email);

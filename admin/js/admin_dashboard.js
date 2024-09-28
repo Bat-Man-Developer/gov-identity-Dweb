@@ -181,7 +181,8 @@ async function initDashboard() {
     }
 
     try {
-        const account = await signer.getAddress();
+        // Get user account
+        await signer.getAddress();
 
         // Check if the user exists
         const userExists = await userRegistry.userExists(email);

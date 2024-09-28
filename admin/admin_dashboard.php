@@ -69,7 +69,6 @@ include("server/get_admin_dashboard.php");
             <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
             <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
             <h2>Welcome, <span id="admin-info"></span></h2><br>
-            <h3 id="adminEmail">Email: <?php echo $_SESSION['adminEmail']; ?></h3><br><br>
             <div class="section">
                 <h2>Audit Logs Management</h2>
                 <a href="admin_audit_logs.php" class="link-button">View Audit Logs</a>
