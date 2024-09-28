@@ -2,7 +2,7 @@
 include("includes/admin_header.php");
 //if admin is not logged in then take admin to login page
 if(!isset($_SESSION['adminID'])){
-    $log_action = "admin view verify audit logs";
+    $log_action = "admin view audit logs";
     $log_status = "failed";
     $log_location = $_SERVER['REMOTE_ADDR'];
     $log_date = date('Y-m-d H:i:s');
@@ -35,47 +35,7 @@ else{
         $stmt1->close();
     }
 }
-
-// Function to call Python script for anomaly detection
-function detectAnomalies($logs) {
-    $pythonScript = 'python3 python/audit_logs_anomaly_detection.py';
-    $input = json_encode($logs);
-    $descriptorSpec = array(
-        0 => array("pipe", "r"),  // stdin
-        1 => array("pipe", "w"),  // stdout
-        2 => array("pipe", "w")   // stderr
-    );
-    $process = proc_open($pythonScript, $descriptorSpec, $pipes);
-    
-    if (is_resource($process)) {
-        fwrite($pipes[0], $input);
-        fclose($pipes[0]);
-        
-        $output = stream_get_contents($pipes[1]);
-        fclose($pipes[1]);
-        
-        $errors = stream_get_contents($pipes[2]);
-        fclose($pipes[2]);
-        
-        proc_close($process);
-        
-        if ($errors) {
-            error_log("Python Error: " . $errors);
-            return false;
-        }
-        
-        return json_decode($output, true);
-    }
-    return false;
-}
-
-// Fetch logs
-include('server/get_admin_audit_logs.php');
-
-// Detect anomalies
-$anomalies = detectAnomalies($logs);
 ?>
-
 <body>
     <div class="container">
         <header>
@@ -90,76 +50,76 @@ $anomalies = detectAnomalies($logs);
             <a href="admin_review_id_applications.php">Review ID Applications</a>
             <a href="admin_view_users.php">View Users</a>
             <?php if(isset($_SESSION['adminEmail'])){ ?>
-                <form id="admin-logout-form" method="POST" action="admin_verify_audit_logs.php">
+                <form id="admin-logout-form" method="POST" action="admin_audit_logs.php">
                     <a><button type="submit" class="logoutBtn" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
                 </form>
             <?php } ?>
         </nav>
         <main>
-            <h2>Verify Audit Logs</h2>
-            <p>Review audit logs and detect possible anomalies using machine learning.</p>
+            <h2>Verify Activity Logs</h2>
+            <p id="responseMessage">Loading Results...</p><br>
+            <a href="admin_audit_logs.php"><button>Go back</button></a>
 
-            <h3>Possible Anomalies</h3>
-            <?php if ($anomalies): ?>
-                <table class="anomalies-table">
-                    <thead>
-                        <tr>
-                            <th>Log ID</th>
-                            <th>Date</th>
-                            <th>Admin</th>
-                            <th>User</th>
-                            <th>Action</th>
-                            <th>Status</th>
-                            <th>Location</th>
-                            <th>Anomaly Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($anomalies as $anomaly): ?>
-                            <tr class="anomaly-row">
-                                <td><?php echo $anomaly['log_id']; ?></td>
-                                <td><?php echo $anomaly['log_date']; ?></td>
-                                <td><?php echo $anomaly['admin_id']; ?></td>
-                                <td><?php echo $anomaly['user_id']; ?></td>
-                                <td><?php echo $anomaly['log_action']; ?></td>
-                                <td><?php echo $anomaly['log_status']; ?></td>
-                                <td><?php echo $anomaly['log_location']; ?></td>
-                                <td><?php echo $anomaly['anomaly_type']; ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php else: ?>
-                <p>No anomalies detected.</p>
-            <?php endif; ?>
-
-            <h3>All Audit Logs</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Log No.</th>
-                        <th>Date</th>
-                        <th>Admin</th>
-                        <th>User</th>
-                        <th>Action</th>
-                        <th>Status</th>
-                        <th>Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($logs as $log): ?>
-                    <tr>
-                        <td><?php echo $log['log_id']; ?></td>
-                        <td><?php echo $log['log_date']; ?></td>
-                        <td><?php echo $log['admin_id']; ?></td>
-                        <td><?php echo $log['user_id']; ?></td>
-                        <td><?php echo $log['log_action']; ?></td>
-                        <td><?php echo $log['log_status']; ?></td>
-                        <td><?php echo $log['log_location']; ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <div class="container">
+                <div class="plot-container">
+                    <div class="plot">
+                        <h2>Confusion Matrix</h2>
+                        <img id="confusion-matrix" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Model Weights</h2>
+                        <img id="model-weights" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Feature Importance</h2>
+                        <img id="feature-importance" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Performance Metrics</h2>
+                        <img id="performance-metrics" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>ROC Curve</h2>
+                        <img id="roc-curve" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Precision-Recall Curve</h2>
+                        <img id="precision-recall-curve" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Calibration Plot</h2>
+                        <img id="calibration-plot" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Boxplots Predictions</h2>
+                        <img id="boxplots-predictions" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Accuracy Comparison</h2>
+                        <img id="accuracy-comparison" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Precision Comparison</h2>
+                        <img id="precision-comparison" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Recall Comparison</h2>
+                        <img id="recall-comparison" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>F1-Score Comparison</h2>
+                        <img id="f1score-comparison" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Bias - Variance Tradeoff</h2>
+                        <img id="bias-variance-tradeoff" alt="Loading Image...">
+                    </div>
+                    <div class="plot">
+                        <h2>Learning Curves</h2>
+                        <img id="learning-curves" alt="Loading Image...">
+                    </div>
+                </div>
+            </div>
             <div class="page-btn">
                 <span class="page-item <?php if($pagenumber <= 1){ echo 'disabled';} ?>"><a class="page-link" href="<?php if($pagenumber <= 1){ echo '#';}else{ echo "?pagenumber=".($pagenumber - 1);} ?>">Prev</a></span>
 
@@ -176,6 +136,7 @@ $anomalies = detectAnomalies($logs);
         </main>
     </div>
 </body>
+<script src="js/admin_verify_audit_logs.js"></script>
 <?php
 include("includes/admin_footer.php");
 ?>

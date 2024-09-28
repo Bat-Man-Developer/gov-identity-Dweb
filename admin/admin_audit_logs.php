@@ -39,7 +39,7 @@ else{
 <body>
     <div class="container">
         <header>
-            <h1>Home Affairs Admin: Logs</h1>
+            <h1>Home Affairs Admin: Audit Logs</h1>
             <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
         </header>
         <nav>
@@ -57,7 +57,8 @@ else{
         </nav>
         <main>
             <h2>Activity Logs</h2>
-            <p>Review user activity for compliance and security.</p>
+            <p>Review user activity for compliance and security.</p><br>
+            <a href="admin_verify_audit_logs.php" class="action-button"><button>Verify Audit Logs</button></a>
 
             <table>
                 <thead>
