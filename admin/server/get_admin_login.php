@@ -1,9 +1,9 @@
 <?php
 include("admin_connection.php");
-
 if (isset($_GET['adminID']) && isset($_GET['adminEmail'])) {
-    $_SESSION['adminID'] = $adminID = $_GET['adminID'];
-    $_SESSION['adminEmail'] = $adminEmail = $_GET['adminEmail'];
+    // Set sessions
+    $adminID = $_GET['adminID'];
+    $adminEmail = $_GET['adminEmail'];
 
     $log_action = "admin login";
     $log_status = "success";
@@ -21,7 +21,7 @@ if (isset($_GET['adminID']) && isset($_GET['adminEmail'])) {
 
     header("Location: ../admin_dashboard.php?success=Admin Logged in successfully&adminID=" . $adminID . "&adminEmail=" . $adminEmail); // Redirect to the dashboard
     exit();
-}else {
+} else {
     $log_action = "admin login";
     $log_status = "failed";
     $log_location = $_SERVER['REMOTE_ADDR'];

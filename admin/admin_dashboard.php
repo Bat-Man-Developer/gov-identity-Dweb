@@ -1,7 +1,11 @@
 <?php
 include("includes/admin_header.php");
+// Set session
+if(!isset($_SESSION['adminLoggedIn'])){
+    $_SESSION['adminLoggedIn'] = true;
+}
 //if admin is not logged in then take admin to login page
-if(!isset($_GET['adminID'])){
+if(!isset($_GET['adminID']) || $_SESSION['adminLoggedIn'] == "false"){
     $log_action = "admin view dashboard";
     $log_status = "failed";
     $log_location = $_SERVER['REMOTE_ADDR'];
@@ -16,6 +20,8 @@ if(!isset($_GET['adminID'])){
         $stmt1->close();
     }
 
+    // Set session
+    $_SESSION['adminLoggedIn'] = false;
     header("Location: admin_login.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
     exit();
 }

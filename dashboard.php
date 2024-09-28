@@ -1,7 +1,11 @@
 <?php
 include("includes/header.php");
+// Set session
+if(!isset($_SESSION['userLoggedIn'])){
+    $_SESSION['userLoggedIn'] = true;
+}
 //if user is not logged in then take user to login page
-if(!isset($_GET['userID'])){
+if(!isset($_GET['userID']) || $_SESSION['userLoggedIn'] == "false"){
     $log_action = "user view dashboard";
     $log_status = "failed";
     $log_location = $_SERVER['REMOTE_ADDR'];
@@ -16,6 +20,8 @@ if(!isset($_GET['userID'])){
         $stmt1->close();
     }
 
+    // Set session
+    $_SESSION['userLoggedIn'] = false;
     header("Location: login.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
     exit();
 }

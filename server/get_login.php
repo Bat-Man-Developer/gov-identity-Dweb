@@ -20,7 +20,7 @@ if (isset($_POST['loginBtn'])) {
         $stmt->fetch();
         $stmt->close();
         // Verify the password
-        if (password_verify($password, $hashedPassword)) {
+        if (password_verify($password, $hashedPassword)) {    
             // Set log variables
             $log_action = "user login";
             $log_status = "success";
@@ -35,6 +35,7 @@ if (isset($_POST['loginBtn'])) {
             if ($stmt1->execute()) {
                 $stmt1->close();
             }
+            
             header("Location: ../dashboard.php?success=Logged in successfully&userID=" . $userID . "&userFirstName=" . $firstName . "&userSurname=" . $Surname . "&userEmail=" . $email); // Redirect to the dashboard
             exit();
         } else {

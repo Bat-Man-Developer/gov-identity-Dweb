@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("includes/admin_header.php");
 //if admin is logged in then take admin to dashboard page
 if(isset($_SESSION['adminID']) && isset($_SESSION['adminEmail'])){

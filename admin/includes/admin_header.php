@@ -1,14 +1,56 @@
 <?php
-session_start();
-include("server/admin_connection.php");
-if(isset($_POST['adminLogoutBtn'])){
-    unset($_SESSION['adminID']);
-    unset($_SESSION['adminFirstName']);
-    unset($_SESSION['adminSurname']);
-    unset($_SESSION['adminEmail']);
-    header('location: admin_login.php');
+// Ensure secure session handling
+ini_set('session.use_only_cookies', 1);
+ini_set('session.use_strict_mode', 1);
+
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => '',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Lax'
+]);
+
+if (!session_id()) {
+    session_start();
+}
+
+// Regenerate session ID periodically for security
+if (!isset($_SESSION['last_regeneration'])) {
+    session_regenerate_id(true);
+    $_SESSION['last_regeneration'] = time();
+} elseif (time() - $_SESSION['last_regeneration'] > 300) {
+    session_regenerate_id(true);
+    $_SESSION['last_regeneration'] = time();
+}
+
+// Logout Btn Clicked
+if (isset($_POST['adminLogoutBtn'])) {
+    // Define an array of session variables to unset
+    $sessionVars = [
+        'adminID',
+        'adminEmail',
+        'adminLoggedIn'
+    ];
+
+    $count = 0;
+    // Unset each session variable
+    foreach ($sessionVars as $var) {
+        if (isset($_SESSION[$var])) {
+            unset($_SESSION[$var]);
+        }
+    }
+
+    $_SESSION['adminLoggedIn'] = "false";
+
+    // Destroy the session
+    session_destroy();
+
+    header("Location: admin_logout.php");
     exit;
 }
+include("server/admin_connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
