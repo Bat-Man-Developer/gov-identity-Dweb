@@ -17,8 +17,8 @@ include("includes/header.php");
     
     <main style="margin-top: 5%; margin-bottom: 5%">
         <div style="display: flex; flex: wrap; justify-content: center">
-            <button id="loginBtn"><a id="loginTxt" href="login.php">Login</a></button>
-            <button id="registerBtn"><a id="registerTxt" href="register.php">Register</></button>
+            <a id="loginTxt" href="login.php"><button id="loginBtn">Login</button></a>
+            <a id="registerTxt" href="register.php"><button id="registerBtn">Register</button></a>
         </div>
     </main>
 <?php 

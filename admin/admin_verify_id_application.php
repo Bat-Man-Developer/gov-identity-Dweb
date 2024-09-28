@@ -1,0 +1,97 @@
+<?php
+include("includes/admin_header.php");
+//if admin is not logged in then take admin to login page
+if(!isset($_SESSION['adminID'])){
+    $log_action = "admin verify id application";
+    $log_status = "failed";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?)");
+    $stmt1->bind_param("ssss", $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
+    }
+
+    header("Location: ../index.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged."); // Redirect to index
+    exit();
+}
+else{
+    $adminID = $_SESSION['adminID'];
+    $log_action = "admin verify id application";
+    $log_status = "success";
+    $log_location = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
+
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (admin_id, log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssss", $adminID, $log_action, $log_status, $log_location, $log_date);
+
+    if ($stmt1->execute()) {
+        $stmt1->close();
+    }
+}
+
+// Get the application ID from the URL
+$application_id = isset($_GET['id']) ? $_GET['id'] : null;
+
+// Fetch application details
+if ($application_id) {
+    $stmt = $conn->prepare("SELECT * FROM id_applications WHERE id_application_id = ?");
+    $stmt->bind_param("i", $application_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $application = $result->fetch_assoc();
+    $stmt->close();
+}
+?>
+<body>
+    <header>
+        <h1>Home Affairs Admin: Verify ID Application</h1>
+        <img class="logo" src="resources/Home.jpeg" alt="Home Affairs Logo">
+    </header>
+    <nav>
+        <a href="admin_dashboard.php">Dashboard</a>
+        <a href="admin_review_id_applications.php">Review ID Applications</a>
+        <a href="admin_review_citizenship_applications.php">Review Citizenship Applications</a>
+        <a href="admin_review_visa_applications.php">Review Visa Applications</a>
+        <a href="admin_review_civil_registrations.php">Review Civil Registrations</a>
+        <a href="admin_view_users.php">View Users</a>
+        <a href="admin_audit_logs.php">Audit Logs</a>
+        <?php if(isset($_SESSION['adminEmail'])){ ?>
+            <form id="admin-logout-form" method="POST" action="admin_verify_id_application.php">
+                <a><button type="submit" class="logoutBtn" id="adminLogoutBtn" name="adminLogoutBtn">Logout</button></a>
+            </form>
+        <?php } ?>
+    </nav>
+    <main>
+        <!------------- Website Messages----------->
+        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
+        <h2>Verify ID Application</h2>
+        <?php if ($application): ?>
+            <div class="application-details">
+                <p><strong>Application No.:</strong> <?php echo $application['id_application_id']; ?></p>
+                <p><strong>Full Name:</strong> <?php echo $application['id_application_full_name']; ?></p>
+                <p><strong>Document Type:</strong> <?php echo $application['id_application_document_type']; ?></p>
+                <p><strong>Status:</strong> <?php echo $application['id_application_status']; ?></p>
+                <p><strong>Submission Date:</strong> <?php echo $application['id_application_created_at']; ?></p>
+                <!-- Add more application details as needed -->
+            </div>
+            <div class="action-buttons">
+                <a href="admin_approve_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Approve</a>
+                <a href="admin_reject_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Reject</a>
+            </div>
+        <?php else: ?>
+            <p>Application not found.</p>
+        <?php endif; ?>
+    </main>
+</body>
+<script src="js/admin_verify_id_application.js"></script>
+<?php
+include("includes/admin_footer.php");
+?>

@@ -82,7 +82,7 @@ else{
                     <td>
                         <a href="admin_verify_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="verify-button">Verify</a>
                         <a href="admin_approve_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Approve</a>
-                        <a href="admin_deny_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Deny</a>
+                        <a href="admin_reject_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Reject</a>
                     </td>
                 </tr>
                 <?php } ?>
