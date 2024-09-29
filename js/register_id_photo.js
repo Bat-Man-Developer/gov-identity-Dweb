@@ -26,6 +26,21 @@ takePhotoBtn.addEventListener('click', () => {
 
 savePhotoBtn.addEventListener('click', () => {
     const userID = document.getElementById('userID').value;
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const dob = document.getElementById('dob').value;
+    const pob = document.getElementById('pob').value;
+    const gender = document.getElementById('gender').value;
+    const nationality = document.getElementById('nationality').value;
+    const address = document.getElementById('address').value;
+    const fatherName = document.getElementById('fatherName').value;
+    const motherName = document.getElementById('motherName').value;
+    const maritalStatus = document.getElementById('maritalStatus').value;
+    const occupation = document.getElementById('occupation').value;
+    const documentType = document.getElementById('documentType').value;
+    const applicationStatus = document.getElementById('applicationStatus').value;
+    const signaturePath = document.getElementById('signaturePath').value;
+
     if (!userID) {
         alert("Unauthorised Access. Please provide a User ID.");
         return; // Stop execution if userID is not provided
@@ -38,7 +53,7 @@ savePhotoBtn.addEventListener('click', () => {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `image=${encodeURIComponent(imageDataUrl)}&userID=${encodeURIComponent(userID)}`
+        body: `image=${encodeURIComponent(imageDataUrl)}&userID=${encodeURIComponent(userID)}&firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&dob=${encodeURIComponent(dob)}&pob=${encodeURIComponent(pob)}&gender=${encodeURIComponent(gender)}&nationality=${encodeURIComponent(nationality)}&address=${encodeURIComponent(address)}&fatherName=${encodeURIComponent(fatherName)}&motherName=${encodeURIComponent(motherName)}&maritalStatus=${encodeURIComponent(maritalStatus)}&occupation=${encodeURIComponent(occupation)}&documentType=${encodeURIComponent(documentType)}&applicationStatus=${encodeURIComponent(applicationStatus)}&signaturePath=${encodeURIComponent(signaturePath)}`
     })
     .then(response => response.json())
     .then(data => {

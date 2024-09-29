@@ -119,17 +119,26 @@ if ($application_id) {
         <h2>Verify ID Application</h2>
         <?php if ($application): ?>
             <div class="application-details">
-                <p><strong>Application No.:</strong> <?php echo $application['id_application_id']; ?></p>
-                <p><strong>Full Name:</strong> <?php echo $application['id_application_full_name']; ?></p>
+            <p><strong>Application No.:</strong> <?php echo $application['id_application_id']; ?></p>
+                <p><strong>User No.:</strong> <?php echo $application['user_id']; ?></p>
+                <p><strong>First Name:</strong> <?php echo $application['id_application_first_name']; ?></p>
+                <p><strong>Last Name:</strong> <?php echo $application['id_application_last_name']; ?></p>
                 <p><strong>Document Type:</strong> <?php echo $application['id_application_document_type']; ?></p>
                 <p><strong>Status:</strong> <?php echo $application['id_application_status']; ?></p>
                 <p><strong>Submission Date:</strong> <?php echo $application['id_application_created_at']; ?></p>
                 <!-- Add more application details as needed -->
             </div>
-            <div class="action-buttons">
-                <a href="admin_approve_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Approve</a>
-                <a href="admin_reject_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Reject</a>
-            </div>
+            <?php if (isset($_GET['responseMessage'])) { ?>
+                <form method="POST" action="admin_review_id_applications.php">
+                    <p id="responseMessage">Generating ID Number...</p>
+                    <input type="hidden" name="user_id" value="<?php echo $application['user_id']; ?>">
+                    <button type="submit" name="assignIDNumber" class="action-button">Assign ID Number</button>
+                </form>
+            <?php } else { ?>
+                <form>
+                    <a href="admin_review_id_applications.php" class="action-button" style="text-align: center">Cancel</a>
+                </form>
+            <?php } ?>
         <?php else: ?>
             <p>Application not found.</p>
         <?php endif; ?>

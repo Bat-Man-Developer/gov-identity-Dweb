@@ -107,6 +107,7 @@ function getLocationFromIP($ip) {
             <thead>
                 <tr>
                     <th>Application No.</th>
+                    <th>User No.</th>
                     <th>Full Name</th>
                     <th>Document Type</th>
                     <th>Status</th>
@@ -119,7 +120,8 @@ function getLocationFromIP($ip) {
                         foreach($applications as $application){?>
                 <tr>
                     <td><?php echo $application['id_application_id']; ?></td>
-                    <td><?php echo $application['id_application_full_name']; ?></td>
+                    <td><?php echo $application['user_id']; ?></td>
+                    <td><?php echo $application['id_application_first_name'] . " " . $application['id_application_last_name']; ?></td>
                     <td><?php echo $application['id_application_document_type']; ?></td>
                     <td><?php echo $application['id_application_status']; ?></td>
                     <td><?php echo $application['id_application_created_at']; ?></td>

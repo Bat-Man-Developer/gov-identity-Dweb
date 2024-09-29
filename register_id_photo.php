@@ -21,6 +21,20 @@ include("includes/header.php");
             } else {
                 header("Location: id_application.php?error=Unauthorised Access. Trespassers will be prosecuted. Activity has been logged.");
             }?>">
+            <input type="hidden" id="firstName" value="<?php echo $_GET['firstName']; ?>">
+            <input type="hidden" id="lastName" value="<?php echo $_GET['lastName']; ?>">
+            <input type="hidden" id="dob" value="<?php echo $_GET['dob']; ?>">
+            <input type="hidden" id="pob" value="<?php echo $_GET['pob']; ?>">
+            <input type="hidden" id="gender" value="<?php echo $_GET['gender']; ?>">
+            <input type="hidden" id="nationality" value="<?php echo $_GET['nationality']; ?>">
+            <input type="hidden" id="address" value="<?php echo $_GET['address']; ?>">
+            <input type="hidden" id="fatherName" value="<?php echo $_GET['fatherName']; ?>">
+            <input type="hidden" id="motherName" value="<?php echo $_GET['motherName']; ?>">
+            <input type="hidden" id="maritalStatus" value="<?php echo $_GET['maritalStatus']; ?>">
+            <input type="hidden" id="occupation" value="<?php echo $_GET['occupation']; ?>">
+            <input type="hidden" id="documentType" value="<?php echo $_GET['documentType']; ?>">
+            <input type="hidden" id="applicationStatus" value="<?php echo $_GET['applicationStatus']; ?>">
+            <input type="hidden" id="signaturePath" value="<?php echo $_GET['signaturePath']; ?>">
         </div>
     </main>
     <script src="js/register_id_photo.js"></script>

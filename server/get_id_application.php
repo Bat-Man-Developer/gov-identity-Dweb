@@ -32,38 +32,27 @@ if (isset($_POST['submitIDApplication'])) {
     $signaturePath = $signatureDir . "/" . $signature;
     move_uploaded_file($signatureTemp, $signaturePath);
 
-    // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO id_applications (user_id, id_application_first_name, id_application_last_name, id_application_date_of_birth, id_application_place_of_birth, id_application_gender, id_application_nationality, id_application_address, id_application_father_name, id_application_mother_name, id_application_marital_status, id_application_occupation, id_application_document_type, id_application_signature_path, id_application_status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("issssssssssssss", $userID, $firstName, $lastName, $dateOfBirth, $placeOfBirth, $gender, $nationality, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $signaturePath, $applicationStatus);
+    $log_action = "server id application";
+    $log_status = "success";
 
-    if ($stmt->execute()) {
-        $stmt->close();
+    // Get the IP address
+    $log_ip_address = $_SERVER['REMOTE_ADDR'];
 
-        $log_action = "id application";
-        $log_status = "success";
+    // Get the location
+    $log_location = getLocationFromIP($log_ip_address);
 
-        // Get the IP address
-        $log_ip_address = $_SERVER['REMOTE_ADDR'];
+    $log_date = date('Y-m-d H:i:s');
 
-        // Get the location
-        $log_location = getLocationFromIP($log_ip_address);
+    // Prepare SQL statement for audit log
+    $stmt1 = $conn->prepare("INSERT INTO audit_logs (user_id, log_action, log_status, log_location, log_date)
+    VALUES (?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssss", $userID, $log_action, $log_status, $log_location, $log_date);
 
-        $log_date = date('Y-m-d H:i:s');
-
-        // Prepare SQL statement for audit log
-        $stmt1 = $conn->prepare("INSERT INTO audit_logs (user_id, log_action, log_status, log_location, log_date)
-        VALUES (?, ?, ?, ?, ?)");
-        $stmt1->bind_param("sssss", $userID, $log_action, $log_status, $log_location, $log_date);
-
-        if ($stmt1->execute()) {
-            $stmt1->close();
-        }
-
-        header("location: ../register_id_photo.php?success=Take a professional photo behind a white background and save it.&userID=" . $userID);
-    } else {
-        header("location: ../id_application.php?error=Failed to submit ID application. Please try again or contact support.");
+    if ($stmt1->execute()) {
+        $stmt1->close();
     }
+
+    header("location: ../register_id_photo.php?success=Take a professional photo behind a white background and save it.&userID=".$userID."&firstName=".$firstName."&lastName=".$lastName."&dob=".$dateOfBirth."&pob=".$placeOfBirth."&gender=".$gender."&nationality=".$nationality."&address=".$address."&fatherName=".$fatherName."&motherName=".$motherName."&maritalStatus=".$maritalStatus."&occupation=".$occupation."&documentType=".$documentType."&applicationStatus=".$applicationStatus."&signaturePath=".$signaturePath);
 }else {
     $log_action = "user id application";
     $log_status = "failed";

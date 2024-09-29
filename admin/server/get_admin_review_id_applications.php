@@ -1,6 +1,10 @@
 <?php
 include('admin_connection.php');
 
+if(isset($_POST['assignIDNumber'])) {
+  
+}
+
 //1.determine page number
 if(isset($_GET['pagenumber']) && $_GET['pagenumber'] != ""){
   //if user has already entered page then page number is the one that they selected
