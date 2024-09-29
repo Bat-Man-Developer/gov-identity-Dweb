@@ -45,7 +45,6 @@ if (isset($_POST['loginBtn'])) {
             header("Location: ../dashboard.php?success=Logged in successfully&userID=" . $userID . "&userFirstName=" . $firstName . "&userLastName=" . $lastName . "&userEmail=" . $email); // Redirect to the dashboard
             exit();
         } else {
-            $stmt->close();
             header("Location: ../login.php?error=Invalid password");
         }
     } else {
