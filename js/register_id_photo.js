@@ -2,7 +2,8 @@ const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const takePhotoBtn = document.getElementById('takePhotoBtn');
 const savePhotoBtn = document.getElementById('savePhotoBtn');
-const message = document.getElementById('message');
+const successMessage = document.getElementById('success');
+const errorMessage = document.getElementById('error');
 const ctx = canvas.getContext('2d');
 
 async function startCamera() {
@@ -19,28 +20,26 @@ takePhotoBtn.addEventListener('click', () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.style.display = 'block';
     savePhotoBtn.style.display = 'inline-block';
 });
 
 savePhotoBtn.addEventListener('click', () => {
     const userID = document.getElementById('userID').value;
-    const imageDataUrl = canvas.toDataURL('../uploads/user_' + userID + '/ID_photo_' + userID + '.png');
-    
+    if (!userID) {
+        alert("Unauthorised Access. Please provide a User ID.");
+        return; // Stop execution if userID is not provided
+    }
+
+    const imageDataUrl = canvas.toDataURL('image/png');
+
     fetch('server/get_register_id_photo.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'image=' + encodeURIComponent(imageDataUrl)
+        body: `image=${encodeURIComponent(imageDataUrl)}&userID=${encodeURIComponent(userID)}`
     })
-    .then(response => response.text())
-    .then(data => {
-        message.textContent = data;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        message.textContent = 'An error occurred while saving the photo.';
-    });
 });
 
 startCamera();

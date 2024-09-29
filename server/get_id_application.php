@@ -35,7 +35,7 @@ if (isset($_POST['submitIDApplication'])) {
     // Prepare SQL statement
     $stmt = $conn->prepare("INSERT INTO id_applications (user_id, id_application_first_name, id_application_last_name, id_application_date_of_birth, id_application_place_of_birth, id_application_gender, id_application_nationality, id_application_address, id_application_father_name, id_application_mother_name, id_application_marital_status, id_application_occupation, id_application_document_type, id_application_signature_path, id_application_status)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isssssssssssssss", $userID, $firstName, $lastName, $dateOfBirth, $placeOfBirth, $gender, $nationality, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $signaturePath, $applicationStatus);
+    $stmt->bind_param("issssssssssssss", $userID, $firstName, $lastName, $dateOfBirth, $placeOfBirth, $gender, $nationality, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $signaturePath, $applicationStatus);
 
     if ($stmt->execute()) {
         $stmt->close();

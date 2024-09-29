@@ -16,6 +16,9 @@ include("includes/header.php");
     </nav>
     
     <main style="margin-top: 5%; margin-bottom: 5%">
+        <!------------- Website Messages----------->
+        <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
+        <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <div style="display: flex; flex: wrap; justify-content: center">
             <a id="loginTxt" href="login.php"><button id="loginBtn">Login</button></a>
             <a id="registerTxt" href="register.php"><button id="registerBtn">Register</button></a>
