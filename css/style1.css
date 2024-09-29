@@ -1,10 +1,15 @@
-body {
+.photo_container {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
+    border: dotted green;
+    border-width: 5px;
+    border-radius: 6px;
+    padding: 5%;
     margin: 0;
     background-color: #f0f0f0;
 }
@@ -12,6 +17,7 @@ body {
     width: 100%;
     max-width: 640px;
     margin-bottom: 20px;
+    border-radius: 5px;
 }
 #takePhotoBtn, #savePhotoBtn {
     font-size: 18px;

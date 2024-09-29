@@ -137,9 +137,6 @@ function getLocationFromIP($ip) {
             <label for="occupation">Occupation</label>
             <input type="text" id="occupation" name="occupation" placeholder="Enter Occupation" required>
 
-            <label for="photo">Passport-sized Photo</label>
-            <input type="file" id="photo" name="photo" accept="image/*" required>
-
             <label for="signature">Digital Signature</label>
             <input type="file" id="signature" name="signature" accept="image/*" required>
 

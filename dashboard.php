@@ -106,7 +106,7 @@ function getLocationFromIP($ip) {
         <!------------- Website Messages----------->
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
-        <h2>Welcome, <?php echo $_SESSION['userFirstName']. " " . $_SESSION['userSurname'];?></h2>
+        <h2>Welcome, <?php echo $_SESSION['userFirstName']. " " . $_SESSION['userLastName'];?></h2>
         <p>Select a service to proceed:</p>
         <a href="citizenship_application.php" class="service-button">Citizenship Application</a>
         <a href="visa_application.php" class="service-button">Visa Application</a>

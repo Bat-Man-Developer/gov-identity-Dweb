@@ -19,24 +19,12 @@ if (isset($_POST['submitIDApplication'])) {
     
     // Define user directory paths
     $userDir = "../uploads/user_" . $userID;
-    $photoDir = $userDir . "/user_photo";
     $signatureDir = $userDir . "/user_signature";
-
-    // Check if photo directory exists, if not create it
-    if (!is_dir($photoDir)) {
-        mkdir($photoDir, 0755, true);
-    }
 
     // Check if signature directory exists, if not create it
     if (!is_dir($signatureDir)) {
         mkdir($signatureDir, 0755, true);
     }
-
-    // Handle file upload for photo
-    $photo = $_FILES['photo']['name'];
-    $photoTemp = $_FILES['photo']['tmp_name'];
-    $photoPath = $photoDir . "/" . $photo;
-    move_uploaded_file($photoTemp, $photoPath);
 
     // Handle file upload for signature
     $signature = $_FILES['signature']['name'];
@@ -45,9 +33,9 @@ if (isset($_POST['submitIDApplication'])) {
     move_uploaded_file($signatureTemp, $signaturePath);
 
     // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO id_applications (user_id, id_application_first_name, id_application_last_name, id_application_date_of_birth, id_application_place_of_birth, id_application_gender, id_application_nationality, id_application_address, id_application_father_name, id_application_mother_name, id_application_marital_status, id_application_occupation, id_application_document_type, id_application_photo_path, id_application_signature_path, id_application_status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isssssssssssssss", $userID, $firstName, $lastName, $dateOfBirth, $placeOfBirth, $gender, $nationality, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $photoPath, $signaturePath, $applicationStatus);
+    $stmt = $conn->prepare("INSERT INTO id_applications (user_id, id_application_first_name, id_application_last_name, id_application_date_of_birth, id_application_place_of_birth, id_application_gender, id_application_nationality, id_application_address, id_application_father_name, id_application_mother_name, id_application_marital_status, id_application_occupation, id_application_document_type, id_application_signature_path, id_application_status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssssssssssssss", $userID, $firstName, $lastName, $dateOfBirth, $placeOfBirth, $gender, $nationality, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $signaturePath, $applicationStatus);
 
     if ($stmt->execute()) {
         $stmt->close();
@@ -72,7 +60,7 @@ if (isset($_POST['submitIDApplication'])) {
             $stmt1->close();
         }
 
-        header("location: ../id_application.php?success=ID application submitted successfully. We will process your application and contact you soon.");
+        header("location: ../register_id_photo.php?success=Take a professional photo behind a white background and save it.&userID=" . $userID);
     } else {
         header("location: ../id_application.php?error=Failed to submit ID application. Please try again or contact support.");
     }
