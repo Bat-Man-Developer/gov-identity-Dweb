@@ -32,7 +32,7 @@ if (isset($_POST['logoutBtn'])) {
         'userID',
         'userEmail',
         'userFirstName',
-        'userSurname',
+        'userLastName',
         'userLoggedIn'
     ];
 

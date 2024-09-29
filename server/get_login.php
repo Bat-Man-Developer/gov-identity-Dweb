@@ -6,10 +6,10 @@ if (isset($_POST['loginBtn'])) {
     $password = $_POST['password'];
 
     // Prepare SQL statement
-    $stmt = $conn->prepare("SELECT user_id, user_first_name, user_surname, user_password FROM users WHERE user_email = ?");
+    $stmt = $conn->prepare("SELECT user_id, user_first_name, user_last_name, user_password FROM users WHERE user_email = ?");
     $stmt->bind_param("s", $email);
     if($stmt->execute()){
-        $stmt->bind_result($userID,$firstName,$surname,$hashedPassword);
+        $stmt->bind_result($userID,$firstName,$lastName,$hashedPassword);
         $stmt->store_result();
     }
     else{
@@ -42,7 +42,7 @@ if (isset($_POST['loginBtn'])) {
                 $stmt1->close();
             }
             
-            header("Location: ../dashboard.php?success=Logged in successfully&userID=" . $userID . "&userFirstName=" . $firstName . "&userSurname=" . $Surname . "&userEmail=" . $email); // Redirect to the dashboard
+            header("Location: ../dashboard.php?success=Logged in successfully&userID=" . $userID . "&userFirstName=" . $firstName . "&userLastName=" . $lastName . "&userEmail=" . $email); // Redirect to the dashboard
             exit();
         } else {
             $stmt->close();

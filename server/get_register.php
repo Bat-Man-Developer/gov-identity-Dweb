@@ -12,10 +12,10 @@ if (isset($_POST['registerBtn'])) {
     $password = $_POST['password'];
     $rePassword = $_POST['rePassword'];
 
-    if($password != $rePassword){
-      header("Location: register.php?error=Passwords do not match");
-    } else{
+    if($password == $rePassword){
       $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+    } else{
+      header("Location: register.php?error=Passwords do not match");
     }
     
     $status = "active";

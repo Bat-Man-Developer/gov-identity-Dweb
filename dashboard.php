@@ -34,7 +34,7 @@ if(!isset($_GET['userID']) || $_SESSION['userLoggedIn'] == "false"){
 else{
     $_SESSION['userID'] = $userID = $_GET['userID'];
     $_SESSION['userFirstName'] =  $_GET['userFirstName'];
-    $_SESSION['userSurname'] =  $_GET['userSurname'];
+    $_SESSION['userLastName'] =  $_GET['userLastName'];
     $_SESSION['userEmail'] =  $_GET['userEmail'];
 
     $log_action = "user view dashboard";
