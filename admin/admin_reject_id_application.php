@@ -79,33 +79,7 @@ function getLocationFromIP($ip) {
         return "Unknown";
     }
 }
-
-// Get the application ID from the URL
-$application_id = isset($_GET['id']) ? $_GET['id'] : null;
-
-// Process the rejection
-if ($application_id && isset($_POST['confirm_rejection'])) {
-    $rejection_reason = $_POST['rejection_reason'];
-    $stmt = $conn->prepare("UPDATE id_applications SET id_application_status = 'Rejected', id_application_rejection_reason = ? WHERE id_application_id = ?");
-    $stmt->bind_param("si", $rejection_reason, $application_id);
-    if ($stmt->execute()) {
-        header("Location: admin_review_id_applications.php?success=Application rejected successfully");
-        exit();
-    } else {
-        $error = "Failed to reject application";
-    }
-    $stmt->close();
-}
-
-// Fetch application details
-if ($application_id) {
-    $stmt = $conn->prepare("SELECT * FROM id_applications WHERE id_application_id = ?");
-    $stmt->bind_param("i", $application_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $application = $result->fetch_assoc();
-    $stmt->close();
-}
+include("server/get_admin_reject_id_application.php");
 ?>
 <body>
     <header>
@@ -134,7 +108,9 @@ if ($application_id) {
         <?php if ($application): ?>
             <div class="application-details">
                 <p><strong>Application No.:</strong> <?php echo $application['id_application_id']; ?></p>
-                <p><strong>Full Name:</strong> <?php echo $application['id_application_full_name']; ?></p>
+                <p><strong>User No.:</strong> <?php echo $application['user_id']; ?></p>
+                <p><strong>First Name:</strong> <?php echo $application['id_application_first_name']; ?></p>
+                <p><strong>Last Name:</strong> <?php echo $application['id_application_last_name']; ?></p>
                 <p><strong>Document Type:</strong> <?php echo $application['id_application_document_type']; ?></p>
                 <p><strong>Status:</strong> <?php echo $application['id_application_status']; ?></p>
                 <p><strong>Submission Date:</strong> <?php echo $application['id_application_created_at']; ?></p>
@@ -143,7 +119,9 @@ if ($application_id) {
             <form method="POST" action="admin_reject_id_application.php?id=<?php echo $application['id_application_id']; ?>">
                 <label for="rejection_reason">Rejection Reason:</label>
                 <textarea id="rejection_reason" name="rejection_reason" required></textarea>
-                <button type="submit" name="confirm_rejection" class="action-button">Confirm Rejection</button>
+                <input type="hidden" name="id_application_id" value="<?php echo $application['id_application_id']; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $application['user_id']; ?>">
+                <button type="submit" name="rejectIDApplication" class="action-button">Confirm Rejection</button>
                 <a href="admin_review_id_applications.php" class="action-button" style="text-align: center;">Cancel</a>
             </form>
         <?php else: ?>
