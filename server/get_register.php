@@ -9,7 +9,15 @@ if (isset($_POST['registerBtn'])) {
     $sex = $_POST['sex'];
     $cellNumber = $_POST['cellNumber'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+    $password = $_POST['password'];
+    $rePassword = $_POST['rePassword'];
+
+    if($password != $rePassword){
+      header("Location: register.php?error=Passwords do not match");
+    } else{
+      $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+    }
+    
     $status = "active";
     
     // Check if email already exists

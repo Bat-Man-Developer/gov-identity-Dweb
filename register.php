@@ -54,7 +54,7 @@ if(isset($_SESSION['userID']) && isset($_SESSION['userFirstName']) && isset($_SE
             <input type="password" id="password" name="password" placeholder="Enter Password" required>
 
             <label for="rePassword">Confirm Password</label>
-            <input type="rePassword" id="rePassword" name="rePassword" placeholder="Re-enter Password" required>
+            <input type="password" id="rePassword" name="rePassword" placeholder="Re-enter Password" required>
 
             <button type="submit" id="registerBtn" name="registerBtn">Submit</button>
         </form>
