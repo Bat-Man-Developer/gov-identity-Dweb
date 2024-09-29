@@ -101,8 +101,11 @@ function getLocationFromIP($ip) {
                 <option value="death">Death Registration</option>
             </select>
 
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" required>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter First Name" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name" required>
 
             <label for="dateOfEvent">Date of Event</label>
             <input type="date" id="dateOfEvent" name="dateOfEvent" required>

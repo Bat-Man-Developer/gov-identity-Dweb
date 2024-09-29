@@ -28,7 +28,7 @@ if (isset($_POST['registerBtn'])) {
     // Prepare SQL statement
     $stmt = $conn->prepare("INSERT INTO users (user_first_name, user_last_name, user_sex, user_dob, user_country, user_email, user_phone, user_password, user_status)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssss", $firstName, $surname, $sex, $dob, $country, $email, $cellNumber, $password, $status);
+    $stmt->bind_param("sssssssss", $firstName, $lastName, $sex, $dob, $country, $email, $cellNumber, $password, $status);
 
     if ($stmt->execute()) {
       $userID = $stmt->insert_id;
