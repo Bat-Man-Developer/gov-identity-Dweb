@@ -6,8 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['image']) && isset($_P
     // Check if the directory exists and is writable
     if (!file_exists($upload_dir)) {
         if (!mkdir($upload_dir, 0777, true)) {
-            header("Location: ../id_application.php?errorMessage=Failed to create directory.");
-            exit;
+            echo json_encode(['success' => false, 'message' => 'Failed to create directory.']);
         }
     }
 
@@ -20,18 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['image']) && isset($_P
 
     // Check if the data was decoded properly
     if ($data === false) {
-        header("Location: ../id_application.php?errorMessage=Failed to decode image data.");
-        exit;
+        echo json_encode(['success' => false, 'message' => 'Failed to decode image data.']);
     }
 
     if (file_put_contents($file, $data) !== false) {
-        header("Location: ../id_application.php?successMessage=ID application submitted successfully. We will process your application and contact you soon.");
-        exit;
+        echo json_encode(['success' => true, 'message' => 'Photo saved successfully!']);
     } else {
-        header("Location: ../id_application.php?errorMessage=Failed to register and save the photo.");
-        exit;
+        echo json_encode(['success' => false, 'message' => 'Failed to save the photo.']);
     }
 } else {
-    header("Location: ../id_application.php?errorMessage=Invalid request.");
-    exit;
+    echo json_encode(['success' => false, 'message' => 'Invalid request.']);
 }

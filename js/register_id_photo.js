@@ -40,6 +40,18 @@ savePhotoBtn.addEventListener('click', () => {
         },
         body: `image=${encodeURIComponent(imageDataUrl)}&userID=${encodeURIComponent(userID)}`
     })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = `id_application.php?success=ID application submitted successfully. We will process your application and contact you soon.`;
+        } else {
+            throw new Error(data.error || "An unknown error occurred.");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("An error occurred while saving the photo. Please try again.");
+    });
 });
 
 startCamera();
