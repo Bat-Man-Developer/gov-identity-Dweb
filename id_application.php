@@ -93,8 +93,11 @@ function getLocationFromIP($ip) {
         <p class="text-center" id="webMessageSuccess"><?php if(isset($_GET['success'])){ echo $_GET['success']; }?></p>
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <form id="id-application-form" method="POST" action="server/get_id_application.php" enctype="multipart/form-data">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" required>
+            <label for="firstName">First Name(s)</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter First Name" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name" required>
 
             <label for="dateOfBirth">Date of Birth</label>
             <input type="date" id="dateOfBirth" name="dateOfBirth" required>

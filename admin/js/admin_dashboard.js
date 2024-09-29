@@ -186,17 +186,15 @@ async function initDashboard() {
 
         // Check if the user exists
         const userExists = await userRegistry.userExists(email);
-        console.log("User exists:", userExists);
 
         if (!userExists) {
             showError(`User with email ${email} does not exist`);
             return;
         }
         
-        const [firstName, surname] = await userRegistry.getUserInfo(email);
-        console.log("Retrieved user info:", firstName, surname);
+        const [firstName, lastName] = await userRegistry.getUserInfo(email);
 
-        document.getElementById('admin-info').textContent = `${firstName} ${surname}`;
+        document.getElementById('admin-info').textContent = `${firstName} ${lastName}`;
     } catch (error) {
         console.error("Detailed error:", error);
         let errorMessage = "Failed To Retrieve Admin Data. ";

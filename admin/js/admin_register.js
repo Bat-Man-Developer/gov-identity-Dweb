@@ -172,7 +172,7 @@ window.addEventListener('load', async () => {
         e.preventDefault();
     
         const firstName = document.getElementById('adminFirstName').value;
-        const surname = document.getElementById('adminSurname').value;
+        const lastName = document.getElementById('adminLastName').value;
         const email = document.getElementById('adminEmail').value;
         const password = document.getElementById('adminPassword').value;
         const rePassword = document.getElementById('adminRePassword').value;
@@ -193,7 +193,7 @@ window.addEventListener('load', async () => {
             }
             
             // If user doesn't exist, proceed with registration
-            const tx = await userRegistry.registerUser(firstName, surname, email, passwordHash);
+            const tx = await userRegistry.registerUser(firstName, lastName, email, passwordHash);
             await tx.wait(); // Wait for the transaction to be mined
             
             console.log("Transaction result:", tx);

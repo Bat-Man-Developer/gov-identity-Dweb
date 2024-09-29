@@ -3,7 +3,8 @@ include("connection.php"); // Include database connection file
 
 if (isset($_POST['submitIDApplication'])) {
     $userID = $_POST['userID'];
-    $fullName = $_POST['fullName'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
     $dateOfBirth = $_POST['dateOfBirth'];
     $placeOfBirth = $_POST['placeOfBirth'];
     $gender = $_POST['gender'];
@@ -44,9 +45,9 @@ if (isset($_POST['submitIDApplication'])) {
     move_uploaded_file($signatureTemp, $signaturePath);
 
     // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO id_applications (user_id, id_application_full_name, id_application_date_of_birth, id_application_place_of_birth, id_application_gender, id_application_nationality, id_application_address, id_application_father_name, id_application_mother_name, id_application_marital_status, id_application_occupation, id_application_document_type, id_application_photo_path, id_application_signature_path, id_application_status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("issssssssssssss", $userID, $fullName, $dateOfBirth, $placeOfBirth, $gender, $nationality, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $photoPath, $signaturePath, $applicationStatus);
+    $stmt = $conn->prepare("INSERT INTO id_applications (user_id, id_application_first_name, id_application_last_name, id_application_date_of_birth, id_application_place_of_birth, id_application_gender, id_application_nationality, id_application_address, id_application_father_name, id_application_mother_name, id_application_marital_status, id_application_occupation, id_application_document_type, id_application_photo_path, id_application_signature_path, id_application_status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssssssssssssss", $userID, $firstName, $lastName, $dateOfBirth, $placeOfBirth, $gender, $nationality, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $photoPath, $signaturePath, $applicationStatus);
 
     if ($stmt->execute()) {
         $stmt->close();

@@ -27,8 +27,8 @@ if(isset($_SESSION['userID']) && isset($_SESSION['userFirstName']) && isset($_SE
             <label for="firstName">First Name(s)</label>
             <input type="text" id="firstName" name="firstName" placeholder="Enter First Name(s)" required>
 
-            <label for="surname">Surname</label>
-            <input type="text" id="surname" name="surname" placeholder="Enter Surname" required>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name" required>
 
             <label for="country">Country of Origin</label>
             <input type="text" id="country" name="country" placeholder="Enter Country of Origin" required>
@@ -52,6 +52,9 @@ if(isset($_SESSION['userID']) && isset($_SESSION['userFirstName']) && isset($_SE
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter Password" required>
+
+            <label for="rePassword">Confirm Password</label>
+            <input type="rePassword" id="rePassword" name="rePassword" placeholder="Re-enter Password" required>
 
             <button type="submit" id="registerBtn" name="registerBtn">Submit</button>
         </form>

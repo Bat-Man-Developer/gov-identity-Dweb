@@ -3,7 +3,7 @@ include("connection.php"); // Include database connection file
 
 if (isset($_POST['registerBtn'])) {
     $firstName = $_POST['firstName'];
-    $surname = $_POST['surname'];
+    $lastName = $_POST['lastName'];
     $country = $_POST['country'];
     $dob = $_POST['dob'];
     $sex = $_POST['sex'];
@@ -26,7 +26,7 @@ if (isset($_POST['registerBtn'])) {
     $checkEmail->close();
     
     // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO users (user_first_name, user_surname, user_sex, user_dob, user_country, user_email, user_phone, user_password, user_status)
+    $stmt = $conn->prepare("INSERT INTO users (user_first_name, user_last_name, user_sex, user_dob, user_country, user_email, user_phone, user_password, user_status)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssssss", $firstName, $surname, $sex, $dob, $country, $email, $cellNumber, $password, $status);
 

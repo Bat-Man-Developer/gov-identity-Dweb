@@ -21,8 +21,8 @@ if(isset($_SESSION['adminID']) && isset($_SESSION['adminEmail'])){
             <label for="firstName">First Name(s)</label>
             <input type="text" id="adminFirstName" placeholder="Enter First Name(s)" required>
 
-            <label for="surname">Surname</label>
-            <input type="text" id="adminSurname" placeholder="Enter Surname" required>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="adminLastName" placeholder="Enter Last Name" required>
 
             <label for="email">Email</label>
             <input type="email" id="adminEmail" placeholder="Enter Email" required>
@@ -30,7 +30,7 @@ if(isset($_SESSION['adminID']) && isset($_SESSION['adminEmail'])){
             <label for="password">Password</label>
             <input type="password" id="adminPassword"  placeholder="Enter Password" required>
 
-            <label for="rePassword">Password</label>
+            <label for="rePassword">Confirm Password</label>
             <input type="password" id="adminRePassword"  placeholder="Enter Password" required>
 
             <button type="submit" class="registerBtn" id="adminRegisterBtn">Submit</button>
