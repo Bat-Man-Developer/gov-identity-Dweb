@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+#video, #canvas {
+    width: 100%;
+    max-width: 640px;
+    margin-bottom: 20px;
+}
+#takePhotoBtn, #savePhotoBtn {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+#savePhotoBtn {
+    display: none;
+}
+#message {
+    margin-top: 20px;
+    font-weight: bold;
+}
