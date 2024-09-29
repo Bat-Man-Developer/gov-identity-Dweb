@@ -30,6 +30,9 @@ if(isset($_SESSION['adminID']) && isset($_SESSION['adminEmail'])){
             <label for="password">Password</label>
             <input type="password" id="adminPassword"  placeholder="Enter Password" required>
 
+            <label for="rePassword">Password</label>
+            <input type="password" id="adminRePassword"  placeholder="Enter Password" required>
+
             <button type="submit" class="registerBtn" id="adminRegisterBtn">Submit</button>
         </form>
         <p>Already have an Admin account? <a href="admin_login.php">Login here</a></p>
