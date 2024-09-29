@@ -44,9 +44,6 @@ if (isset($_POST['adminLogoutBtn'])) {
 
     $_SESSION['adminLoggedIn'] = "false";
 
-    // Destroy the session
-    session_destroy();
-
     header("Location: admin_logout.php");
     exit;
 }

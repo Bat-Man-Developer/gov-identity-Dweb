@@ -46,9 +46,6 @@ if (isset($_POST['logoutBtn'])) {
 
     $_SESSION['userLoggedIn'] = "false";
 
-    // Destroy the session
-    session_destroy();
-
     header("Location: logout.php");
     exit;
 }
