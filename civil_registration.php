@@ -46,8 +46,9 @@ else{
     if ($stmt1->execute()) {
         $stmt1->close();
     }
+}
 
-    // Function to get location from IP address
+// Function to get location from IP address
 function isPrivateIP($ip) {
     $private_ranges = [
         '10.0.0.0' => '10.255.255.255',
@@ -77,7 +78,6 @@ function getLocationFromIP($ip) {
     } else {
         return "Unknown";
     }
-}
 }
 ?>
 <body>

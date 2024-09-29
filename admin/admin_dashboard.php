@@ -54,37 +54,37 @@ else{
     if ($stmt1->execute()) {
         $stmt1->close();
     }
+}
 
-    // Function to get location from IP address
-    function isPrivateIP($ip) {
-        $private_ranges = [
-            '10.0.0.0' => '10.255.255.255',
-            '172.16.0.0' => '172.31.255.255',
-            '192.168.0.0' => '192.168.255.255',
-        ];
+// Function to get location from IP address
+function isPrivateIP($ip) {
+    $private_ranges = [
+        '10.0.0.0' => '10.255.255.255',
+        '172.16.0.0' => '172.31.255.255',
+        '192.168.0.0' => '192.168.255.255',
+    ];
 
-        foreach ($private_ranges as $start => $end) {
-            if (ip2long($ip) >= ip2long($start) && ip2long($ip) <= ip2long($end)) {
-                return true;
-            }
+    foreach ($private_ranges as $start => $end) {
+        if (ip2long($ip) >= ip2long($start) && ip2long($ip) <= ip2long($end)) {
+            return true;
         }
-        return false;
+    }
+    return false;
+}
+
+function getLocationFromIP($ip) {
+    if (isPrivateIP($ip)) {
+        return "Private IP Address";
     }
 
-    function getLocationFromIP($ip) {
-        if (isPrivateIP($ip)) {
-            return "Private IP Address";
-        }
+    $url = "http://ip-api.com/json/{$ip}";
+    $response = file_get_contents($url);
+    $data = json_decode($response, true);
 
-        $url = "http://ip-api.com/json/{$ip}";
-        $response = file_get_contents($url);
-        $data = json_decode($response, true);
-
-        if ($data['status'] == 'success') {
-            return "{$data['city']}, {$data['regionName']}, {$data['country']}";
-        } else {
-            return "Unknown";
-        }
+    if ($data['status'] == 'success') {
+        return "{$data['city']}, {$data['regionName']}, {$data['country']}";
+    } else {
+        return "Unknown";
     }
 }
 include("server/get_admin_dashboard.php");
