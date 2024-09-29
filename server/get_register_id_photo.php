@@ -1,10 +1,12 @@
 <?php
+include("connection.php"); // Include database connection file
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['image']) && isset($_POST['userID'])) {
     $userID = $_POST['userID'];
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
-    $dateOfBirth = $_POST['dateOfBirth'];
-    $placeOfBirth = $_POST['placeOfBirth'];
+    $dateOfBirth = $_POST['dob'];
+    $placeOfBirth = $_POST['pob'];
     $gender = $_POST['gender'];
     $nationality = $_POST['nationality'];
     $address = $_POST['address'];
@@ -31,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['image']) && isset($_P
     $img = str_replace(' ', '+', $img);
     $data = base64_decode($img);
 
-    $file = $upload_dir . "ID_photo_" . $userID . '.png';
     // Name the photo path
+    $file = $upload_dir . "ID_photo_" . $userID . '.png';
     $photoPath = $file;
 
     // Check if the data was decoded properly
