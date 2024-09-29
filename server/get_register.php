@@ -18,8 +18,7 @@ if (isset($_POST['registerBtn'])) {
         exit;
     }
 
-    // Hash the password after confirming it matches
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
     
     $status = "active";
     
