@@ -1,0 +1,101 @@
+Log No.,Date,Admin,User,Action,Status,Location
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+445,2024-09-29 21:51:54,6783350,0,admin login,success,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+450,2024-09-29 21:53:45,6783350,0,admin view audit logs,success,Unknown
+445,2024-09-29 21:51:54,6783350,0,admin login,success,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+446,2024-09-29 21:51:54,0,14,user view dashboard,success,Unknown
+446,2024-09-29 21:51:54,0,14,user view dashboard,success,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+446,2024-09-29 21:51:54,0,14,user view dashboard,success,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+442,2024-09-29 21:50:53,0,15,user view dashboard,success,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+450,2024-09-29 21:53:45,6783350,0,admin view audit logs,success,Unknown
+442,2024-09-29 21:50:53,0,15,user view dashboard,success,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+450,2024-09-29 21:53:45,6783350,0,admin view audit logs,success,Unknown
+442,2024-09-29 21:50:53,0,15,user view dashboard,success,Unknown
+445,2024-09-29 21:51:54,6783350,0,admin login,success,Unknown
+446,2024-09-29 21:51:54,0,14,user view dashboard,success,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+442,2024-09-29 21:50:53,0,15,user view dashboard,success,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+445,2024-09-29 21:51:54,6783350,0,admin login,success,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+445,2024-09-29 21:51:54,6783350,0,admin login,success,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+450,2024-09-29 21:53:45,6783350,0,admin view audit logs,success,Unknown
+450,2024-09-29 21:53:45,6783350,0,admin view audit logs,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+442,2024-09-29 21:50:53,0,15,user view dashboard,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+450,2024-09-29 21:53:45,6783350,0,admin view audit logs,success,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+445,2024-09-29 21:51:54,6783350,0,admin login,success,Unknown
+446,2024-09-29 21:51:54,0,14,user view dashboard,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+450,2024-09-29 21:53:45,6783350,0,admin view audit logs,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+446,2024-09-29 21:51:54,0,14,user view dashboard,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+442,2024-09-29 21:50:53,0,15,user view dashboard,success,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+446,2024-09-29 21:51:54,0,14,user view dashboard,success,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+445,2024-09-29 21:51:54,6783350,0,admin login,success,Unknown
+443,2024-09-29 21:51:45,6783350,0,admin login,success,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+442,2024-09-29 21:50:53,0,15,user view dashboard,success,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+442,2024-09-29 21:50:53,0,15,user view dashboard,success,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+448,2024-09-29 21:52:03,6783350,0,admin view audit logs,success,Unknown
+449,2024-09-29 21:52:06,0,0,user login,failed,Unknown
+451,2024-09-29 21:53:45,6783350,0,admin view server id applications,success,Unknown
+445,2024-09-29 21:51:54,6783350,0,admin login,success,Unknown
+444,2024-09-29 21:51:46,0,0,admin view dashboard,failed,Unknown
+447,2024-09-29 21:51:55,0,0,admin register,failed,Unknown
+446,2024-09-29 21:51:54,0,14,user view dashboard,success,Unknown

@@ -107,60 +107,32 @@ function getLocationFromIP($ip) {
             <div class="container">
                 <div class="plot-container">
                     <div class="plot">
-                        <h2>Confusion Matrix</h2>
-                        <img id="confusion-matrix" alt="Loading Image...">
+                        <h2>Elbow Method</h2>
+                        <img id="elbow-method" alt="Loading Image...">
                     </div>
                     <div class="plot">
-                        <h2>Model Weights</h2>
-                        <img id="model-weights" alt="Loading Image...">
+                        <h2>Cluster Distribution</h2>
+                        <img id="cluster-distribution" alt="Loading Image...">
                     </div>
                     <div class="plot">
-                        <h2>Feature Importance</h2>
-                        <img id="feature-importance" alt="Loading Image...">
+                        <h2>Time Distribution (Hours)</h2>
+                        <img id="time-distribution" alt="Loading Image...">
                     </div>
                     <div class="plot">
-                        <h2>Performance Metrics</h2>
-                        <img id="performance-metrics" alt="Loading Image...">
+                        <h2>Action Distribution</h2>
+                        <img id="action-distribution" alt="Loading Image...">
                     </div>
                     <div class="plot">
-                        <h2>ROC Curve</h2>
-                        <img id="roc-curve" alt="Loading Image...">
+                        <h2>Status Distribution</h2>
+                        <img id="status-distribution" alt="Loading Image...">
                     </div>
                     <div class="plot">
-                        <h2>Precision-Recall Curve</h2>
-                        <img id="precision-recall-curve" alt="Loading Image...">
+                        <h2>Distance Distribution</h2>
+                        <img id="distance-distribution" alt="Loading Image...">
                     </div>
                     <div class="plot">
-                        <h2>Calibration Plot</h2>
-                        <img id="calibration-plot" alt="Loading Image...">
-                    </div>
-                    <div class="plot">
-                        <h2>Boxplots Predictions</h2>
-                        <img id="boxplots-predictions" alt="Loading Image...">
-                    </div>
-                    <div class="plot">
-                        <h2>Accuracy Comparison</h2>
-                        <img id="accuracy-comparison" alt="Loading Image...">
-                    </div>
-                    <div class="plot">
-                        <h2>Precision Comparison</h2>
-                        <img id="precision-comparison" alt="Loading Image...">
-                    </div>
-                    <div class="plot">
-                        <h2>Recall Comparison</h2>
-                        <img id="recall-comparison" alt="Loading Image...">
-                    </div>
-                    <div class="plot">
-                        <h2>F1-Score Comparison</h2>
-                        <img id="f1score-comparison" alt="Loading Image...">
-                    </div>
-                    <div class="plot">
-                        <h2>Bias - Variance Tradeoff</h2>
-                        <img id="bias-variance-tradeoff" alt="Loading Image...">
-                    </div>
-                    <div class="plot">
-                        <h2>Learning Curves</h2>
-                        <img id="learning-curves" alt="Loading Image...">
+                        <h2>Anomalies vs. Non-anomalies</h2>
+                        <img id="anomalies-vs-non-anomalies" alt="Loading Image...">
                     </div>
                 </div>
             </div>
