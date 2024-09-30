@@ -119,15 +119,16 @@ if ($application_id) {
         <h2>Verify ID Application</h2>
         <?php if ($application): ?>
             <div class="application-details">
-            <p><strong>Application No.:</strong> <?php echo $application['id_application_id']; ?></p>
+                <p><strong>Application No.:</strong> <?php echo $application['id_application_id']; ?></p>
                 <p><strong>User No.:</strong> <?php echo $application['user_id']; ?></p>
+                <p><strong>User ID Photo.:</strong></p><img src="<?php echo $application['id_application_photo_path']; ?>" alt="Loading Image..." style="border-radius: 5px ;width: 20%; height: auto;">
                 <p><strong>First Name:</strong> <?php echo $application['id_application_first_name']; ?></p>
                 <p><strong>Last Name:</strong> <?php echo $application['id_application_last_name']; ?></p>
                 <p><strong>Document Type:</strong> <?php echo $application['id_application_document_type']; ?></p>
                 <p><strong>Status:</strong> <?php echo $application['id_application_status']; ?></p>
                 <p><strong>Submission Date:</strong> <?php echo $application['id_application_created_at']; ?></p>
-                <!-- Add more application details as needed -->
-            </div>
+                <p><strong>User ID Signature.:</strong></p><img src="<?php echo $application['id_application_signature_path']; ?>" alt="Loading Image..." style="border-radius: 5px ;width: 20%; height: auto;">
+           </div>
             <?php if (isset($_GET['responseMessage'])) { ?>
                 <form method="POST" action="admin_review_id_applications.php">
                     <p id="responseMessage">Generating ID Number...</p>
