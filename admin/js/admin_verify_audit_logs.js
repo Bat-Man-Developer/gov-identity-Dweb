@@ -31,10 +31,28 @@ class Model {
             url: 'call_python/get_admin_verify_audit_logs.php',
             method: 'GET',
             success: (response) => {
-                const values = response.split(','); // Assuming ',' is the delimiter
+                const values = response.split('_'); // Assuming '_' is the delimiter
                 
                 this.message = values[0];
                 $('#responseMessage').html(this.message);
+
+                this.message = values[1];
+                $('#responseMessage1').html(this.message);
+
+                this.message = values[2];
+                $('#responseMessage2').html(this.message);
+
+                this.message = values[3];
+                $('#responseMessage3').html(this.message);
+
+                this.message = values[4];
+                $('#responseMessage4').html(this.message);
+
+                this.message = values[5];
+                $('#responseMessage5').html(this.message);
+
+                this.message = values[6];
+                $('#responseMessage6').html(this.message);
 
                 this.initializePlots();
             },

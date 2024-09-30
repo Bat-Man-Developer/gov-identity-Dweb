@@ -102,6 +102,10 @@ function getLocationFromIP($ip) {
         <main>
             <h2>Verify Activity Logs</h2>
             <p id="responseMessage">Loading Results...</p><br>
+            <p id="responseMessage1"></p><br>
+            <p id="responseMessage2"></p><br>
+            <p id="responseMessage3"></p><br>
+            <p id="responseMessage4"></p><br>
             <a href="admin_audit_logs.php"><button>Go back</button></a>
 
             <div class="container">
