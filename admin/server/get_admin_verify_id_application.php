@@ -1,4 +1,9 @@
 <?php
+if (isset($_POST['assignNewIDNumber'])) {
+    header("Location: ../admin_review_id_applications.php?success=ID Number Assigned Successfully. Finalize ID Application Approval.");
+    exit;
+}
+
 $log_action = "admin view server verify id application";
 $log_status = "success";
 
