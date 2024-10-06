@@ -107,7 +107,7 @@ function getLocationFromIP($ip) {
             <thead>
                 <tr>
                     <th>User No.</th>
-                    <th>Name</th>
+                    <th>Full Name</th>
                     <th>Sex</th>
                     <th>Country</th>
                     <th>Email</th>
@@ -121,7 +121,7 @@ function getLocationFromIP($ip) {
                     foreach($users as $user){?>
                 <tr>
                     <td><?php echo $user['user_id']; ?></td>
-                    <td><?php echo $user['user_first_name'] . " " . $user['user_surname']; ?></td>
+                    <td><?php echo $user['user_first_name'] . " " . $user['user_last_name']; ?></td>
                     <td><?php echo $user['user_sex']; ?></td>
                     <td><?php echo $user['user_country']; ?></td>
                     <td><?php echo $user['user_email']; ?></td>

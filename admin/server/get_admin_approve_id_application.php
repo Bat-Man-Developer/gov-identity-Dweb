@@ -1,6 +1,5 @@
 <?php
 if(isset($_POST['approveIDApplication'])){
-    
 }
 
 // Get the application ID from the URL

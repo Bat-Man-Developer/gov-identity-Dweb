@@ -1,0 +1,2 @@
+application_id,user_id,first_name,last_name,date_of_birth,place_of_birth,gender,nationality,address,father_name,mother_name,marital_status,occupation,document_type,photo_path,signature_path,id_number,status,updated_at,created_at
+21,14,Billy,Henderson,1988-03-10,Cape Town,male,South Africa,"3095 Phandamashango Street, Tshiawelo, Johanessburg",David,Susan,single,Unemployed,nationalID,../uploads/user_14/user_photo/ID_photo_14.png,../uploads/user_14/user_signature/kay signature.png,8803108122184,Pending,2024-09-30 15:56:45,2024-09-30 15:56:45

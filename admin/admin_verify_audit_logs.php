@@ -79,6 +79,7 @@ function getLocationFromIP($ip) {
         return "Unknown";
     }
 }
+include("server/get_admin_verify_audit_logs.php");
 ?>
 <body>
     <div class="container">
@@ -101,11 +102,9 @@ function getLocationFromIP($ip) {
         </nav>
         <main>
             <h2>Verify Activity Logs</h2>
-            <p id="responseMessage">Loading Results...</p><br>
-            <p id="responseMessage1"></p><br>
-            <p id="responseMessage2"></p><br>
-            <p id="responseMessage3"></p><br>
-            <p id="responseMessage4"></p><br>
+            <div id="responseContainer">
+                <p class="response-message" id="responseMessage0">Loading Results...</p><br>
+            </div>
             <a href="admin_audit_logs.php"><button>Go back</button></a>
 
             <div class="container">

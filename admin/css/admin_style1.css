@@ -50,14 +50,14 @@
     margin: 0 auto;
 }
 
-#responseMessage, #responseMessage2, #responseMessage3, #responseMessage4, #responseMessage5, #responseMessage6 {
-    color: blue;
+.response-message {
     font-weight: bolder;
 }
-
-#responseMessage1 {
+.response-message:nth-child(1n+1) {
+    color: blue;
+}
+.response-message:nth-child(2n+1) {
     color: green;
-    font-weight: bolder;
 }
 
 @media (max-width: 600px) {

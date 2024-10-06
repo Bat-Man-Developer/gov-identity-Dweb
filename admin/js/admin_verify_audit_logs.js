@@ -31,33 +31,28 @@ class Model {
             url: 'call_python/get_admin_verify_audit_logs.php',
             method: 'GET',
             success: (response) => {
-                const values = response.split('_'); // Assuming '_' is the delimiter
+                const rows = response.split('\n').filter(row => row.trim() !== '');
+                const container = $('#responseContainer');
                 
-                this.message = values[0];
-                $('#responseMessage').html(this.message);
-
-                this.message = values[1];
-                $('#responseMessage1').html(this.message);
-
-                this.message = values[2];
-                $('#responseMessage2').html(this.message);
-
-                this.message = values[3];
-                $('#responseMessage3').html(this.message);
-
-                this.message = values[4];
-                $('#responseMessage4').html(this.message);
-
-                this.message = values[5];
-                $('#responseMessage5').html(this.message);
-
-                this.message = values[6];
-                $('#responseMessage6').html(this.message);
-
+                container.empty(); // Clear the loading message
+                
+                rows.forEach((row, index) => {
+                    const values = row.split('|');
+                    if (values.length > 0) {
+                        const message = values.slice(0, -1).join('|'); // Join all values except the last empty one
+                        container.append(`<p class="response-message" id="responseMessage${index}">${message}</p>`);
+                    }
+                });
+    
+                if (rows.length === 0) {
+                    container.append('<p class="response-message">No results found.</p>');
+                }
+    
                 this.initializePlots();
             },
             error: (xhr, status, error) => {
                 console.error('Error getting Model Results:', error);
+                $('#responseContainer').html('<p class="response-message">Error loading results. Please try again later.</p>');
             }
         });
     }

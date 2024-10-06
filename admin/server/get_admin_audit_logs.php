@@ -27,7 +27,7 @@ $adjacents = "2";
 $totalnumberofpages = ceil($totalrecords / $totalrecordsperpage);
 
 //4. get all logs
-$stmt1 = $conn->prepare("SELECT * FROM audit_logs LIMIT $offset,$totalrecordsperpage");
+$stmt1 = $conn->prepare("SELECT * FROM audit_logs ORDER BY log_id DESC LIMIT $offset,$totalrecordsperpage");
 $stmt1->execute();
 $logs = $stmt1->get_result();// This is an array
 

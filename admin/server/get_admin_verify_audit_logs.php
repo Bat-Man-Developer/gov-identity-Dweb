@@ -18,3 +18,34 @@ $stmt1->bind_param("sssss", $adminID, $log_action, $log_status, $log_location, $
 if ($stmt1->execute()) {
     $stmt1->close();
 }
+
+// Save audit logs to CSV
+function saveAuditLogsToCSV($conn, $filename = 'datasets/audit_logs.csv') {
+    $query = "SELECT * FROM audit_logs";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        $file = fopen($filename, 'w');
+
+        // Write headers
+        $headers = array('log_id', 'admin_id', 'user_id', 'log_action', 'log_status', 'log_location', 'log_date');
+        fputcsv($file, $headers);
+
+        // Write data
+        while ($row = $result->fetch_assoc()) {
+            fputcsv($file, $row);
+        }
+
+        fclose($file);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Call the function to save audit logs to CSV
+if (saveAuditLogsToCSV($conn)) {
+
+} else {
+    echo "No audit logs found or error saving to CSV.";
+}

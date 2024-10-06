@@ -126,9 +126,9 @@ function getLocationFromIP($ip) {
                     <td><?php echo $application['id_application_status']; ?></td>
                     <td><?php echo $application['id_application_created_at']; ?></td>
                     <td>
-                        <a href="admin_verify_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="verify-button">Verify</a>
-                        <a href="admin_approve_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Approve</a>
-                        <a href="admin_reject_id_application.php?id=<?php echo $application['id_application_id']; ?>" class="action-button">Reject</a>
+                        <a href="admin_verify_id_application.php?id_application_id=<?php echo $application['id_application_id']; ?>" class="verify-button">Verify</a>
+                        <a href="admin_approve_id_application.php?id_application_id=<?php echo $application['id_application_id']; ?>" class="action-button">Approve</a>
+                        <a href="admin_reject_id_application.php?id_application_id=<?php echo $application['id_application_id']; ?>" class="action-button">Reject</a>
                     </td>
                 </tr>
                 <?php } ?>

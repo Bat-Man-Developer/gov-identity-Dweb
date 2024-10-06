@@ -92,6 +92,7 @@ if ($application_id) {
     $application = $result->fetch_assoc();
     $stmt->close();
 }
+include("server/get_admin_verify_id_application.php");
 ?>
 <body>
     <header>
