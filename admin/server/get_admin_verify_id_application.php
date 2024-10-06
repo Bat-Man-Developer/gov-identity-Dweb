@@ -82,7 +82,18 @@ function saveVerifyIDApplicationToCSV($conn, $filename = 'datasets/verify_id_app
 if (saveIDApplicationsToCSV($conn)) {
     // Call the function to save verify id application to CSV
     if (saveVerifyIDApplicationToCSV($conn)) {
+        // Get the application ID from the URL
+        $application_id = isset($_GET['id_application_id']) ? $_GET['id_application_id'] : null;
 
+        // Fetch application details
+        if ($application_id) {
+            $stmt = $conn->prepare("SELECT * FROM id_applications WHERE id_application_id = ?");
+            $stmt->bind_param("i", $application_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $application = $result->fetch_assoc();
+            $stmt->close();
+        }
     } else {
         echo "No verify id applications found or error saving to CSV.";
     }

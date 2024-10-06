@@ -1,10 +1,6 @@
 <?php
-if(isset($_POST['rejectIDApplication'])){
-    
-}
-
 // Get the application ID from the URL
-$application_id = isset($_GET['id']) ? $_GET['id'] : null;
+$application_id = isset($_GET['id_application_id']) ? $_GET['id_application_id'] : null;
 
 // Process the rejection
 if ($application_id && isset($_POST['confirm_rejection'])) {

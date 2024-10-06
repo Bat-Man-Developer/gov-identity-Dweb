@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from datetime import datetime
 
 # Load the datasets
 id_applications = pd.read_csv('C:/Xampp/htdocs/gov-identity-Dweb/admin/datasets/id_applications.csv')
@@ -30,7 +29,6 @@ def find_unused_id(existing_ids, date_of_birth, gender, citizen_status):
 if 'id_number' in id_applications.columns:
     existing_ids = set(id_applications['id_number'].astype(str))
 else:
-    print("Warning: 'id_number' column not found in id_applications. Starting with an empty set of existing IDs.")
     existing_ids = set()
 
 # Convert 'id_number' column to string type
@@ -50,9 +48,4 @@ for index, row in verify_id_application.iterrows():
     verify_id_application.at[index, 'id_number'] = new_id
     existing_ids.add(new_id)
 
-    print(f"Proposed unused ID number for application {index + 1}: {new_id}")
-
-# Update the verify_id_application CSV with the new ID numbers
-verify_id_application.to_csv('C:/Xampp/htdocs/gov-identity-Dweb/admin/datasets/verify_id_application.csv', index=False)
-
-print("verify_id_application.csv has been updated with the new ID numbers.")
+    print(f"Proposed Unused ID Number For Application {index + 1}: {new_id}")

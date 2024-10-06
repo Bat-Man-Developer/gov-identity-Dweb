@@ -80,18 +80,6 @@ function getLocationFromIP($ip) {
     }
 }
 
-// Get the application ID from the URL
-$application_id = isset($_GET['id']) ? $_GET['id'] : null;
-
-// Fetch application details
-if ($application_id) {
-    $stmt = $conn->prepare("SELECT * FROM id_applications WHERE id_application_id = ?");
-    $stmt->bind_param("i", $application_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $application = $result->fetch_assoc();
-    $stmt->close();
-}
 include("server/get_admin_verify_id_application.php");
 ?>
 <body>
@@ -130,14 +118,19 @@ include("server/get_admin_verify_id_application.php");
                 <p><strong>Submission Date:</strong> <?php echo $application['id_application_created_at']; ?></p>
                 <p><strong>User ID Signature.:</strong></p><img src="<?php echo $application['id_application_signature_path']; ?>" alt="Loading Image..." style="border-radius: 5px ;width: 20%; height: auto;">
            </div>
-            <?php if (isset($_GET['responseMessage'])) { ?>
+            <?php if (!isset($application['id_application_id_number']) || $application['id_application_id_number'] == '') { ?>
                 <form method="POST" action="admin_review_id_applications.php">
-                    <p id="responseMessage">Generating ID Number...</p>
+                    <div id="responseContainer">
+                        <p class="response-message" id="responseMessage">Generating New ID Number...</p><br>
+                    </div>
                     <input type="hidden" name="user_id" value="<?php echo $application['user_id']; ?>">
-                    <button type="submit" name="assignIDNumber" class="action-button">Assign ID Number</button>
+                    <button type="submit" name="assignNewIDNumber" class="action-button">Assign New ID Number</button>
                 </form>
             <?php } else { ?>
                 <form>
+                    <div id="responseContainer1">
+                        <p style="color: red; font-weight: bold">ID Number Already Exists. Cannot Generate New ID Number.</p><br>
+                    </div>
                     <a href="admin_review_id_applications.php" class="action-button" style="text-align: center">Cancel</a>
                 </form>
             <?php } ?>
