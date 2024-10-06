@@ -9,7 +9,6 @@ class Model {
             method: 'GET',
             success: (response) => {
                 const container = $('#responseContainer');
-                container.empty(); // Clear the loading message
                 container.append(`<p class="response-message" id="responseMessage">${response}</p>`);
             },
             error: (xhr, status, error) => {
