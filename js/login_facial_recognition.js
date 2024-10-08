@@ -31,7 +31,7 @@ takePhotoBtn.addEventListener('click', () => {
 verifyPhotoBtn.addEventListener('click', () => {
     const imageDataUrl = canvas.toDataURL('image/png');
 
-    fetch('server/get_login_facial_recognition.php', {
+    fetch('call_python/get_login_facial_recognition.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -42,15 +42,15 @@ verifyPhotoBtn.addEventListener('click', () => {
     .then(data => {
         if (data.success) {
             facialRecognitionPopup.style.display = 'none';
-            window.location.href = `dashboard.php?success=Logged in successfully!`;
+            window.location.href = `../dashboard.php?success=Logged in successfully!`;
         } else {
             facialRecognitionPopup.style.display = 'none';
-            window.location.href = `login.php?error=Facial recognition failed. User not found in database. Try again or login manually`;
+            window.location.href = `../login.php?error=Facial recognition failed. User not found in database. Try again or login manually`;
         }
     })
     .catch(error => {
         facialRecognitionPopup.style.display = 'none';
-        window.location.href = `login.php?error=Facial recognition failed unexpectedly. Try again or login manually`;
+        window.location.href = `../login.php?error=Facial recognition failed unexpectedly. Try again or login manually`;
     });
 });
 
