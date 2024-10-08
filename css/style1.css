@@ -1,3 +1,4 @@
+/*--------ID Application Face Recognition---------*/
 .photo_container {
     font-family: Arial, sans-serif;
     display: flex;
@@ -30,4 +31,41 @@
 #message {
     margin-top: 20px;
     font-weight: bold;
+}
+
+/*--------Login Face Recognition -----*/
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
