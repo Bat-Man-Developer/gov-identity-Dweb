@@ -1,7 +1,25 @@
 <?php
 if (isset($_POST['assignNewIDNumber'])) {
-    header("Location: ../admin_review_id_applications.php?success=ID Number Assigned Successfully. Finalize ID Application Approval.");
-    exit;
+    $applicationID = $_POST['id_application_id'];
+    $userID = $_POST['user_id'];
+    $applicationIDNumber = $_POST['id_application_id_number'];
+
+    // Prepare SQL statement
+    $stmt = $conn->prepare("UPDATE id_applications SET id_application_id_number = ? WHERE id_application_id = ? AND user_id = ?");
+
+    // Bind parameters
+    $stmt->bind_param("sss", $applicationIDNumber, $applicationID, $userID);
+
+    // Execute and check for success
+    if ($stmt->execute()) {
+        $stmt->close();
+        header("Location: admin_review_id_applications.php?success=ID Number Assigned Successfully. Finalize ID Application Approval.");
+        exit;
+    } else {
+        // Handle error
+        // You might want to log the error or provide feedback to the user
+        echo "Error updating record: " . $stmt->error;
+    }
 }
 
 $log_action = "admin view server verify id application";

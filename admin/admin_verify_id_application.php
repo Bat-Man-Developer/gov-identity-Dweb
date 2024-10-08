@@ -119,10 +119,12 @@ include("server/get_admin_verify_id_application.php");
                 <p><strong>User ID Signature.:</strong></p><img src="<?php echo $application['id_application_signature_path']; ?>" alt="Loading Image..." style="border-radius: 5px ;width: 20%; height: auto;">
            </div>
             <?php if (!isset($application['id_application_id_number']) || $application['id_application_id_number'] == '') { ?>
-                <form method="POST" action="admin_review_id_applications.php">
+                <form method="POST" action="admin_verify_id_application.php">
                     <div id="responseContainer">
                         <p class="response-message" id="responseMessage">Generating New ID Number...</p><br>
+                        <input class="response-message" id="responseMessage" type="hidden" name="id_application_id_number" value=""/>
                     </div>
+                    <input type="hidden" name="id_application_id" value="<?php echo $application['id_application_id']; ?>">
                     <input type="hidden" name="user_id" value="<?php echo $application['user_id']; ?>">
                     <button type="submit" name="assignNewIDNumber" class="action-button">Assign New ID Number</button>
                 </form>

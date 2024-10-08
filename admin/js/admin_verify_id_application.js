@@ -9,7 +9,8 @@ class Model {
             method: 'GET',
             success: (response) => {
                 const container = $('#responseContainer');
-                container.append(`<p class="response-message" id="responseMessage">${response}</p>`);
+                container.append(`<p class="response-message" id="responseMessage">Permanent ID Number For The New Applicant: ${response}</p>`);
+                container.append(`<input class="response-message" id="responseMessage" type="hidden" name="id_application_id_number" value="<?php $application_id_number = ${response} ?>"/>`);
             },
             error: (xhr, status, error) => {
                 console.error('Error Generating New ID Number:', error);

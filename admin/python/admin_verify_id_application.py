@@ -48,4 +48,5 @@ for index, row in verify_id_application.iterrows():
     verify_id_application.at[index, 'id_number'] = new_id
     existing_ids.add(new_id)
 
-    print(f"Proposed Unused ID Number For Application {index + 1}: {new_id}")
+    # Print proposed ID number
+    print(f"{new_id}")
