@@ -45,7 +45,7 @@ verifyPhotoBtn.addEventListener('click', () => {
             window.location.href = `dashboard.php?success=Logged in successfully!`;
         } else {
             facialRecognitionPopup.style.display = 'none';
-            window.location.href = `login.php?error=Facial recognition failed. User not found in database`;
+            window.location.href = `login.php?error=Facial recognition failed. User not found in database. Try again or login manually`;
         }
     })
     .catch(error => {
