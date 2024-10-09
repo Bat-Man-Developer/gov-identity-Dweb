@@ -1,7 +1,7 @@
 <?php
 
 // Ensure the directory path ends with a slash
-$upload_dir = '../datsets/temp_users_image/'; 
+$upload_dir = '../datasets/temp_users_image/'; 
 
 // Check if the directory exists and is writable
 if (!file_exists($upload_dir)) {
@@ -52,7 +52,10 @@ $message = trim($model->getModel());
 
 include("../server/connection.php");
 
-if ($message !== "Image not found") {
+$lastTwoChars = substr($message, -2);
+echo $lastTwoChars;
+
+if ($lastTwoChars == "18") {
     // Assuming the user's data is stored in the format 'userID_userFirstName_userLastName_userEmail'
     $user_data = explode('_', $message);
     if (count($user_data) == 4) {
