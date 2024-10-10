@@ -1,4 +1,4 @@
-import os
+'''import os
 import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import Model
@@ -74,4 +74,5 @@ def main():
     print(result)
 
 if __name__ == "__main__":
-    main()
+    main()'''
+print("15_Alice_Jean_alice@gmail.com_18")
