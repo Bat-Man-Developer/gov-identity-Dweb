@@ -2,7 +2,27 @@
 if (isset($_POST['assignNewIDNumber'])) {
     $applicationID = $_POST['id_application_id'];
     $userID = $_POST['user_id'];
-    $applicationIDNumber = $_POST['id_application_id_number'];
+    // Assuming $_POST['id_application_id_number'] is set
+    if (isset($_POST['id_application_id_number'])) {
+        $applicationIDNumber = $_POST['id_application_id_number'];
+
+        // Use regular expression to find the number
+        if (preg_match('/(\d+)/', $applicationIDNumber, $matches, PREG_OFFSET_CAPTURE)) {
+            // $matches[0][0] contains the number, and $matches[0][1] contains the starting position
+            $number = $matches[0][0]; // The extracted number
+            $startPos = $matches[0][1]; // Starting position of the number
+            $endPos = $startPos + strlen($number) - 1; // Ending position of the number
+
+            // Store in variable
+            $applicationIDNumber = $number;
+        } else {
+            header("Location: admin_review_id_applications.php?error=Error. No ID number found.");
+            exit;
+        }
+    } else {
+        header("Location: admin_review_id_applications.php?error=Error. No ID number found.");
+        exit;
+    }
 
     // Prepare SQL statement
     $stmt = $conn->prepare("UPDATE id_applications SET id_application_id_number = ? WHERE id_application_id = ? AND user_id = ?");

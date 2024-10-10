@@ -1,16 +1,22 @@
 <?php
 // Get the application ID from the URL
-$application_id = isset($_GET['id_application_id']) ? $_GET['id_application_id'] : null;
+if(isset($_GET['id_application_id'])){
+    $application_id = $_GET['id_application_id'];
+}
 
+// POST the application ID from the URL
+if(isset($_POST['id_application_id'])){
+    $application_id = $_POST['id_application_id'];
+}
 // Process the approval
-if ($application_id && isset($_POST['confirm_approval'])) {
+if ($application_id && isset($_POST['approveIDApplication'])) {
     $stmt = $conn->prepare("UPDATE id_applications SET id_application_status = 'Approved' WHERE id_application_id = ?");
     $stmt->bind_param("i", $application_id);
     if ($stmt->execute()) {
         header("Location: admin_review_id_applications.php?success=Application approved successfully");
         exit();
     } else {
-        $error = "Failed to approve application";
+        header("Location: admin_review_id_applications.php?error=Failed to approve application");
     }
     $stmt->close();
 }

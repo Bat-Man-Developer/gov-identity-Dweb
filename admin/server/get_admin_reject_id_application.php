@@ -1,12 +1,18 @@
 <?php
 // Get the application ID from the URL
-$application_id = isset($_GET['id_application_id']) ? $_GET['id_application_id'] : null;
+if(isset($_GET['id_application_id'])){
+    $application_id = $_GET['id_application_id'];
+}
+
+// POST the application ID from the URL
+if(isset($_POST['id_application_id'])){
+    $application_id = $_POST['id_application_id'];
+}
 
 // Process the rejection
-if ($application_id && isset($_POST['confirm_rejection'])) {
-    $rejection_reason = $_POST['rejection_reason'];
-    $stmt = $conn->prepare("UPDATE id_applications SET id_application_status = 'Rejected', id_application_rejection_reason = ? WHERE id_application_id = ?");
-    $stmt->bind_param("si", $rejection_reason, $application_id);
+if ($application_id && isset($_POST['rejectIDApplication'])) {
+    $stmt = $conn->prepare("UPDATE id_applications SET id_application_status = 'Rejected' WHERE id_application_id = ?");
+    $stmt->bind_param("i",$application_id);
     if ($stmt->execute()) {
         header("Location: admin_review_id_applications.php?success=Application rejected successfully");
         exit();
