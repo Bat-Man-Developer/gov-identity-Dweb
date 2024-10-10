@@ -1,8 +1,8 @@
 <?php 
 include("includes/header.php");
 //if user is logged in then take user to dashboard page
-if(isset($_SESSION['userID']) && isset($_SESSION['userFirstName']) && isset($_SESSION['userLastName'])){
-    header('location: dashboard.php?userID=' . $_SESSION['userID'] . "&userFirstName=" . $_SESSION['userFirstName'] . "&userLastName=" . $_SESSION['userLastName']);
+if(isset($_SESSION['userID']) && isset($_SESSION['userFirstName']) && isset($_SESSION['userLastName']) && isset($_SESSION['userEmail'])){
+    header('location: dashboard.php?success=Logged in successfully!&userID=' . $_SESSION['userID'] . "&userFirstName=" . $_SESSION['userFirstName'] . "&userLastName=" . $_SESSION['userLastName'] . "&userEmail=" . $_SESSION['userEmail']);
     exit;
 }
 ?>

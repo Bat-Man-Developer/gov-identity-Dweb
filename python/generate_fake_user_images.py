@@ -7,7 +7,7 @@ import random
 from PIL import Image
 from keras.models import load_model
 # Set the number of images to generate
-num_images = 1000
+num_images = 10
 # Set the output directory
 output_dir = "C:/Xampp/htdocs/gov-identity-Dweb/datasets/stored_user_images"
 # Create the output directory if it doesn't exist

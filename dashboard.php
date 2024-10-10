@@ -111,7 +111,7 @@ function getLocationFromIP($ip) {
         <a href="citizenship_application.php" class="service-button">Citizenship Application</a>
         <a href="visa_application.php" class="service-button">Visa Application</a>
         <a href="civil_registration.php" class="service-button">Civil Registration</a>
-        <a href="id_application.php" class="service-button">Identity Document Application</a>
+        <a href="id_application.php" class="service-button">Identity Document Reapplication</a>
 
         <div class="applications-section">
             <h3>Your Applications</h3>

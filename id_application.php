@@ -27,6 +27,20 @@ if(!isset($_SESSION['userID'])){
 }
 else{
     $userID = $_SESSION['userID'];
+
+    // Prepare SQL statement
+    $stmt = $conn->prepare("SELECT user_first_name, user_last_name, user_sex, user_dob, user_country, user_email, user_phone FROM users WHERE user_id = ?");
+    $stmt->bind_param("i", $userID);
+    if($stmt->execute()){
+        $stmt->bind_result($firstName,$lastName,$sex,$dob,$country,$email,$phone);
+        $stmt->store_result();
+        $stmt->fetch();
+        $stmt->close();
+    }
+    else{
+        header("location: dashboard.php?error=Something went wrong. Try again or Contact Support.");
+    }
+
     $log_action = "user view id application";
     $log_status = "success";
 
@@ -94,27 +108,27 @@ function getLocationFromIP($ip) {
         <p class="text-center" id="webMessageError"><?php if(isset($_GET['error'])){ echo $_GET['error']; }?></p>
         <form id="id-application-form" method="POST" action="server/get_id_application.php" enctype="multipart/form-data">
             <label for="firstName">First Name(s)</label>
-            <input type="text" id="firstName" name="firstName" placeholder="Enter First Name" required>
+            <input type="text" id="firstName" name="firstName" value="<?php if($firstName != "") { echo $firstName; }else { echo "";} ?>" placeholder="Enter First Name" required>
 
             <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name" required>
+            <input type="text" id="lastName" name="lastName" value="<?php if($lastName != "") { echo $lastName; }else { echo "";} ?>" placeholder="Enter Last Name" required>
 
             <label for="dateOfBirth">Date of Birth</label>
-            <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" value="<?php if($dob != "") { echo $dob; }else { echo "";} ?>" required>
 
             <label for="placeOfBirth">Place of Birth</label>
             <input type="text" id="placeOfBirth" name="placeOfBirth" placeholder="Enter Place of Birth" required>
 
             <label for="gender">Gender</label>
             <select id="gender" name="gender" required>
-                <option value="" disabled selected>Select Gender</option>
+                <option value="<?php if($sex != "") { echo $sex; }else { echo "";} ?>" disabled selected><?php if($sex != "") { echo $sex; }else { echo "Select Gender";} ?></option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select>
 
             <label for="nationality">Nationality</label>
-            <input type="text" id="nationality" name="nationality" placeholder="Enter Nationality" required>
+            <input type="text" id="nationality" name="nationality" value="<?php if($country != "") { echo $country; }else { echo "";} ?>" placeholder="Enter Nationality" required>
 
             <label for="address">Current Address</label>
             <textarea id="address" name="address" placeholder="Enter Current Address" required></textarea>
@@ -144,7 +158,6 @@ function getLocationFromIP($ip) {
             <select id="documentType" name="documentType" required>
                 <option value="" disabled selected>Select Document Type</option>
                 <option value="nationalID">National ID Card</option>
-                <option value="passport">Passport</option>
             </select>
 
             <input type="hidden" name="userID" value="<?php echo $userID; ?>">

@@ -128,7 +128,6 @@ function getLocationFromIP($ip) {
                     <td><?php echo $user['user_phone']; ?></td>
                     <td><?php echo $user['user_status']; ?></td>
                     <td>
-                        <a href="admin_verify_user.php?user_id=<?php echo $user['user_id']; ?>" class="verify-button">Verify</a><br>
                         <a href="admin_edit_user.php?user_id=<?php echo $user['user_id']; ?>" class="action-button">Edit</a>
                         <a href="admin_delete_user.php?user_id=<?php echo $user['user_id']; ?>" class="action-button">Delete</a>
                     </td>
