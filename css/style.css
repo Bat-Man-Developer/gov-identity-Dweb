@@ -208,9 +208,15 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius: 5px;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+  }
+
+  #viewPdfButton:hover {
+    color: var(--white);
+    transform: scale(1.05);
   }
   
   #viewPdfButton:disabled {

@@ -108,45 +108,6 @@ function getLocationFromIP($ip) {
         return "Unknown";
     }
 }
-
-// Function to generate PDF
-function generatePDF($firstName, $lastName, $sex, $dob, $country, $email, $phone, $idNumber, $placeOfBirth, $address, $fatherName, $motherName, $maritalStatus, $occupation, $documentType, $applicationPhotoPath) {
-    $pdf = new FPDF();
-    $pdf->AddPage();
-    
-    // Add header
-    $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(0, 10, 'Identity Document', 0, 1, 'C');
-    
-    // Add photo
-    if (file_exists($applicationPhotoPath)) {
-        $pdf->Image($applicationPhotoPath, 10, 30, 30);
-    }
-    
-    // Add personal information
-    $pdf->SetFont('Arial', '', 12);
-    $pdf->SetXY(50, 30);
-    $pdf->Cell(0, 10, "Name: $firstName $lastName", 0, 1);
-    $pdf->SetX(50);
-    $pdf->Cell(0, 10, "Gender: $sex", 0, 1);
-    $pdf->SetX(50);
-    $pdf->Cell(0, 10, "Date of Birth: $dob", 0, 1);
-    $pdf->SetX(50);
-    $pdf->Cell(0, 10, "ID Number: $idNumber", 0, 1);
-    
-    // Add more details
-    $pdf->Ln(10);
-    $pdf->Cell(0, 10, "Place of Birth: $placeOfBirth", 0, 1);
-    $pdf->Cell(0, 10, "Address: $address", 0, 1);
-    $pdf->Cell(0, 10, "Father's Name: $fatherName", 0, 1);
-    $pdf->Cell(0, 10, "Mother's Name: $motherName", 0, 1);
-    $pdf->Cell(0, 10, "Marital Status: $maritalStatus", 0, 1);
-    $pdf->Cell(0, 10, "Occupation: $occupation", 0, 1);
-    $pdf->Cell(0, 10, "Document Type: $documentType", 0, 1);
-    
-    return $pdf;
-}
-
 ?>
 <body>
     <header>
@@ -170,9 +131,9 @@ function generatePDF($firstName, $lastName, $sex, $dob, $country, $email, $phone
             <p><strong>ID Number:</strong> <?php echo $idNumber; ?></p>
             <p><strong>Document Type:</strong> <?php echo $documentType; ?></p>
 
-            <button id="viewPdfButton" onclick="viewPdf()" <?php echo ($applicationStatus !== 'Approved') ? 'disabled' : ''; ?>>
+            <a id="viewPdfButton" href="view_approved_id_pdf.php?userIDNumber=<?php echo $idNumber; ?>" target="_blank" <?php echo ($applicationStatus !== 'Approved') ? 'disabled' : ''; ?>>
                 View Approved ID PDF
-            </button>
+            </a>
 
             <h3>Application Details</h3>
             <p><strong>Place of Birth:</strong> <?php echo $placeOfBirth; ?></p>
@@ -193,12 +154,6 @@ function generatePDF($firstName, $lastName, $sex, $dob, $country, $email, $phone
         <p><strong>Email:</strong> <?php echo $email; ?></p>
         <p><strong>Phone:</strong> <?php echo $phone; ?></p>
     </main>
-
-    <script>
-        function viewPdf() {
-            window.location.href = "view_approved_id_pdf.php?id=<?php echo $idNumber; ?>";
-        }
-    </script>
 </body>
 </html>
 <?php 

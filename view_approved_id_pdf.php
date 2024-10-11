@@ -3,13 +3,13 @@ session_start();
 require('fpdf/fpdf.php');
 include("server/connection.php");
 
-if(!isset($_SESSION['userID']) || !isset($_GET['id'])){
+if(!isset($_SESSION['userID']) || !isset($_GET['userIDNumber'])){
     header("Location: login.php?error=Unauthorised Access.");
     exit();
 }
 
 $userID = $_SESSION['userID'];
-$idNumber = $_GET['id'];
+$idNumber = $_GET['userIDNumber'];
 
 // Fetch user and application details
 $stmt = $conn->prepare("SELECT u.user_first_name, u.user_last_name, u.user_sex, u.user_dob, u.user_country, u.user_email, u.user_phone, 
